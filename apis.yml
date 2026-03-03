@@ -102,6 +102,9 @@ common:
 created: '2025-01-08'
 modified: '2025-07-15'
 position: Consumer
+segments:
+  - SDKs
+  - Documentation
 description: >-
   The platform to Build APIs your users love. Best in class API tooling for
   robust SDKs, API docs, Terraform providers and end-to-end testing.
