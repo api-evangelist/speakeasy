@@ -5,9 +5,9 @@ apis:
   - aid: speakeasy:speakeasy
     name: Speakeasy
     tags:
+      - Documentation
       - Platform
       - SDKs
-      - Documentation
       - Terraform
     humanURL: https://www.speakeasy.com/
     properties:
@@ -21,9 +21,9 @@ apis:
   - aid: speakeasy:sdk-generation
     name: Speakeasy SDK Generation
     tags:
-      - SDKs
       - Code Generation
       - OpenAPI
+      - SDKs
     humanURL: https://www.speakeasy.com/product/sdk-generation
     properties:
       - url: https://www.speakeasy.com/product/sdk-generation
@@ -37,10 +37,10 @@ apis:
   - aid: speakeasy:terraform-generation
     name: Speakeasy Terraform Generation
     tags:
-      - Terraform
-      - Infrastructure as Code
       - Code Generation
+      - Infrastructure as Code
       - OpenAPI
+      - Terraform
     humanURL: https://www.speakeasy.com/product/terraform-generation
     properties:
       - url: https://www.speakeasy.com/product/terraform-generation
@@ -54,10 +54,10 @@ apis:
   - aid: speakeasy:mcp-server
     name: Speakeasy MCP Server Generation
     tags:
-      - MCP
-      - AI
       - Agents
+      - AI
       - Code Generation
+      - MCP
       - OpenAPI
     humanURL: https://www.speakeasy.com/product/mcp-server
     properties:
@@ -73,9 +73,9 @@ apis:
   - aid: speakeasy:api-docs
     name: Speakeasy DocsMD
     tags:
+      - API Reference
       - Documentation
       - OpenAPI
-      - API Reference
     humanURL: https://www.speakeasy.com/product/api-docs
     properties:
       - url: https://www.speakeasy.com/product/api-docs
@@ -87,10 +87,10 @@ apis:
   - aid: speakeasy:contract-testing
     name: Speakeasy Contract Testing
     tags:
-      - Testing
       - Contract Testing
       - OpenAPI
       - SDKs
+      - Testing
     humanURL: https://www.speakeasy.com/docs/sdk-testing
     properties:
       - url: https://www.speakeasy.com/docs/sdk-testing
@@ -104,10 +104,10 @@ apis:
   - aid: speakeasy:react-query
     name: Speakeasy React Query Hooks
     tags:
-      - React
-      - TypeScript
-      - SDKs
       - Frontend
+      - React
+      - SDKs
+      - TypeScript
     humanURL: https://www.speakeasy.com/product/react-query
     properties:
       - url: https://www.speakeasy.com/product/react-query
@@ -119,10 +119,10 @@ apis:
   - aid: speakeasy:gram
     name: Speakeasy Gram
     tags:
-      - MCP
-      - AI
       - Agents
+      - AI
       - Cloud
+      - MCP
       - Platform
     humanURL: https://www.speakeasy.com/product/gram
     properties:
@@ -139,13 +139,13 @@ apis:
       organization through a unified control plane.
 name: Speakeasy
 tags:
+  - AI
+  - Documentation
+  - MCP
   - Platform
   - SDKs
-  - Documentation
   - Terraform
-  - MCP
   - Testing
-  - AI
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 access: 3rd-Party
