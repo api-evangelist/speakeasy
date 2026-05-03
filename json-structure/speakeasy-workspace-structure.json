@@ -1,0 +1,21 @@
+{
+  "name": "Speakeasy Workspace",
+  "description": "Structure of the Speakeasy Workspace resource and its relationships",
+  "type": "object",
+  "fields": [
+    {"name": "id", "type": "string", "required": true, "description": "Unique workspace identifier"},
+    {"name": "name", "type": "string", "required": true, "description": "Human-readable workspace name"},
+    {"name": "slug", "type": "string", "required": true, "description": "URL-safe workspace identifier"},
+    {"name": "organization_id", "type": "string", "required": true, "description": "Parent organization identifier"},
+    {"name": "telemetry_disabled", "type": "boolean", "required": true, "description": "Telemetry opt-out status"},
+    {"name": "created_at", "type": "date-time", "required": true, "description": "Creation timestamp"},
+    {"name": "updated_at", "type": "date-time", "required": true, "description": "Last updated timestamp"},
+    {"name": "verified", "type": "boolean", "required": false, "description": "Workspace verification status"}
+  ],
+  "relationships": [
+    {"resource": "Organization", "cardinality": "many-to-one", "field": "organization_id"},
+    {"resource": "Token", "cardinality": "one-to-many", "description": "Workspace access tokens"},
+    {"resource": "Event", "cardinality": "one-to-many", "description": "SDK generation events"},
+    {"resource": "PublishingToken", "cardinality": "one-to-many", "description": "Publishing tokens scoped to workspace"}
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/speakeasy/main/json-schema/speakeasy-workspace-schema.json",
+  "title": "Speakeasy Workspace",
+  "description": "A Speakeasy workspace represents a tenant unit within an organization, containing API generation targets, tokens, and settings.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the workspace"
+    },
+    "name": {
+      "type": "string",
+      "description": "Human-readable name of the workspace"
+    },
+    "slug": {
+      "type": "string",
+      "description": "URL-safe slug for the workspace"
+    },
+    "organization_id": {
+      "type": "string",
+      "description": "The organization this workspace belongs to"
+    },
+    "telemetry_disabled": {
+      "type": "boolean",
+      "description": "Whether telemetry collection is disabled for this workspace"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when the workspace was created"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when the workspace was last updated"
+    },
+    "verified": {
+      "type": "boolean",
+      "description": "Whether the workspace has been verified"
+    }
+  },
+  "required": ["id", "name", "slug", "organization_id", "telemetry_disabled", "created_at", "updated_at"]
+}

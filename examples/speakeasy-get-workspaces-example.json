@@ -1,0 +1,39 @@
+{
+  "title": "Get Workspaces for a User",
+  "description": "Example request and response for listing all workspaces available to the authenticated user",
+  "request": {
+    "method": "GET",
+    "url": "https://api.prod.speakeasy.com/v1/workspaces",
+    "headers": {
+      "x-api-key": "your-speakeasy-api-key"
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": [
+      {
+        "id": "ws_01HXYZ",
+        "name": "Production Workspace",
+        "slug": "production",
+        "organization_id": "org_01HABC",
+        "telemetry_disabled": false,
+        "created_at": "2024-01-15T10:00:00Z",
+        "updated_at": "2026-04-01T08:30:00Z",
+        "verified": true
+      },
+      {
+        "id": "ws_01HWXY",
+        "name": "Staging Workspace",
+        "slug": "staging",
+        "organization_id": "org_01HABC",
+        "telemetry_disabled": false,
+        "created_at": "2024-02-20T14:00:00Z",
+        "updated_at": "2026-03-15T12:00:00Z",
+        "verified": false
+      }
+    ]
+  }
+}

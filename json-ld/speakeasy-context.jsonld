@@ -1,0 +1,78 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "speakeasy": "https://www.speakeasy.com/vocab/",
+    "name": "name",
+    "description": "description",
+    "url": "url",
+    "createdAt": {
+      "@id": "speakeasy:createdAt",
+      "@type": "xsd:dateTime"
+    },
+    "updatedAt": {
+      "@id": "speakeasy:updatedAt",
+      "@type": "xsd:dateTime"
+    },
+    "Workspace": {
+      "@id": "speakeasy:Workspace",
+      "@type": "@id"
+    },
+    "Organization": {
+      "@id": "speakeasy:Organization",
+      "@type": "@id"
+    },
+    "Token": {
+      "@id": "speakeasy:Token",
+      "@type": "@id"
+    },
+    "PublishingToken": {
+      "@id": "speakeasy:PublishingToken",
+      "@type": "@id"
+    },
+    "CodeSample": {
+      "@id": "speakeasy:CodeSample",
+      "@type": "@id"
+    },
+    "Artifact": {
+      "@id": "speakeasy:Artifact",
+      "@type": "@id"
+    },
+    "workspaceId": {
+      "@id": "speakeasy:workspaceId",
+      "@type": "xsd:string"
+    },
+    "organizationId": {
+      "@id": "speakeasy:organizationId",
+      "@type": "xsd:string"
+    },
+    "slug": {
+      "@id": "speakeasy:slug",
+      "@type": "xsd:string"
+    },
+    "accountType": {
+      "@id": "speakeasy:accountType",
+      "@type": "@vocab"
+    },
+    "telemetryDisabled": {
+      "@id": "speakeasy:telemetryDisabled",
+      "@type": "xsd:boolean"
+    },
+    "targetId": {
+      "@id": "speakeasy:targetId",
+      "@type": "xsd:string"
+    },
+    "validUntil": {
+      "@id": "speakeasy:validUntil",
+      "@type": "xsd:dateTime"
+    },
+    "namespace": {
+      "@id": "speakeasy:namespace",
+      "@type": "xsd:string"
+    },
+    "featureFlags": {
+      "@id": "speakeasy:featureFlags",
+      "@container": "@list"
+    },
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  }
+}

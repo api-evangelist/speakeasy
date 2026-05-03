@@ -5,19 +5,32 @@ apis:
   - aid: speakeasy:speakeasy
     name: Speakeasy
     tags:
+      - AI
       - Documentation
+      - MCP
       - Platform
       - SDKs
       - Terraform
+      - Testing
     humanURL: https://www.speakeasy.com/
+    baseURL: https://api.prod.speakeasy.com
     properties:
       - url: https://www.speakeasy.com/
-        type: Documentation
+        type: Website
       - url: https://www.speakeasy.com/docs/sdks/introduction
         type: GettingStarted
+      - url: https://www.speakeasy.com/openapi.yaml
+        type: OpenAPI
+      - url: https://www.speakeasy.com/docs
+        type: Documentation
+      - url: https://www.speakeasy.com/docs/speakeasy-reference/cli
+        type: CLI
+      - url: https://github.com/speakeasy-api/speakeasy
+        type: GitHubRepo
     description: >-
-      The platform to Build APIs your users love. Best in class API tooling for
-      robust SDKs, API docs, Terraform providers and end-to-end testing.
+      The platform to build APIs your users love. Best-in-class API tooling for
+      robust SDKs, API documentation, Terraform providers, MCP servers, and
+      end-to-end contract testing. OpenAPI-native with no proprietary DSLs.
   - aid: speakeasy:sdk-generation
     name: Speakeasy SDK Generation
     tags:
@@ -244,6 +257,22 @@ common:
     name: Skills for AI Coding Assistants | Speakeasy
     type: Documentation
     description: 'null'
+  - url: https://raw.githubusercontent.com/api-evangelist/speakeasy/main/openapi/speakeasy-openapi.yml
+    name: Speakeasy OpenAPI
+    type: OpenAPI
+    description: 'null'
+  - url: https://raw.githubusercontent.com/api-evangelist/speakeasy/main/rules/speakeasy-rules.yml
+    name: Speakeasy Spectral Rules
+    type: SpectralRuleset
+    description: 'null'
+  - url: https://raw.githubusercontent.com/api-evangelist/speakeasy/main/capabilities/sdk-platform-management.yaml
+    name: SDK Platform Management Capability
+    type: NaftikoCapability
+    description: 'null'
+  - url: https://raw.githubusercontent.com/api-evangelist/speakeasy/main/vocabulary/speakeasy-vocabulary.yml
+    name: Speakeasy Vocabulary
+    type: Vocabulary
+    description: 'null'
   - name: Features
     type: Features
     data:
@@ -273,7 +302,7 @@ common:
       - name: Gram MCP Cloud
       - name: DocsMD
 created: '2025-01-08'
-modified: '2026-03-03'
+modified: '2026-05-02'
 position: Consumer
 segments:
   - SDKs

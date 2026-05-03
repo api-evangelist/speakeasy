@@ -1,0 +1,28 @@
+{
+  "title": "Validate API Key",
+  "description": "Example request and response for validating a Speakeasy API key",
+  "request": {
+    "method": "GET",
+    "url": "https://api.prod.speakeasy.com/v1/auth/validate",
+    "headers": {
+      "x-api-key": "your-speakeasy-api-key"
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "workspace_id": "ws_01HXYZ",
+      "workspace_slug": "my-workspace",
+      "org_slug": "my-org",
+      "account_type_v2": "scale-up",
+      "generation_access_unlimited": false,
+      "enabled_features": ["sdk-generation", "terraform-generation", "mcp-server"],
+      "billing_add_ons": [],
+      "telemetry_disabled": false,
+      "workspace_created_at": "2024-01-15T10:00:00Z"
+    }
+  }
+}

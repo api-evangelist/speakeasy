@@ -1,0 +1,173 @@
+name: Speakeasy Vocabulary
+description: >-
+  Domain vocabulary for the Speakeasy API platform, covering SDK generation,
+  OpenAPI tooling, MCP servers, Terraform providers, and workspace management concepts.
+version: '1.0'
+created: '2026-05-02'
+modified: '2026-05-02'
+
+terms:
+  - term: Workspace
+    definition: >-
+      A tenancy unit within a Speakeasy organization. Each workspace has its own
+      API key, generation targets, tokens, and settings. Workspaces are the
+      primary boundary for SDK generation and publishing operations.
+    tags:
+      - Tenancy
+      - Organization
+
+  - term: Organization
+    definition: >-
+      The top-level tenancy construct in Speakeasy. Organizations contain one or
+      more workspaces, manage billing, and control SSO and feature flag settings.
+    tags:
+      - Tenancy
+      - Billing
+
+  - term: SDK Generation
+    definition: >-
+      The process of automatically generating idiomatic, type-safe client SDKs
+      from an OpenAPI specification. Speakeasy supports TypeScript, Python, Go,
+      Java, C#, PHP, Ruby, Unity, and more.
+    tags:
+      - Code Generation
+      - SDKs
+
+  - term: Terraform Provider
+    definition: >-
+      An automatically generated Terraform provider from an OpenAPI spec,
+      enabling infrastructure-as-code management of API resources. Speakeasy
+      keeps providers synchronized with API changes.
+    tags:
+      - Infrastructure As Code
+      - Terraform
+
+  - term: MCP Server
+    definition: >-
+      A Model Context Protocol server generated from an OpenAPI spec, enabling
+      AI agents and LLMs to discover and invoke API operations as tools.
+      Speakeasy MCP servers can be deployed on Cloudflare Workers, Docker, or locally.
+    tags:
+      - AI
+      - Agents
+      - MCP
+
+  - term: Artifact
+    definition: >-
+      A versioned, registry-stored output of the SDK generation pipeline, such
+      as an OpenAPI spec revision, code sample overlay, or generation lock file.
+      Artifacts are organized by namespace and revision.
+    tags:
+      - Registry
+      - Versioning
+
+  - term: Namespace
+    definition: >-
+      A named grouping within the Speakeasy artifact registry that contains
+      multiple revisions of a spec or SDK artifact. Namespaces can be archived
+      or have visibility settings applied.
+    tags:
+      - Registry
+      - Artifacts
+
+  - term: Code Sample
+    definition: >-
+      A language-specific code snippet demonstrating how to call an API operation
+      using a Speakeasy-generated SDK. Code samples can be generated and embedded
+      in API documentation.
+    tags:
+      - Documentation
+      - SDKs
+
+  - term: Workflow
+    definition: >-
+      A declarative configuration file (workflow.yaml) that defines SDK generation
+      targets, sources, and publishing steps. Workflows are executed by the
+      Speakeasy CLI and GitHub Actions.
+    tags:
+      - CI/CD
+      - Automation
+
+  - term: Publishing Token
+    definition: >-
+      A scoped token used to publish artifacts to Speakeasy-managed registries
+      or documentation targets. Publishing tokens have validity periods and
+      are scoped to specific targets.
+    tags:
+      - Authentication
+      - Publishing
+
+  - term: Feature Flag
+    definition: >-
+      A workspace-level toggle that enables or disables platform capabilities
+      such as schema registry, change reports, or webhook integrations.
+    tags:
+      - Configuration
+      - Platform
+
+  - term: Gram
+    definition: >-
+      Speakeasy's MCP Cloud platform for hosting, securing, and monitoring
+      remote MCP servers and AI agent infrastructure at organization scale.
+    tags:
+      - AI
+      - MCP
+      - Cloud
+
+  - term: Contract Testing
+    definition: >-
+      Automated test generation from OpenAPI specs and Arazzo workflows that
+      validates actual API behavior matches the specification contract. Tests
+      are generated in native frameworks like pytest and vitest.
+    tags:
+      - Testing
+      - Quality
+
+  - term: OpenAPI Overlay
+    definition: >-
+      A structured set of modifications applied on top of an existing OpenAPI
+      spec, following the OpenAPI Overlay specification. Used to customize
+      generated SDKs without modifying the source spec.
+    tags:
+      - OpenAPI
+      - Customization
+
+  - term: Arazzo Workflow
+    definition: >-
+      A multi-step API workflow description using the Arazzo specification,
+      enabling definition of API sequences used for contract testing and
+      documentation generation.
+    tags:
+      - Testing
+      - Workflows
+
+categories:
+  - name: Tenancy
+    description: Concepts related to organization and workspace management
+    terms:
+      - Workspace
+      - Organization
+      - Feature Flag
+
+  - name: Code Generation
+    description: Concepts related to SDK, Terraform, and MCP code generation
+    terms:
+      - SDK Generation
+      - Terraform Provider
+      - MCP Server
+      - Code Sample
+
+  - name: Registry
+    description: Concepts related to artifact storage and versioning
+    terms:
+      - Artifact
+      - Namespace
+      - Publishing Token
+
+  - name: Developer Experience
+    description: Concepts related to workflows and API quality
+    terms:
+      - Workflow
+      - Contract Testing
+      - OpenAPI Overlay
+      - Arazzo Workflow

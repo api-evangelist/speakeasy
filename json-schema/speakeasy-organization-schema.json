@@ -1,0 +1,58 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/speakeasy/main/json-schema/speakeasy-organization-schema.json",
+  "title": "Speakeasy Organization",
+  "description": "A Speakeasy organization is the top-level tenancy unit, containing workspaces, billing settings, and member management.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the organization"
+    },
+    "name": {
+      "type": "string",
+      "description": "Human-readable name of the organization"
+    },
+    "slug": {
+      "type": "string",
+      "description": "URL-safe slug for the organization"
+    },
+    "account_type": {
+      "type": "string",
+      "enum": ["free", "scale-up", "enterprise"],
+      "description": "The billing tier for the organization"
+    },
+    "telemetry_disabled": {
+      "type": "boolean",
+      "description": "Whether telemetry collection is disabled"
+    },
+    "sso_activated": {
+      "type": "boolean",
+      "description": "Whether SSO is activated for the organization"
+    },
+    "sso_connection_id": {
+      "type": ["string", "null"],
+      "description": "SSO connection identifier if SSO is configured"
+    },
+    "free_trial_expiry": {
+      "type": ["string", "null"],
+      "format": "date-time",
+      "description": "Expiry date of any active free trial"
+    },
+    "internal": {
+      "type": "boolean",
+      "description": "Whether this is an internal Speakeasy organization"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when the organization was created"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when the organization was last updated"
+    }
+  },
+  "required": ["id", "name", "slug", "account_type", "telemetry_disabled", "sso_activated", "created_at", "updated_at"]
+}
