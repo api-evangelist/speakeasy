@@ -4,123 +4,54 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Speakeasy
 providerId: speakeasy
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: false
 tags:
   - AI
   - Documentation
   - MCP
   - Platform
   - SDKs
-  - Terraform
-  - Testing
   - Rate Limiting
-  - Quotas
-  - Throttling
-description: Machine-readable rate limit definitions for the Speakeasy API surface. Captures per-tier
-  quotas, burst behavior, response signaling, and recovery semantics. Defaults are scaffold values to
-  be replaced with published provider limits.
-headers:
-  limit: X-RateLimit-Limit
-  remaining: X-RateLimit-Remaining
-  reset: X-RateLimit-Reset
-  retryAfter: Retry-After
-  policy: RateLimit-Policy
+description: Speakeasy does not publish a rate-limits page for its platform APIs.
+  The commercial constraint is the per-language operations cap (250 operations per
+  language on Free and Business) rather than a per-second throughput limit. MCP /
+  AI Control Plane is billed on tool-call requests under enterprise contracts.
+sources:
+  - https://www.speakeasy.com/pricing
+  - https://www.speakeasy.com/docs
+notes: No dedicated rate-limit reference page is published; quotas are
+  operation-count caps governed by plan, not per-second throughput.
 responseCodes:
   throttled: 429
-  quotaExceeded: 429
-  serviceUnavailable: 503
 limits:
-  - tier: free
-    name: Free Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 10
-    burst: 20
-    timeFrame: minute
-    applies:
-      - Speakeasy
-      - Speakeasy SDK Generation
-      - Speakeasy Terraform Generation
-      - Speakeasy MCP Server Generation
-      - Speakeasy DocsMD
-      - Speakeasy Contract Testing
-      - Speakeasy React Query Hooks
-      - Speakeasy Gram
-  - tier: free
-    name: Free Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 1000
+  - name: Operations per Language (Free / Business)
+    scope: account/language
+    metric: operations
+    limit: 250
     timeFrame: month
-    applies:
-      - Speakeasy
-      - Speakeasy SDK Generation
-      - Speakeasy Terraform Generation
-      - Speakeasy MCP Server Generation
-      - Speakeasy DocsMD
-      - Speakeasy Contract Testing
-      - Speakeasy React Query Hooks
-      - Speakeasy Gram
-  - tier: professional
-    name: Professional Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 100
-    burst: 200
-    timeFrame: minute
-    applies:
-      - Speakeasy
-      - Speakeasy SDK Generation
-      - Speakeasy Terraform Generation
-      - Speakeasy MCP Server Generation
-      - Speakeasy DocsMD
-      - Speakeasy Contract Testing
-      - Speakeasy React Query Hooks
-      - Speakeasy Gram
-  - tier: professional
-    name: Professional Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 100000
-    timeFrame: month
-    applies:
-      - Speakeasy
-      - Speakeasy SDK Generation
-      - Speakeasy Terraform Generation
-      - Speakeasy MCP Server Generation
-      - Speakeasy DocsMD
-      - Speakeasy Contract Testing
-      - Speakeasy React Query Hooks
-      - Speakeasy Gram
-  - tier: enterprise
-    name: Enterprise Negotiated Limit
-    scope: contract
-    metric: requests_per_minute
-    limit: 1000
-    burst: 5000
-    timeFrame: minute
-    applies:
-      - Speakeasy
-      - Speakeasy SDK Generation
-      - Speakeasy Terraform Generation
-      - Speakeasy MCP Server Generation
-      - Speakeasy DocsMD
-      - Speakeasy Contract Testing
-      - Speakeasy React Query Hooks
-      - Speakeasy Gram
+    notes: Operations are counted by unique operationId values in the licensed
+      OpenAPI spec, per language. Exceeding this cap requires moving to a higher
+      tier rather than triggering per-call throttling.
+  - name: MCP Tool-Call Requests
+    scope: account
+    metric: requests
+    limit: see enterprise contract
+    notes: Speakeasy's AI Control Plane meters MCP tool-call requests under
+      enterprise terms; specific per-second limits are not publicly documented.
+  - name: Terraform Managed Resources
+    scope: account/provider
+    metric: resources
+    limit: see enterprise contract
+    notes: Terraform pricing is bound to the count of managed resources, not API
+      throughput.
 policies:
-  - name: Backoff Strategy
-    description: Clients should implement exponential backoff with jitter, honoring the Retry-After header
-      when present.
-  - name: Burst Handling
-    description: Short bursts above the steady-state limit are tolerated up to the documented burst ceiling
-      before throttling engages.
-  - name: Quota Reset
-    description: Monthly quotas reset at the start of each calendar month in UTC. Per-minute and per-second
-      windows reset on a sliding-window basis.
-  - name: Fair Use
-    description: Even on uncapped enterprise tiers, sustained usage that materially impacts shared infrastructure
-      may be subject to fair-use throttling.
+  - name: Plan-Based Quota
+    description: Speakeasy's enforced limit is the per-language operation count.
+      Customers are expected to upgrade tiers rather than throttle on bursts.
+  - name: Enterprise Custom Limits
+    description: Enterprise contracts may codify per-account throughput limits
+      and SLAs that are not part of the public surface.
 maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
+  - FN: API Evangelist
+    email: info@apievangelist.com
