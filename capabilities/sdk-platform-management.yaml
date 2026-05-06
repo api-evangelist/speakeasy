@@ -1,319 +1,546 @@
-naftiko: "1.0.0-alpha1"
-
+naftiko: 1.0.0-alpha2
 info:
-  label: "Speakeasy SDK Platform Management"
-  description: >-
-    Unified workflow capability for managing the Speakeasy SDK generation platform.
-    Combines workspace management, organization administration, artifact registry,
-    code sample retrieval, and OpenAPI improvement suggestions into a single
-    workflow interface. Used by platform administrators, API producers, and
-    DevOps engineers managing SDK pipelines.
+  label: Speakeasy SDK Platform Management
+  description: Unified workflow capability for managing the Speakeasy SDK generation platform. Combines workspace management,
+    organization administration, artifact registry, code sample retrieval, and OpenAPI improvement suggestions into a single
+    workflow interface. Used by platform administrators, API producers, and DevOps engineers managing SDK pipelines.
   tags:
-    - AI
-    - Code Generation
-    - MCP
-    - OpenAPI
-    - Platform
-    - SDKs
-    - Terraform
-  created: "2026-05-02"
-  modified: "2026-05-02"
-
+  - AI
+  - Code Generation
+  - MCP
+  - OpenAPI
+  - Platform
+  - SDKs
+  - Terraform
+  created: '2026-05-02'
+  modified: '2026-05-06'
 binds:
-  - namespace: env
-    keys:
-      SPEAKEASY_API_KEY: SPEAKEASY_API_KEY
-
+- namespace: env
+  keys:
+    SPEAKEASY_API_KEY: SPEAKEASY_API_KEY
 capability:
   consumes:
-    - import: speakeasy
-      location: ./shared/speakeasy.yaml
-
+  - type: http
+    namespace: speakeasy
+    baseUri: https://api.prod.speakeasy.com
+    description: Speakeasy platform API for SDK generation, workspace management, and artifact registry
+    authentication:
+      type: apikey
+      key: x-api-key
+      value: '{{SPEAKEASY_API_KEY}}'
+      placement: header
+    resources:
+    - name: auth
+      path: /v1/auth
+      description: Authentication and access token management
+      operations:
+      - name: validate-api-key
+        method: GET
+        description: Validate the Current API Key
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: get-access-token
+        method: GET
+        description: Get or Refresh an Access Token for the Current Workspace
+        inputParameters:
+        - name: workspace_id
+          in: query
+          type: string
+          required: true
+          description: The workspace ID to get an access token for
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: user
+      path: /v1/user
+      description: Current user information
+      operations:
+      - name: get-user
+        method: GET
+        description: Get Information About the Current User
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: workspaces
+      path: /v1/workspaces
+      description: Workspace listing and management
+      operations:
+      - name: get-workspaces
+        method: GET
+        description: Get Workspaces for a User
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: array
+          value: $.
+    - name: workspace
+      path: /v1/workspace
+      description: Individual workspace operations
+      operations:
+      - name: get-workspace-by-context
+        method: GET
+        description: Get Workspace by Context
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: create-workspace
+        method: POST
+        description: Create a Workspace
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: json
+          data:
+            name: '{{tools.name}}'
+            slug: '{{tools.slug}}'
+            organization_id: '{{tools.organization_id}}'
+    - name: workspace-detail
+      path: /v1/workspace/{workspace_id}
+      description: Operations on a specific workspace
+      operations:
+      - name: get-workspace
+        method: GET
+        description: Get Workspace
+        inputParameters:
+        - name: workspace_id
+          in: path
+          type: string
+          required: true
+          description: The workspace ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: workspace-tokens
+      path: /v1/workspace/{workspace_id}/tokens
+      description: Workspace token management
+      operations:
+      - name: get-workspace-tokens
+        method: GET
+        description: Get Tokens for a Particular Workspace
+        inputParameters:
+        - name: workspace_id
+          in: path
+          type: string
+          required: true
+          description: The workspace ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: array
+          value: $.
+      - name: create-workspace-token
+        method: POST
+        description: Create a Token for a Particular Workspace
+        inputParameters:
+        - name: workspace_id
+          in: path
+          type: string
+          required: true
+          description: The workspace ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: json
+          data:
+            name: '{{tools.name}}'
+            alg: '{{tools.alg}}'
+    - name: organizations
+      path: /v1/organizations
+      description: Organization listing
+      operations:
+      - name: get-organizations
+        method: GET
+        description: Get Organizations for a User
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: array
+          value: $.
+    - name: organization
+      path: /v1/organization
+      description: Organization creation
+      operations:
+      - name: create-organization
+        method: POST
+        description: Create an Organization
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: json
+          data:
+            name: '{{tools.name}}'
+            slug: '{{tools.slug}}'
+            telemetry_disabled: '{{tools.telemetry_disabled}}'
+    - name: organization-detail
+      path: /v1/organization/{organizationID}
+      description: Operations on a specific organization
+      operations:
+      - name: get-organization
+        method: GET
+        description: Get Organization
+        inputParameters:
+        - name: organizationID
+          in: path
+          type: string
+          required: true
+          description: The organization ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: code-samples
+      path: /v1/code_sample
+      description: Code sample retrieval and generation
+      operations:
+      - name: get-code-samples
+        method: GET
+        description: Retrieve Usage Snippets
+        inputParameters:
+        - name: namespace_name
+          in: query
+          type: string
+          required: true
+          description: The namespace name
+        - name: revision_reference
+          in: query
+          type: string
+          required: false
+          description: The revision reference
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: artifacts
+      path: /v1/artifacts/namespaces
+      description: Artifact namespace management
+      operations:
+      - name: list-namespaces
+        method: GET
+        description: Each Namespace Contains Many Revisions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: reports
+      path: /v1/reports
+      description: Report management
+      operations:
+      - name: upload-report
+        method: POST
+        description: Upload a Report
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: json
+          data:
+            type: '{{tools.type}}'
+    - name: suggest
+      path: /v1/suggest/openapi
+      description: OpenAPI improvement suggestions
+      operations:
+      - name: suggest-openapi
+        method: POST
+        description: Generate Suggestions for Improving an OpenAPI Document
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: json
+          data:
+            schema: '{{tools.schema}}'
+            diagnostics: '{{tools.diagnostics}}'
   exposes:
-    - type: rest
-      port: 8080
-      namespace: speakeasy-platform-api
-      description: "Unified REST API for Speakeasy SDK platform management."
-      resources:
-        - path: /v1/workspaces
-          name: workspaces
-          description: "List and manage Speakeasy workspaces"
-          operations:
-            - method: GET
-              name: list-workspaces
-              description: "Get Workspaces for a User"
-              call: "speakeasy.get-workspaces"
-              outputParameters:
-                - type: array
-                  mapping: "$."
-
-        - path: /v1/workspace/{workspace_id}
-          name: workspace
-          description: "Get a specific workspace by ID"
-          operations:
-            - method: GET
-              name: get-workspace
-              description: "Get Workspace"
-              call: "speakeasy.get-workspace"
-              with:
-                workspace_id: "rest.workspace_id"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-        - path: /v1/workspace/{workspace_id}/tokens
-          name: workspace-tokens
-          description: "Manage workspace access tokens"
-          operations:
-            - method: GET
-              name: list-workspace-tokens
-              description: "Get Tokens for a Particular Workspace"
-              call: "speakeasy.get-workspace-tokens"
-              with:
-                workspace_id: "rest.workspace_id"
-              outputParameters:
-                - type: array
-                  mapping: "$."
-            - method: POST
-              name: create-workspace-token
-              description: "Create a Token for a Particular Workspace"
-              call: "speakeasy.create-workspace-token"
-              with:
-                workspace_id: "rest.workspace_id"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-        - path: /v1/organizations
-          name: organizations
-          description: "List organizations for the authenticated user"
-          operations:
-            - method: GET
-              name: list-organizations
-              description: "Get Organizations for a User"
-              call: "speakeasy.get-organizations"
-              outputParameters:
-                - type: array
-                  mapping: "$."
-
-        - path: /v1/organizations/{organizationID}
-          name: organization
-          description: "Get a specific organization"
-          operations:
-            - method: GET
-              name: get-organization
-              description: "Get Organization"
-              call: "speakeasy.get-organization"
-              with:
-                organizationID: "rest.organizationID"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-        - path: /v1/namespaces
-          name: namespaces
-          description: "List artifact namespaces in the registry"
-          operations:
-            - method: GET
-              name: list-namespaces
-              description: "List Artifact Namespaces"
-              call: "speakeasy.list-namespaces"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-        - path: /v1/code-samples
-          name: code-samples
-          description: "Retrieve SDK code samples for namespaces"
-          operations:
-            - method: GET
-              name: get-code-samples
-              description: "Retrieve Usage Snippets"
-              call: "speakeasy.get-code-samples"
-              with:
-                namespace_name: "rest.namespace_name"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-        - path: /v1/auth/validate
-          name: auth
-          description: "Validate API key and check access"
-          operations:
-            - method: GET
-              name: validate-api-key
-              description: "Validate the Current API Key"
-              call: "speakeasy.validate-api-key"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-        - path: /v1/suggest/openapi
-          name: suggestions
-          description: "Generate OpenAPI improvement suggestions"
-          operations:
-            - method: POST
-              name: suggest-openapi
-              description: "Generate Suggestions for Improving an OpenAPI Document"
-              call: "speakeasy.suggest-openapi"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-    - type: mcp
-      port: 9090
-      namespace: speakeasy-platform-mcp
-      transport: http
-      description: "MCP server for AI-assisted Speakeasy SDK platform management."
-      tools:
-        - name: validate-api-key
-          description: "Validate the current Speakeasy API key and retrieve workspace details"
-          hints:
-            readOnly: true
-            idempotent: true
-          call: "speakeasy.validate-api-key"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: get-current-user
-          description: "Get information about the authenticated user including email and workspaces"
-          hints:
-            readOnly: true
-            idempotent: true
-          call: "speakeasy.get-user"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: list-workspaces
-          description: "List all workspaces accessible to the authenticated user"
-          hints:
-            readOnly: true
-            idempotent: true
-          call: "speakeasy.get-workspaces"
-          outputParameters:
-            - type: array
-              mapping: "$."
-
-        - name: get-workspace
-          description: "Get details for a specific workspace by ID"
-          hints:
-            readOnly: true
-            idempotent: true
-          call: "speakeasy.get-workspace"
-          with:
-            workspace_id: "tools.workspace_id"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: create-workspace
-          description: "Create a new Speakeasy workspace within an organization"
-          hints:
-            readOnly: false
-            idempotent: false
-          call: "speakeasy.create-workspace"
-          with:
-            name: "tools.name"
-            slug: "tools.slug"
-            organization_id: "tools.organization_id"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: list-workspace-tokens
-          description: "List API tokens for a specific workspace"
-          hints:
-            readOnly: true
-            idempotent: true
-          call: "speakeasy.get-workspace-tokens"
-          with:
-            workspace_id: "tools.workspace_id"
-          outputParameters:
-            - type: array
-              mapping: "$."
-
-        - name: create-workspace-token
-          description: "Create a new API token for a workspace"
-          hints:
-            readOnly: false
-            idempotent: false
-          call: "speakeasy.create-workspace-token"
-          with:
-            workspace_id: "tools.workspace_id"
-            name: "tools.name"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: list-organizations
-          description: "List all organizations the authenticated user belongs to"
-          hints:
-            readOnly: true
-            idempotent: true
-          call: "speakeasy.get-organizations"
-          outputParameters:
-            - type: array
-              mapping: "$."
-
-        - name: get-organization
-          description: "Get details for a specific organization by ID"
-          hints:
-            readOnly: true
-            idempotent: true
-          call: "speakeasy.get-organization"
-          with:
-            organizationID: "tools.organizationID"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: create-organization
-          description: "Create a new Speakeasy organization"
-          hints:
-            readOnly: false
-            idempotent: false
-          call: "speakeasy.create-organization"
-          with:
-            name: "tools.name"
-            slug: "tools.slug"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: list-artifact-namespaces
-          description: "List artifact namespaces in the Speakeasy registry containing spec revisions"
-          hints:
-            readOnly: true
-            idempotent: true
-          call: "speakeasy.list-namespaces"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: get-code-samples
-          description: "Retrieve SDK code samples for a specific namespace and revision"
-          hints:
-            readOnly: true
-            idempotent: true
-          call: "speakeasy.get-code-samples"
-          with:
-            namespace_name: "tools.namespace_name"
-            revision_reference: "tools.revision_reference"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: suggest-openapi-improvements
-          description: "Generate AI-powered suggestions for improving an OpenAPI document"
-          hints:
-            readOnly: false
-            idempotent: false
-          call: "speakeasy.suggest-openapi"
-          with:
-            schema: "tools.schema"
-            diagnostics: "tools.diagnostics"
-          outputParameters:
-            - type: object
-              mapping: "$."
+  - type: rest
+    port: 8080
+    namespace: speakeasy-platform-api
+    description: Unified REST API for Speakeasy SDK platform management.
+    resources:
+    - path: /v1/workspaces
+      name: workspaces
+      description: List and manage Speakeasy workspaces
+      operations:
+      - method: GET
+        name: list-workspaces
+        description: Get Workspaces for a User
+        call: speakeasy.get-workspaces
+        outputParameters:
+        - type: array
+          mapping: $.
+    - path: /v1/workspace/{workspace_id}
+      name: workspace
+      description: Get a specific workspace by ID
+      operations:
+      - method: GET
+        name: get-workspace
+        description: Get Workspace
+        call: speakeasy.get-workspace
+        with:
+          workspace_id: rest.workspace_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/workspace/{workspace_id}/tokens
+      name: workspace-tokens
+      description: Manage workspace access tokens
+      operations:
+      - method: GET
+        name: list-workspace-tokens
+        description: Get Tokens for a Particular Workspace
+        call: speakeasy.get-workspace-tokens
+        with:
+          workspace_id: rest.workspace_id
+        outputParameters:
+        - type: array
+          mapping: $.
+      - method: POST
+        name: create-workspace-token
+        description: Create a Token for a Particular Workspace
+        call: speakeasy.create-workspace-token
+        with:
+          workspace_id: rest.workspace_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/organizations
+      name: organizations
+      description: List organizations for the authenticated user
+      operations:
+      - method: GET
+        name: list-organizations
+        description: Get Organizations for a User
+        call: speakeasy.get-organizations
+        outputParameters:
+        - type: array
+          mapping: $.
+    - path: /v1/organizations/{organizationID}
+      name: organization
+      description: Get a specific organization
+      operations:
+      - method: GET
+        name: get-organization
+        description: Get Organization
+        call: speakeasy.get-organization
+        with:
+          organizationID: rest.organizationID
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/namespaces
+      name: namespaces
+      description: List artifact namespaces in the registry
+      operations:
+      - method: GET
+        name: list-namespaces
+        description: List Artifact Namespaces
+        call: speakeasy.list-namespaces
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/code-samples
+      name: code-samples
+      description: Retrieve SDK code samples for namespaces
+      operations:
+      - method: GET
+        name: get-code-samples
+        description: Retrieve Usage Snippets
+        call: speakeasy.get-code-samples
+        with:
+          namespace_name: rest.namespace_name
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/auth/validate
+      name: auth
+      description: Validate API key and check access
+      operations:
+      - method: GET
+        name: validate-api-key
+        description: Validate the Current API Key
+        call: speakeasy.validate-api-key
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/suggest/openapi
+      name: suggestions
+      description: Generate OpenAPI improvement suggestions
+      operations:
+      - method: POST
+        name: suggest-openapi
+        description: Generate Suggestions for Improving an OpenAPI Document
+        call: speakeasy.suggest-openapi
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9090
+    namespace: speakeasy-platform-mcp
+    transport: http
+    description: MCP server for AI-assisted Speakeasy SDK platform management.
+    tools:
+    - name: validate-api-key
+      description: Validate the current Speakeasy API key and retrieve workspace details
+      hints:
+        readOnly: true
+        idempotent: true
+      call: speakeasy.validate-api-key
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-current-user
+      description: Get information about the authenticated user including email and workspaces
+      hints:
+        readOnly: true
+        idempotent: true
+      call: speakeasy.get-user
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-workspaces
+      description: List all workspaces accessible to the authenticated user
+      hints:
+        readOnly: true
+        idempotent: true
+      call: speakeasy.get-workspaces
+      outputParameters:
+      - type: array
+        mapping: $.
+    - name: get-workspace
+      description: Get details for a specific workspace by ID
+      hints:
+        readOnly: true
+        idempotent: true
+      call: speakeasy.get-workspace
+      with:
+        workspace_id: tools.workspace_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-workspace
+      description: Create a new Speakeasy workspace within an organization
+      hints:
+        readOnly: false
+        idempotent: false
+      call: speakeasy.create-workspace
+      with:
+        name: tools.name
+        slug: tools.slug
+        organization_id: tools.organization_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-workspace-tokens
+      description: List API tokens for a specific workspace
+      hints:
+        readOnly: true
+        idempotent: true
+      call: speakeasy.get-workspace-tokens
+      with:
+        workspace_id: tools.workspace_id
+      outputParameters:
+      - type: array
+        mapping: $.
+    - name: create-workspace-token
+      description: Create a new API token for a workspace
+      hints:
+        readOnly: false
+        idempotent: false
+      call: speakeasy.create-workspace-token
+      with:
+        workspace_id: tools.workspace_id
+        name: tools.name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-organizations
+      description: List all organizations the authenticated user belongs to
+      hints:
+        readOnly: true
+        idempotent: true
+      call: speakeasy.get-organizations
+      outputParameters:
+      - type: array
+        mapping: $.
+    - name: get-organization
+      description: Get details for a specific organization by ID
+      hints:
+        readOnly: true
+        idempotent: true
+      call: speakeasy.get-organization
+      with:
+        organizationID: tools.organizationID
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-organization
+      description: Create a new Speakeasy organization
+      hints:
+        readOnly: false
+        idempotent: false
+      call: speakeasy.create-organization
+      with:
+        name: tools.name
+        slug: tools.slug
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-artifact-namespaces
+      description: List artifact namespaces in the Speakeasy registry containing spec revisions
+      hints:
+        readOnly: true
+        idempotent: true
+      call: speakeasy.list-namespaces
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-code-samples
+      description: Retrieve SDK code samples for a specific namespace and revision
+      hints:
+        readOnly: true
+        idempotent: true
+      call: speakeasy.get-code-samples
+      with:
+        namespace_name: tools.namespace_name
+        revision_reference: tools.revision_reference
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: suggest-openapi-improvements
+      description: Generate AI-powered suggestions for improving an OpenAPI document
+      hints:
+        readOnly: false
+        idempotent: false
+      call: speakeasy.suggest-openapi
+      with:
+        schema: tools.schema
+        diagnostics: tools.diagnostics
+      outputParameters:
+      - type: object
+        mapping: $.
