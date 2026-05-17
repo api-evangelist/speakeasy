@@ -227,7 +227,7 @@ common:
     description: 'null'
   - url: https://status.speakeasyapi.dev
     name: Status | Speakeasy
-    type: Status
+    type: StatusPage
     description: 'null'
   - url: https://www.speakeasy.com/openapi
     name: OpenAPI Hub | Speakeasy
