@@ -1,0 +1,538 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Speakeasy API — Artifacts
+  description: 'Speakeasy API — Artifacts. 11 operations. Lead operation: Each Namespace Contains Many Revisions. Self-contained
+    Naftiko capability covering one Speakeasy business surface.'
+  tags:
+  - Speakeasy
+  - Artifacts
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SPEAKEASY_API_KEY: SPEAKEASY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: speakeasy-artifacts
+    baseUri: https://api.prod.speakeasy.com
+    description: Speakeasy API — Artifacts business capability. Self-contained, no shared references.
+    resources:
+    - name: v1-artifacts-namespaces
+      path: /v1/artifacts/namespaces
+      operations:
+      - name: getnamespaces
+        method: GET
+        description: Each Namespace Contains Many Revisions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v1-artifacts-namespaces-namespace_name-archive
+      path: /v1/artifacts/namespaces/{namespace_name}/archive
+      operations:
+      - name: archivenamespace
+        method: POST
+        description: Set Whether a Namespace is Archived
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: namespace_name
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: v1-artifacts-namespaces-namespace_name-revisions
+      path: /v1/artifacts/namespaces/{namespace_name}/revisions
+      operations:
+      - name: getrevisions
+        method: GET
+        description: ''
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: namespace_name
+          in: path
+          type: string
+          required: true
+        - name: next_page_token
+          in: query
+          type: string
+          description: Token to retrieve the next page of results
+    - name: v1-artifacts-namespaces-namespace_name-tags
+      path: /v1/artifacts/namespaces/{namespace_name}/tags
+      operations:
+      - name: gettags
+        method: GET
+        description: ''
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: namespace_name
+          in: path
+          type: string
+          required: true
+      - name: posttags
+        method: POST
+        description: Add Tags to an Existing Revision
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: namespace_name
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: v1-artifacts-namespaces-namespace_name-visibility
+      path: /v1/artifacts/namespaces/{namespace_name}/visibility
+      operations:
+      - name: setvisibility
+        method: POST
+        description: Set Visibility of a Namespace with an Existing Metadata Entry
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: namespace_name
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: v1-artifacts-preflight
+      path: /v1/artifacts/preflight
+      operations:
+      - name: preflight
+        method: POST
+        description: Get Access Token for Communicating with OCI Distribution Endpoints
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: v1-artifacts-remote_sources
+      path: /v1/artifacts/remote_sources
+      operations:
+      - name: listremotesources
+        method: GET
+        description: Get Remote Sources Attached to a Particular Namespace
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: namespace_name
+          in: query
+          type: string
+          required: true
+      - name: createremotesource
+        method: POST
+        description: Configure a New Remote Source
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: v1-oci-v2-organization_slug-workspace_slug-namespace_name-blobs-digest
+      path: /v1/oci/v2/{organization_slug}/{workspace_slug}/{namespace_name}/blobs/{digest}
+      operations:
+      - name: getblob
+        method: GET
+        description: Get Blob for a Particular Digest
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: organization_slug
+          in: path
+          type: string
+          required: true
+        - name: workspace_slug
+          in: path
+          type: string
+          required: true
+        - name: namespace_name
+          in: path
+          type: string
+          required: true
+        - name: digest
+          in: path
+          type: string
+          required: true
+    - name: v1-oci-v2-organization_slug-workspace_slug-namespace_name-manifests-revision_ref
+      path: /v1/oci/v2/{organization_slug}/{workspace_slug}/{namespace_name}/manifests/{revision_reference}
+      operations:
+      - name: getmanifest
+        method: GET
+        description: Get Manifest for a Particular Reference
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: Accept
+          in: header
+          type: string
+          required: true
+        - name: organization_slug
+          in: path
+          type: string
+          required: true
+        - name: workspace_slug
+          in: path
+          type: string
+          required: true
+        - name: namespace_name
+          in: path
+          type: string
+          required: true
+        - name: revision_reference
+          in: path
+          type: string
+          description: Tag or digest
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.SPEAKEASY_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: speakeasy-artifacts-rest
+    port: 8080
+    description: REST adapter for Speakeasy API — Artifacts. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/v1/artifacts/namespaces
+      name: v1-artifacts-namespaces
+      description: REST surface for v1-artifacts-namespaces.
+      operations:
+      - method: GET
+        name: getnamespaces
+        description: Each Namespace Contains Many Revisions
+        call: speakeasy-artifacts.getnamespaces
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/artifacts/namespaces/{namespace-name}/archive
+      name: v1-artifacts-namespaces-namespace-name-archive
+      description: REST surface for v1-artifacts-namespaces-namespace_name-archive.
+      operations:
+      - method: POST
+        name: archivenamespace
+        description: Set Whether a Namespace is Archived
+        call: speakeasy-artifacts.archivenamespace
+        with:
+          namespace_name: rest.namespace_name
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/artifacts/namespaces/{namespace-name}/revisions
+      name: v1-artifacts-namespaces-namespace-name-revisions
+      description: REST surface for v1-artifacts-namespaces-namespace_name-revisions.
+      operations:
+      - method: GET
+        name: getrevisions
+        description: getrevisions
+        call: speakeasy-artifacts.getrevisions
+        with:
+          namespace_name: rest.namespace_name
+          next_page_token: rest.next_page_token
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/artifacts/namespaces/{namespace-name}/tags
+      name: v1-artifacts-namespaces-namespace-name-tags
+      description: REST surface for v1-artifacts-namespaces-namespace_name-tags.
+      operations:
+      - method: GET
+        name: gettags
+        description: gettags
+        call: speakeasy-artifacts.gettags
+        with:
+          namespace_name: rest.namespace_name
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: posttags
+        description: Add Tags to an Existing Revision
+        call: speakeasy-artifacts.posttags
+        with:
+          namespace_name: rest.namespace_name
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/artifacts/namespaces/{namespace-name}/visibility
+      name: v1-artifacts-namespaces-namespace-name-visibility
+      description: REST surface for v1-artifacts-namespaces-namespace_name-visibility.
+      operations:
+      - method: POST
+        name: setvisibility
+        description: Set Visibility of a Namespace with an Existing Metadata Entry
+        call: speakeasy-artifacts.setvisibility
+        with:
+          namespace_name: rest.namespace_name
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/artifacts/preflight
+      name: v1-artifacts-preflight
+      description: REST surface for v1-artifacts-preflight.
+      operations:
+      - method: POST
+        name: preflight
+        description: Get Access Token for Communicating with OCI Distribution Endpoints
+        call: speakeasy-artifacts.preflight
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/artifacts/remote-sources
+      name: v1-artifacts-remote-sources
+      description: REST surface for v1-artifacts-remote_sources.
+      operations:
+      - method: GET
+        name: listremotesources
+        description: Get Remote Sources Attached to a Particular Namespace
+        call: speakeasy-artifacts.listremotesources
+        with:
+          namespace_name: rest.namespace_name
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createremotesource
+        description: Configure a New Remote Source
+        call: speakeasy-artifacts.createremotesource
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/oci/v2/{organization-slug}/{workspace-slug}/{namespace-name}/blobs/{digest}
+      name: v1-oci-v2-organization-slug-workspace-slug-namespace-name-blobs-digest
+      description: REST surface for v1-oci-v2-organization_slug-workspace_slug-namespace_name-blobs-digest.
+      operations:
+      - method: GET
+        name: getblob
+        description: Get Blob for a Particular Digest
+        call: speakeasy-artifacts.getblob
+        with:
+          organization_slug: rest.organization_slug
+          workspace_slug: rest.workspace_slug
+          namespace_name: rest.namespace_name
+          digest: rest.digest
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/oci/v2/{organization-slug}/{workspace-slug}/{namespace-name}/manifests/{revision-reference}
+      name: v1-oci-v2-organization-slug-workspace-slug-namespace-name-manifests-revision-ref
+      description: REST surface for v1-oci-v2-organization_slug-workspace_slug-namespace_name-manifests-revision_ref.
+      operations:
+      - method: GET
+        name: getmanifest
+        description: Get Manifest for a Particular Reference
+        call: speakeasy-artifacts.getmanifest
+        with:
+          Accept: rest.Accept
+          organization_slug: rest.organization_slug
+          workspace_slug: rest.workspace_slug
+          namespace_name: rest.namespace_name
+          revision_reference: rest.revision_reference
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: speakeasy-artifacts-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Speakeasy API — Artifacts. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: each-namespace-contains-many-revisions
+      description: Each Namespace Contains Many Revisions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: speakeasy-artifacts.getnamespaces
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: set-whether-namespace-is-archived
+      description: Set Whether a Namespace is Archived
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: speakeasy-artifacts.archivenamespace
+      with:
+        namespace_name: tools.namespace_name
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getrevisions
+      description: getrevisions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: speakeasy-artifacts.getrevisions
+      with:
+        namespace_name: tools.namespace_name
+        next_page_token: tools.next_page_token
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: gettags
+      description: gettags
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: speakeasy-artifacts.gettags
+      with:
+        namespace_name: tools.namespace_name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: add-tags-existing-revision
+      description: Add Tags to an Existing Revision
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: speakeasy-artifacts.posttags
+      with:
+        namespace_name: tools.namespace_name
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: set-visibility-namespace-existing-metadata
+      description: Set Visibility of a Namespace with an Existing Metadata Entry
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: speakeasy-artifacts.setvisibility
+      with:
+        namespace_name: tools.namespace_name
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-access-token-communicating-oci
+      description: Get Access Token for Communicating with OCI Distribution Endpoints
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: speakeasy-artifacts.preflight
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-remote-sources-attached-particular
+      description: Get Remote Sources Attached to a Particular Namespace
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: speakeasy-artifacts.listremotesources
+      with:
+        namespace_name: tools.namespace_name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: configure-new-remote-source
+      description: Configure a New Remote Source
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: speakeasy-artifacts.createremotesource
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-blob-particular-digest
+      description: Get Blob for a Particular Digest
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: speakeasy-artifacts.getblob
+      with:
+        organization_slug: tools.organization_slug
+        workspace_slug: tools.workspace_slug
+        namespace_name: tools.namespace_name
+        digest: tools.digest
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-manifest-particular-reference
+      description: Get Manifest for a Particular Reference
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: speakeasy-artifacts.getmanifest
+      with:
+        Accept: tools.Accept
+        organization_slug: tools.organization_slug
+        workspace_slug: tools.workspace_slug
+        namespace_name: tools.namespace_name
+        revision_reference: tools.revision_reference
+      outputParameters:
+      - type: object
+        mapping: $.

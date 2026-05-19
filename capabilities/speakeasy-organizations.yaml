@@ -1,0 +1,307 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Speakeasy API — Organizations
+  description: 'Speakeasy API — Organizations. 8 operations. Lead operation: Create an Organization. Self-contained Naftiko
+    capability covering one Speakeasy business surface.'
+  tags:
+  - Speakeasy
+  - Organizations
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SPEAKEASY_API_KEY: SPEAKEASY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: speakeasy-organizations
+    baseUri: https://api.prod.speakeasy.com
+    description: Speakeasy API — Organizations business capability. Self-contained, no shared references.
+    resources:
+    - name: v1-organization
+      path: /v1/organization
+      operations:
+      - name: createorganization
+        method: POST
+        description: Create an Organization
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: v1-organization-add_ons
+      path: /v1/organization/add_ons
+      operations:
+      - name: createbillingaddons
+        method: POST
+        description: Create Billing Add Ons
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: getbillingaddons
+        method: GET
+        description: Get Billing Add Ons
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v1-organization-add_ons-add_on
+      path: /v1/organization/add_ons/{add_on}
+      operations:
+      - name: deletebillingaddon
+        method: DELETE
+        description: Delete Billing Add Ons
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v1-organization-free_trial
+      path: /v1/organization/free_trial
+      operations:
+      - name: createfreetrial
+        method: POST
+        description: Create a Free Trial for an Organization
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v1-organization-usage
+      path: /v1/organization/usage
+      operations:
+      - name: getorganizationusage
+        method: GET
+        description: Get Billing Usage Summary for a Particular Organization
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v1-organization-organizationID
+      path: /v1/organization/{organizationID}
+      operations:
+      - name: getorganization
+        method: GET
+        description: Get Organization
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v1-organizations
+      path: /v1/organizations
+      operations:
+      - name: getorganizations
+        method: GET
+        description: Get Organizations for a User
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.SPEAKEASY_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: speakeasy-organizations-rest
+    port: 8080
+    description: REST adapter for Speakeasy API — Organizations. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/v1/organization
+      name: v1-organization
+      description: REST surface for v1-organization.
+      operations:
+      - method: POST
+        name: createorganization
+        description: Create an Organization
+        call: speakeasy-organizations.createorganization
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/organization/add-ons
+      name: v1-organization-add-ons
+      description: REST surface for v1-organization-add_ons.
+      operations:
+      - method: POST
+        name: createbillingaddons
+        description: Create Billing Add Ons
+        call: speakeasy-organizations.createbillingaddons
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: getbillingaddons
+        description: Get Billing Add Ons
+        call: speakeasy-organizations.getbillingaddons
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/organization/add-ons/{add-on}
+      name: v1-organization-add-ons-add-on
+      description: REST surface for v1-organization-add_ons-add_on.
+      operations:
+      - method: DELETE
+        name: deletebillingaddon
+        description: Delete Billing Add Ons
+        call: speakeasy-organizations.deletebillingaddon
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/organization/free-trial
+      name: v1-organization-free-trial
+      description: REST surface for v1-organization-free_trial.
+      operations:
+      - method: POST
+        name: createfreetrial
+        description: Create a Free Trial for an Organization
+        call: speakeasy-organizations.createfreetrial
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/organization/usage
+      name: v1-organization-usage
+      description: REST surface for v1-organization-usage.
+      operations:
+      - method: GET
+        name: getorganizationusage
+        description: Get Billing Usage Summary for a Particular Organization
+        call: speakeasy-organizations.getorganizationusage
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/organization/{organizationid}
+      name: v1-organization-organizationid
+      description: REST surface for v1-organization-organizationID.
+      operations:
+      - method: GET
+        name: getorganization
+        description: Get Organization
+        call: speakeasy-organizations.getorganization
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/organizations
+      name: v1-organizations
+      description: REST surface for v1-organizations.
+      operations:
+      - method: GET
+        name: getorganizations
+        description: Get Organizations for a User
+        call: speakeasy-organizations.getorganizations
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: speakeasy-organizations-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Speakeasy API — Organizations. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: create-organization
+      description: Create an Organization
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: speakeasy-organizations.createorganization
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-billing-add-ons
+      description: Create Billing Add Ons
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: speakeasy-organizations.createbillingaddons
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-billing-add-ons
+      description: Get Billing Add Ons
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: speakeasy-organizations.getbillingaddons
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-billing-add-ons
+      description: Delete Billing Add Ons
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: speakeasy-organizations.deletebillingaddon
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-free-trial-organization
+      description: Create a Free Trial for an Organization
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: speakeasy-organizations.createfreetrial
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-billing-usage-summary-particular
+      description: Get Billing Usage Summary for a Particular Organization
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: speakeasy-organizations.getorganizationusage
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-organization
+      description: Get Organization
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: speakeasy-organizations.getorganization
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-organizations-user
+      description: Get Organizations for a User
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: speakeasy-organizations.getorganizations
+      outputParameters:
+      - type: object
+        mapping: $.

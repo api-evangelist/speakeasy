@@ -1,0 +1,197 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Speakeasy API — Auth
+  description: 'Speakeasy API — Auth. 4 operations. Lead operation: Get or Refresh an Access Token for the Current Workspace.
+    Self-contained Naftiko capability covering one Speakeasy business surface.'
+  tags:
+  - Speakeasy
+  - Auth
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SPEAKEASY_API_KEY: SPEAKEASY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: speakeasy-auth
+    baseUri: https://api.prod.speakeasy.com
+    description: Speakeasy API — Auth business capability. Self-contained, no shared references.
+    resources:
+    - name: v1-auth-access_token
+      path: /v1/auth/access_token
+      operations:
+      - name: getaccesstoken
+        method: GET
+        description: Get or Refresh an Access Token for the Current Workspace
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workspace_id
+          in: query
+          type: string
+          description: The workspace ID
+          required: true
+    - name: v1-auth-validate
+      path: /v1/auth/validate
+      operations:
+      - name: validateapikey
+        method: GET
+        description: Validate the Current API Key
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v1-user
+      path: /v1/user
+      operations:
+      - name: getuser
+        method: GET
+        description: Get Information About the Current User
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v1-workspace-access
+      path: /v1/workspace/access
+      operations:
+      - name: getworkspaceaccess
+        method: GET
+        description: Get Access Allowances for a Particular Workspace
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: genLockId
+          in: query
+          type: string
+          description: Unique identifier of the generation target.
+        - name: targetType
+          in: query
+          type: string
+          description: The type of the generated target.
+        - name: passive
+          in: query
+          type: boolean
+          description: Skip side-effects like incrementing metrics.
+    authentication:
+      type: bearer
+      token: '{{env.SPEAKEASY_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: speakeasy-auth-rest
+    port: 8080
+    description: REST adapter for Speakeasy API — Auth. One Spectral-compliant resource per consumed operation, prefixed with
+      /v1.
+    resources:
+    - path: /v1/v1/auth/access-token
+      name: v1-auth-access-token
+      description: REST surface for v1-auth-access_token.
+      operations:
+      - method: GET
+        name: getaccesstoken
+        description: Get or Refresh an Access Token for the Current Workspace
+        call: speakeasy-auth.getaccesstoken
+        with:
+          workspace_id: rest.workspace_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/auth/validate
+      name: v1-auth-validate
+      description: REST surface for v1-auth-validate.
+      operations:
+      - method: GET
+        name: validateapikey
+        description: Validate the Current API Key
+        call: speakeasy-auth.validateapikey
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/user
+      name: v1-user
+      description: REST surface for v1-user.
+      operations:
+      - method: GET
+        name: getuser
+        description: Get Information About the Current User
+        call: speakeasy-auth.getuser
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/workspace/access
+      name: v1-workspace-access
+      description: REST surface for v1-workspace-access.
+      operations:
+      - method: GET
+        name: getworkspaceaccess
+        description: Get Access Allowances for a Particular Workspace
+        call: speakeasy-auth.getworkspaceaccess
+        with:
+          genLockId: rest.genLockId
+          targetType: rest.targetType
+          passive: rest.passive
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: speakeasy-auth-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Speakeasy API — Auth. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: get-refresh-access-token-current
+      description: Get or Refresh an Access Token for the Current Workspace
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: speakeasy-auth.getaccesstoken
+      with:
+        workspace_id: tools.workspace_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: validate-current-api-key
+      description: Validate the Current API Key
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: speakeasy-auth.validateapikey
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-information-about-current-user
+      description: Get Information About the Current User
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: speakeasy-auth.getuser
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-access-allowances-particular-workspace
+      description: Get Access Allowances for a Particular Workspace
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: speakeasy-auth.getworkspaceaccess
+      with:
+        genLockId: tools.genLockId
+        targetType: tools.targetType
+        passive: tools.passive
+      outputParameters:
+      - type: object
+        mapping: $.

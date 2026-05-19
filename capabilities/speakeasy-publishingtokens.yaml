@@ -1,0 +1,288 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Speakeasy API — PublishingTokens
+  description: 'Speakeasy API — PublishingTokens. 7 operations. Lead operation: Get Publishing Tokens for a Workspace. Self-contained
+    Naftiko capability covering one Speakeasy business surface.'
+  tags:
+  - Speakeasy
+  - PublishingTokens
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SPEAKEASY_API_KEY: SPEAKEASY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: speakeasy-publishingtokens
+    baseUri: https://api.prod.speakeasy.com
+    description: Speakeasy API — PublishingTokens business capability. Self-contained, no shared references.
+    resources:
+    - name: v1-publishing-tokens
+      path: /v1/publishing-tokens
+      operations:
+      - name: getpublishingtoken
+        method: GET
+        description: Get Publishing Tokens for a Workspace
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createpublishingtoken
+        method: POST
+        description: Create a Publishing Token for a Workspace
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: v1-publishing-tokens-tokenID
+      path: /v1/publishing-tokens/{tokenID}
+      operations:
+      - name: getpublishingtokenbyid
+        method: GET
+        description: Get a Specific Publishing Token
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: tokenID
+          in: path
+          type: string
+          description: Unique identifier of the publishing token.
+          required: true
+      - name: updatepublishingtokenexpiration
+        method: PUT
+        description: Updates the Validitity Period of a Publishing Token
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: tokenID
+          in: path
+          type: string
+          description: Unique identifier of the publishing token.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: deletepublishingtoken
+        method: DELETE
+        description: Delete a Specific Publishing Token
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: tokenID
+          in: path
+          type: string
+          description: Unique identifier of the publishing token.
+          required: true
+    - name: v1-publishing-tokens-tokenID-metadata
+      path: /v1/publishing-tokens/{tokenID}/metadata
+      operations:
+      - name: getpublishingtokenpublicmetadata
+        method: GET
+        description: Get Metadata About the Token
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v1-publishing-tokens-tokenID-target
+      path: /v1/publishing-tokens/{tokenID}/target
+      operations:
+      - name: getpublishingtokentargetbyid
+        method: GET
+        description: Get a Specific Publishing Token Target
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.SPEAKEASY_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: speakeasy-publishingtokens-rest
+    port: 8080
+    description: REST adapter for Speakeasy API — PublishingTokens. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/v1/publishing-tokens
+      name: v1-publishing-tokens
+      description: REST surface for v1-publishing-tokens.
+      operations:
+      - method: GET
+        name: getpublishingtoken
+        description: Get Publishing Tokens for a Workspace
+        call: speakeasy-publishingtokens.getpublishingtoken
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createpublishingtoken
+        description: Create a Publishing Token for a Workspace
+        call: speakeasy-publishingtokens.createpublishingtoken
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/publishing-tokens/{tokenid}
+      name: v1-publishing-tokens-tokenid
+      description: REST surface for v1-publishing-tokens-tokenID.
+      operations:
+      - method: GET
+        name: getpublishingtokenbyid
+        description: Get a Specific Publishing Token
+        call: speakeasy-publishingtokens.getpublishingtokenbyid
+        with:
+          tokenID: rest.tokenID
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updatepublishingtokenexpiration
+        description: Updates the Validitity Period of a Publishing Token
+        call: speakeasy-publishingtokens.updatepublishingtokenexpiration
+        with:
+          tokenID: rest.tokenID
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletepublishingtoken
+        description: Delete a Specific Publishing Token
+        call: speakeasy-publishingtokens.deletepublishingtoken
+        with:
+          tokenID: rest.tokenID
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/publishing-tokens/{tokenid}/metadata
+      name: v1-publishing-tokens-tokenid-metadata
+      description: REST surface for v1-publishing-tokens-tokenID-metadata.
+      operations:
+      - method: GET
+        name: getpublishingtokenpublicmetadata
+        description: Get Metadata About the Token
+        call: speakeasy-publishingtokens.getpublishingtokenpublicmetadata
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/publishing-tokens/{tokenid}/target
+      name: v1-publishing-tokens-tokenid-target
+      description: REST surface for v1-publishing-tokens-tokenID-target.
+      operations:
+      - method: GET
+        name: getpublishingtokentargetbyid
+        description: Get a Specific Publishing Token Target
+        call: speakeasy-publishingtokens.getpublishingtokentargetbyid
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: speakeasy-publishingtokens-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Speakeasy API — PublishingTokens. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: get-publishing-tokens-workspace
+      description: Get Publishing Tokens for a Workspace
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: speakeasy-publishingtokens.getpublishingtoken
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-publishing-token-workspace
+      description: Create a Publishing Token for a Workspace
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: speakeasy-publishingtokens.createpublishingtoken
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-specific-publishing-token
+      description: Get a Specific Publishing Token
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: speakeasy-publishingtokens.getpublishingtokenbyid
+      with:
+        tokenID: tools.tokenID
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: updates-validitity-period-publishing-token
+      description: Updates the Validitity Period of a Publishing Token
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: speakeasy-publishingtokens.updatepublishingtokenexpiration
+      with:
+        tokenID: tools.tokenID
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-specific-publishing-token
+      description: Delete a Specific Publishing Token
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: speakeasy-publishingtokens.deletepublishingtoken
+      with:
+        tokenID: tools.tokenID
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-metadata-about-token
+      description: Get Metadata About the Token
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: speakeasy-publishingtokens.getpublishingtokenpublicmetadata
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-specific-publishing-token-target
+      description: Get a Specific Publishing Token Target
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: speakeasy-publishingtokens.getpublishingtokentargetbyid
+      outputParameters:
+      - type: object
+        mapping: $.
