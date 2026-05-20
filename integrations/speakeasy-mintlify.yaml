@@ -1,0 +1,146 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Configure a Mintlify docs repo from a Speakeasy GitHub workspace
+  description: Wire a Mintlify-hosted docs repo to a Speakeasy GitHub workspace so code samples and SDK references in the docs are regenerated whenever the source OpenAPI changes.
+  tags:
+  - Speakeasy
+  - Integration
+  - Docs
+  - mintlify
+  created: '2026-05-20'
+  modified: '2026-05-20'
+binds:
+- namespace: env
+  keys:
+    SPEAKEASY_API_KEY: SPEAKEASY_API_KEY
+    MINTLIFY_API_KEY: MINTLIFY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: speakeasy
+    baseUri: https://api.prod.speakeasy.com
+    description: Speakeasy API operations consumed by this integration.
+    resources:
+    - name: v1-github-configure-mintlify-repo
+      path: /v1/github/configure_mintlify_repo
+      operations:
+      - name: githubconfiguremintlifyrepo
+        method: POST
+        description: Configure the Mintlify repository binding inside Speakeasy.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: v1-github-configure-code-samples
+      path: /v1/github/configure_code_samples
+      operations:
+      - name: githubconfigurecodesamples
+        method: POST
+        description: Configure the code samples target for the Mintlify docs repo.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: v1-github-setup
+      path: /v1/github/setup
+      operations:
+      - name: getgithubsetupstate
+        method: GET
+        description: Read the current GitHub setup state for the workspace.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters: []
+  - type: http
+    namespace: mintlify
+    baseUri: https://api.mintlify.com
+    description: Mintlify API operations consumed by this integration.
+    resources:
+    - name: v1-projects-projectid-deploy
+      path: /v1/projects/{projectId}/deploy
+      operations:
+      - name: deployproject
+        method: POST
+        description: 'Mintlify API: deployProject'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: projectId
+          in: path
+          type: string
+          description: Path parameter projectId.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: v1-projects-projectid
+      path: /v1/projects/{projectId}
+      operations:
+      - name: getproject
+        method: GET
+        description: 'Mintlify API: getProject'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: projectId
+          in: path
+          type: string
+          description: Path parameter projectId.
+          required: true
+  exposes:
+  - type: mcp
+    namespace: speakeasy-mintlify-mcp
+    description: MCP adapter for the speakeasy-mintlify integration.
+    tools:
+    - name: speakeasy_mintlify
+      description: Execute the speakeasy mintlify integration end-to-end.
+      inputSchema:
+        type: object
+        properties:
+          trigger_event:
+            type: object
+            description: Triggering event payload.
+        required:
+        - trigger_event
+  - type: rest
+    namespace: speakeasy-mintlify-rest
+    port: 8080
+    description: REST adapter for the speakeasy-mintlify integration.
+    resources:
+    - path: /speakeasy-mintlify
+      name: speakeasy-mintlify
+      description: REST surface for the speakeasy-mintlify integration.
+      operations:
+      - method: POST
+        name: trigger
+        description: Trigger the speakeasy-mintlify integration.
+        call: speakeasy_mintlify
+        with:
+          trigger_event: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.

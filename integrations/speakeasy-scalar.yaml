@@ -1,0 +1,149 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Render Speakeasy registry specs in a Scalar API reference
+  description: Expose the latest tagged Speakeasy registry revision through a Scalar-rendered API reference so developers reading the docs are looking at the exact spec the SDKs were built from.
+  tags:
+  - Speakeasy
+  - Integration
+  - Docs
+  - scalar
+  created: '2026-05-20'
+  modified: '2026-05-20'
+binds:
+- namespace: env
+  keys:
+    SPEAKEASY_API_KEY: SPEAKEASY_API_KEY
+    SCALAR_API_KEY: SCALAR_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: speakeasy
+    baseUri: https://api.prod.speakeasy.com
+    description: Speakeasy API operations consumed by this integration.
+    resources:
+    - name: v1-artifacts-namespaces-namespace-name-tags
+      path: /v1/artifacts/namespaces/{namespace_name}/tags
+      operations:
+      - name: gettags
+        method: GET
+        description: List Speakeasy registry tags to find the latest production revision.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: namespace_name
+          in: path
+          type: string
+          description: Path parameter namespace_name.
+          required: true
+    - name: v1-oci-v2-organization-slug-workspace-slug-namespace-name-ma
+      path: /v1/oci/v2/{organization_slug}/{workspace_slug}/{namespace_name}/manifests/{revision_reference}
+      operations:
+      - name: getmanifest
+        method: GET
+        description: Pull the OCI manifest for the tagged registry revision.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: organization_slug
+          in: path
+          type: string
+          description: Path parameter organization_slug.
+          required: true
+        - name: workspace_slug
+          in: path
+          type: string
+          description: Path parameter workspace_slug.
+          required: true
+        - name: namespace_name
+          in: path
+          type: string
+          description: Path parameter namespace_name.
+          required: true
+        - name: revision_reference
+          in: path
+          type: string
+          description: Path parameter revision_reference.
+          required: true
+  - type: http
+    namespace: scalar
+    baseUri: https://api.scalar.com
+    description: Scalar API Reference API operations consumed by this integration.
+    resources:
+    - name: v1-references
+      path: /v1/references
+      operations:
+      - name: createreference
+        method: POST
+        description: 'Scalar API Reference API: createReference'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: v1-references-referenceid
+      path: /v1/references/{referenceId}
+      operations:
+      - name: updatereference
+        method: PUT
+        description: 'Scalar API Reference API: updateReference'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: referenceId
+          in: path
+          type: string
+          description: Path parameter referenceId.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+  exposes:
+  - type: mcp
+    namespace: speakeasy-scalar-mcp
+    description: MCP adapter for the speakeasy-scalar integration.
+    tools:
+    - name: speakeasy_scalar
+      description: Execute the speakeasy scalar integration end-to-end.
+      inputSchema:
+        type: object
+        properties:
+          trigger_event:
+            type: object
+            description: Triggering event payload.
+        required:
+        - trigger_event
+  - type: rest
+    namespace: speakeasy-scalar-rest
+    port: 8080
+    description: REST adapter for the speakeasy-scalar integration.
+    resources:
+    - path: /speakeasy-scalar
+      name: speakeasy-scalar
+      description: REST surface for the speakeasy-scalar integration.
+      operations:
+      - method: POST
+        name: trigger
+        description: Trigger the speakeasy-scalar integration.
+        call: speakeasy_scalar
+        with:
+          trigger_event: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.

@@ -1,0 +1,146 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Use OpenAI Codex to author Speakeasy-suggest follow-ups
+  description: Take Speakeasy's suggested OpenAPI improvements and have OpenAI Codex draft the matching server-side handler diffs so the OpenAPI change and the implementation change ship together.
+  tags:
+  - Speakeasy
+  - Integration
+  - AI tooling
+  - openai-codex
+  created: '2026-05-20'
+  modified: '2026-05-20'
+binds:
+- namespace: env
+  keys:
+    SPEAKEASY_API_KEY: SPEAKEASY_API_KEY
+    OPENAI_CODEX_API_KEY: OPENAI_CODEX_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: speakeasy
+    baseUri: https://api.prod.speakeasy.com
+    description: Speakeasy API operations consumed by this integration.
+    resources:
+    - name: v1-suggest-openapi-from-summary
+      path: /v1/suggest/openapi_from_summary
+      operations:
+      - name: suggest
+        method: POST
+        description: Generate Speakeasy suggestions for the OpenAPI document.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: v1-suggest-items
+      path: /v1/suggest/items
+      operations:
+      - name: suggestitems
+        method: POST
+        description: Generate generic Speakeasy suggestions for the changed items.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: v1-reports-changes-documentchecksum
+      path: /v1/reports/changes/{documentChecksum}
+      operations:
+      - name: getchangesreportsignedurl
+        method: GET
+        description: Pull the Speakeasy change report for context.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: documentChecksum
+          in: path
+          type: string
+          description: Path parameter documentChecksum.
+          required: true
+  - type: http
+    namespace: openai-codex
+    baseUri: https://api.openai.com
+    description: OpenAI API operations consumed by this integration.
+    resources:
+    - name: v1-chat-completions
+      path: /v1/chat/completions
+      operations:
+      - name: createchatcompletion
+        method: POST
+        description: 'OpenAI API: createChatCompletion'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: v1-responses
+      path: /v1/responses
+      operations:
+      - name: createresponse
+        method: POST
+        description: 'OpenAI API: createResponse'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+  exposes:
+  - type: mcp
+    namespace: speakeasy-openai-codex-mcp
+    description: MCP adapter for the speakeasy-openai-codex integration.
+    tools:
+    - name: speakeasy_openai_codex
+      description: Execute the speakeasy openai codex integration end-to-end.
+      inputSchema:
+        type: object
+        properties:
+          trigger_event:
+            type: object
+            description: Triggering event payload.
+        required:
+        - trigger_event
+  - type: rest
+    namespace: speakeasy-openai-codex-rest
+    port: 8080
+    description: REST adapter for the speakeasy-openai-codex integration.
+    resources:
+    - path: /speakeasy-openai-codex
+      name: speakeasy-openai-codex
+      description: REST surface for the speakeasy-openai-codex integration.
+      operations:
+      - method: POST
+        name: trigger
+        description: Trigger the speakeasy-openai-codex integration.
+        call: speakeasy_openai_codex
+        with:
+          trigger_event: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.

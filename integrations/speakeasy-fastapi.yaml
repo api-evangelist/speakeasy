@@ -1,0 +1,144 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Generate a FastAPI server stub from a Speakeasy-managed spec
+  description: For a Python team that owns the OpenAPI document via Speakeasy, regenerate a FastAPI server stub matching the latest registry revision so the implementation scaffold tracks the spec.
+  tags:
+  - Speakeasy
+  - Integration
+  - Runtime
+  - fastapi
+  created: '2026-05-20'
+  modified: '2026-05-20'
+binds:
+- namespace: env
+  keys:
+    SPEAKEASY_API_KEY: SPEAKEASY_API_KEY
+    FASTAPI_API_KEY: FASTAPI_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: speakeasy
+    baseUri: https://api.prod.speakeasy.com
+    description: Speakeasy API operations consumed by this integration.
+    resources:
+    - name: v1-artifacts-namespaces-namespace-name-tags
+      path: /v1/artifacts/namespaces/{namespace_name}/tags
+      operations:
+      - name: gettags
+        method: GET
+        description: Read the Speakeasy registry tag to pin the FastAPI generation against.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: namespace_name
+          in: path
+          type: string
+          description: Path parameter namespace_name.
+          required: true
+    - name: v1-oci-v2-organization-slug-workspace-slug-namespace-name-ma
+      path: /v1/oci/v2/{organization_slug}/{workspace_slug}/{namespace_name}/manifests/{revision_reference}
+      operations:
+      - name: getmanifest
+        method: GET
+        description: Pull the registry manifest for the FastAPI codegen input.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: organization_slug
+          in: path
+          type: string
+          description: Path parameter organization_slug.
+          required: true
+        - name: workspace_slug
+          in: path
+          type: string
+          description: Path parameter workspace_slug.
+          required: true
+        - name: namespace_name
+          in: path
+          type: string
+          description: Path parameter namespace_name.
+          required: true
+        - name: revision_reference
+          in: path
+          type: string
+          description: Path parameter revision_reference.
+          required: true
+  - type: http
+    namespace: fastapi
+    baseUri: https://fastapi-codegen.example.com
+    description: FastAPI Codegen Service operations consumed by this integration.
+    resources:
+    - name: v1-generate
+      path: /v1/generate
+      operations:
+      - name: generateserver
+        method: POST
+        description: 'FastAPI Codegen Service: generateServer'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: v1-jobs-jobid
+      path: /v1/jobs/{jobId}
+      operations:
+      - name: getjob
+        method: GET
+        description: 'FastAPI Codegen Service: getJob'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: jobId
+          in: path
+          type: string
+          description: Path parameter jobId.
+          required: true
+  exposes:
+  - type: mcp
+    namespace: speakeasy-fastapi-mcp
+    description: MCP adapter for the speakeasy-fastapi integration.
+    tools:
+    - name: speakeasy_fastapi
+      description: Execute the speakeasy fastapi integration end-to-end.
+      inputSchema:
+        type: object
+        properties:
+          trigger_event:
+            type: object
+            description: Triggering event payload.
+        required:
+        - trigger_event
+  - type: rest
+    namespace: speakeasy-fastapi-rest
+    port: 8080
+    description: REST adapter for the speakeasy-fastapi integration.
+    resources:
+    - path: /speakeasy-fastapi
+      name: speakeasy-fastapi
+      description: REST surface for the speakeasy-fastapi integration.
+      operations:
+      - method: POST
+        name: trigger
+        description: Trigger the speakeasy-fastapi integration.
+        call: speakeasy_fastapi
+        with:
+          trigger_event: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.

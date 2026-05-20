@@ -1,0 +1,65 @@
+- slug: speakeasy-github
+  label: Open a Speakeasy SDK regen PR on every spec change in GitHub
+  partner: github
+  category: DevOps
+  use_case: When an OpenAPI document changes on GitHub main, suggest improvements via Speakeasy, regenerate code samples, and open a pull request with the regenerated SDK artifacts so source-of-truth lives next to the code.
+- slug: speakeasy-gitlab
+  label: Sync Speakeasy SDK regeneration into GitLab merge requests
+  partner: gitlab
+  category: DevOps
+  use_case: Mirror the GitHub flow for teams on GitLab — on push to main, regenerate SDKs via Speakeasy and open a GitLab merge request with the diffed code-sample and SDK artifacts.
+- slug: speakeasy-stoplight
+  label: Push Speakeasy-suggested spec improvements into Stoplight projects
+  partner: stoplight
+  category: Docs
+  use_case: Run Speakeasy's OpenAPI suggest engine over a Stoplight-hosted spec and push the improved document back into the Stoplight project so docs stay current with the source-of-truth.
+- slug: speakeasy-redocly
+  label: Publish Speakeasy registry specs to a Redocly docs portal
+  partner: redocly
+  category: Docs
+  use_case: When a Speakeasy registry revision is promoted, push the canonical OpenAPI document to a Redocly portal so the public docs always render the version that drives the SDKs.
+- slug: speakeasy-mintlify
+  label: Configure a Mintlify docs repo from a Speakeasy GitHub workspace
+  partner: mintlify
+  category: Docs
+  use_case: Wire a Mintlify-hosted docs repo to a Speakeasy GitHub workspace so code samples and SDK references in the docs are regenerated whenever the source OpenAPI changes.
+- slug: speakeasy-scalar
+  label: Render Speakeasy registry specs in a Scalar API reference
+  partner: scalar
+  category: Docs
+  use_case: Expose the latest tagged Speakeasy registry revision through a Scalar-rendered API reference so developers reading the docs are looking at the exact spec the SDKs were built from.
+- slug: speakeasy-bump-sh
+  label: Track Speakeasy spec changes as Bump.sh API changelog entries
+  partner: bump-sh
+  category: Docs
+  use_case: For every promoted Speakeasy registry revision, post the diff into Bump.sh so the public API changelog tracks every breaking and non-breaking change as it ships.
+- slug: speakeasy-postman
+  label: Push Speakeasy registry specs into a Postman workspace
+  partner: postman
+  category: API tooling
+  use_case: Sync the latest Speakeasy registry revision into a Postman workspace so collection-driven testing teams always run against the same spec the SDKs are generated from.
+- slug: speakeasy-spectral
+  label: Lint Speakeasy registry specs with Spectral before promotion
+  partner: spectral
+  category: Governance
+  use_case: Before promoting a Speakeasy registry revision to the production tag, run the OpenAPI document through a Spectral ruleset and block promotion on rule violations.
+- slug: speakeasy-cloudflare-workers
+  label: Deploy Speakeasy-generated SDKs as Cloudflare Workers
+  partner: cloudflare-workers
+  category: Runtime
+  use_case: Package a Speakeasy-generated TypeScript SDK as a Cloudflare Worker so a generated client becomes an edge-deployed adapter for downstream services in one capability call.
+- slug: speakeasy-vercel
+  label: Deploy Speakeasy-generated SDK docs sites to Vercel
+  partner: vercel
+  category: Runtime
+  use_case: When a Speakeasy SDK regen completes, trigger a Vercel deploy of the matching docs site so generated reference docs ship in lockstep with the SDK.
+- slug: speakeasy-fastapi
+  label: Generate a FastAPI server stub from a Speakeasy-managed spec
+  partner: fastapi
+  category: Runtime
+  use_case: For a Python team that owns the OpenAPI document via Speakeasy, regenerate a FastAPI server stub matching the latest registry revision so the implementation scaffold tracks the spec.
+- slug: speakeasy-openai-codex
+  label: Use OpenAI Codex to author Speakeasy-suggest follow-ups
+  partner: openai-codex
+  category: AI tooling
+  use_case: Take Speakeasy's suggested OpenAPI improvements and have OpenAI Codex draft the matching server-side handler diffs so the OpenAPI change and the implementation change ship together.

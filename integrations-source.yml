@@ -1,0 +1,324 @@
+# Curated Speakeasy integrations. Each entry becomes one Naftiko capability YAML in integrations/.
+# Categories reflect Speakeasy's strengths: SDK generation, OpenAPI tooling, code samples,
+# docs, schema governance, agent skills, and CI/CD around API source-of-truth.
+# Speakeasy-side paths use real Speakeasy API endpoints from temp/speakeasy/openapi/speakeasy-openapi.yml.
+
+# Spec / CI sync (2)
+- partner: github
+  name: Open a Speakeasy SDK regen PR on every spec change in GitHub
+  category: DevOps
+  use_case: When an OpenAPI document changes on GitHub main, suggest improvements via Speakeasy, regenerate code samples, and open a pull request with the regenerated SDK artifacts so source-of-truth lives next to the code.
+  partner_baseUri: https://api.github.com
+  partner_api: GitHub REST API
+  provider_ops:
+    - method: POST
+      path: /v1/suggest/openapi_from_summary
+      name: suggest
+      description: Run Speakeasy's suggest engine over the changed OpenAPI document.
+    - method: POST
+      path: /v1/code_sample/preview
+      name: generateCodeSamplePreview
+      description: Regenerate code sample previews from the updated spec.
+    - method: POST
+      path: /v1/github/trigger_action
+      name: githubTriggerAction
+      description: Kick off the Speakeasy GitHub Action wired to the target repo.
+  partner_ops:
+    - method: GET
+      path: /repos/{owner}/{repo}/contents/{path}
+      name: getRepoContent
+    - method: POST
+      path: /repos/{owner}/{repo}/pulls
+      name: createPullRequest
+    - method: GET
+      path: /repos/{owner}/{repo}/commits/{ref}
+      name: getCommit
+
+- partner: gitlab
+  name: Sync Speakeasy SDK regeneration into GitLab merge requests
+  category: DevOps
+  use_case: Mirror the GitHub flow for teams on GitLab — on push to main, regenerate SDKs via Speakeasy and open a GitLab merge request with the diffed code-sample and SDK artifacts.
+  partner_baseUri: https://gitlab.com/api
+  partner_api: GitLab REST API
+  provider_ops:
+    - method: POST
+      path: /v1/suggest/openapi_from_summary
+      name: suggest
+      description: Run Speakeasy suggest against the GitLab-hosted OpenAPI document.
+    - method: POST
+      path: /v1/code_sample/preview/async
+      name: generateCodeSamplePreviewAsync
+      description: Initiate async code sample preview generation for large specs.
+    - method: GET
+      path: /v1/code_sample/preview/async/{jobID}
+      name: getCodeSamplePreviewAsync
+      description: Poll for completion of the async code sample preview job.
+  partner_ops:
+    - method: GET
+      path: /v4/projects/{id}/repository/files/{file_path}
+      name: getRepoFile
+    - method: POST
+      path: /v4/projects/{id}/merge_requests
+      name: createMergeRequest
+
+# Docs / portals (4)
+- partner: stoplight
+  name: Push Speakeasy-suggested spec improvements into Stoplight projects
+  category: Docs
+  use_case: Run Speakeasy's OpenAPI suggest engine over a Stoplight-hosted spec and push the improved document back into the Stoplight project so docs stay current with the source-of-truth.
+  partner_baseUri: https://stoplight.io/api
+  partner_api: Stoplight Platform API
+  provider_ops:
+    - method: POST
+      path: /v1/suggest/openapi_from_summary
+      name: suggest
+      description: Generate suggestions for improving an OpenAPI document.
+    - method: GET
+      path: /v1/artifacts/namespaces/{namespace_name}/revisions
+      name: getRevisions
+      description: Pull the Speakeasy registry revisions for the spec under review.
+  partner_ops:
+    - method: GET
+      path: /v1/projects/{projectId}/nodes
+      name: listProjectNodes
+    - method: PUT
+      path: /v1/projects/{projectId}/nodes/{nodeId}
+      name: updateProjectNode
+
+- partner: redocly
+  name: Publish Speakeasy registry specs to a Redocly docs portal
+  category: Docs
+  use_case: When a Speakeasy registry revision is promoted, push the canonical OpenAPI document to a Redocly portal so the public docs always render the version that drives the SDKs.
+  partner_baseUri: https://api.redocly.com
+  partner_api: Redocly Workflows API
+  provider_ops:
+    - method: GET
+      path: /v1/artifacts/namespaces/{namespace_name}/revisions
+      name: getRevisions
+      description: Pull the Speakeasy registry revisions for the spec.
+    - method: POST
+      path: /v1/artifacts/namespaces/{namespace_name}/tags
+      name: postTags
+      description: Tag the registry revision that was published to Redocly.
+  partner_ops:
+    - method: POST
+      path: /orgs/{orgId}/portals/{portalId}/publish
+      name: publishPortal
+    - method: GET
+      path: /orgs/{orgId}/portals/{portalId}
+      name: getPortal
+
+- partner: mintlify
+  name: Configure a Mintlify docs repo from a Speakeasy GitHub workspace
+  category: Docs
+  use_case: Wire a Mintlify-hosted docs repo to a Speakeasy GitHub workspace so code samples and SDK references in the docs are regenerated whenever the source OpenAPI changes.
+  partner_baseUri: https://api.mintlify.com
+  partner_api: Mintlify API
+  provider_ops:
+    - method: POST
+      path: /v1/github/configure_mintlify_repo
+      name: githubConfigureMintlifyRepo
+      description: Configure the Mintlify repository binding inside Speakeasy.
+    - method: POST
+      path: /v1/github/configure_code_samples
+      name: githubConfigureCodeSamples
+      description: Configure the code samples target for the Mintlify docs repo.
+    - method: GET
+      path: /v1/github/setup
+      name: getGithubSetupState
+      description: Read the current GitHub setup state for the workspace.
+  partner_ops:
+    - method: POST
+      path: /v1/projects/{projectId}/deploy
+      name: deployProject
+    - method: GET
+      path: /v1/projects/{projectId}
+      name: getProject
+
+- partner: scalar
+  name: Render Speakeasy registry specs in a Scalar API reference
+  category: Docs
+  use_case: Expose the latest tagged Speakeasy registry revision through a Scalar-rendered API reference so developers reading the docs are looking at the exact spec the SDKs were built from.
+  partner_baseUri: https://api.scalar.com
+  partner_api: Scalar API Reference API
+  provider_ops:
+    - method: GET
+      path: /v1/artifacts/namespaces/{namespace_name}/tags
+      name: getTags
+      description: List Speakeasy registry tags to find the latest production revision.
+    - method: GET
+      path: /v1/oci/v2/{organization_slug}/{workspace_slug}/{namespace_name}/manifests/{revision_reference}
+      name: getManifest
+      description: Pull the OCI manifest for the tagged registry revision.
+  partner_ops:
+    - method: POST
+      path: /v1/references
+      name: createReference
+    - method: PUT
+      path: /v1/references/{referenceId}
+      name: updateReference
+
+- partner: bump-sh
+  name: Track Speakeasy spec changes as Bump.sh API changelog entries
+  category: Docs
+  use_case: For every promoted Speakeasy registry revision, post the diff into Bump.sh so the public API changelog tracks every breaking and non-breaking change as it ships.
+  partner_baseUri: https://bump.sh/api
+  partner_api: Bump.sh API
+  provider_ops:
+    - method: GET
+      path: /v1/reports/changes/{documentChecksum}
+      name: getChangesReportSignedUrl
+      description: Get the signed URL for the Speakeasy change report between two revisions.
+    - method: GET
+      path: /v1/artifacts/namespaces/{namespace_name}/revisions
+      name: getRevisions
+      description: List the registry revisions whose diff was generated.
+  partner_ops:
+    - method: POST
+      path: /v1/versions
+      name: createVersion
+    - method: POST
+      path: /v1/previews
+      name: createPreview
+
+- partner: postman
+  name: Push Speakeasy registry specs into a Postman workspace
+  category: API tooling
+  use_case: Sync the latest Speakeasy registry revision into a Postman workspace so collection-driven testing teams always run against the same spec the SDKs are generated from.
+  partner_baseUri: https://api.getpostman.com
+  partner_api: Postman API
+  provider_ops:
+    - method: GET
+      path: /v1/artifacts/namespaces/{namespace_name}/revisions
+      name: getRevisions
+      description: List the Speakeasy registry revisions for the API under sync.
+    - method: GET
+      path: /v1/oci/v2/{organization_slug}/{workspace_slug}/{namespace_name}/blobs/{digest}
+      name: getBlob
+      description: Pull the spec blob from the Speakeasy registry to upload to Postman.
+  partner_ops:
+    - method: PUT
+      path: /apis/{apiId}/versions/{versionId}/schemas/{schemaId}
+      name: updateApiSchema
+    - method: POST
+      path: /apis
+      name: createApi
+
+# Linting / governance (1)
+- partner: spectral
+  name: Lint Speakeasy registry specs with Spectral before promotion
+  category: Governance
+  use_case: Before promoting a Speakeasy registry revision to the production tag, run the OpenAPI document through a Spectral ruleset and block promotion on rule violations.
+  partner_baseUri: https://api.stoplight.io
+  partner_api: Stoplight Spectral API
+  provider_ops:
+    - method: GET
+      path: /v1/oci/v2/{organization_slug}/{workspace_slug}/{namespace_name}/manifests/{revision_reference}
+      name: getManifest
+      description: Pull the registry manifest for the revision being linted.
+    - method: GET
+      path: /v1/reports/linting/{documentChecksum}
+      name: getLintingReportSignedUrl
+      description: Get the signed URL for the Speakeasy-side linting report.
+  partner_ops:
+    - method: POST
+      path: /spectral/lint
+      name: lintDocument
+
+# Runtime / deploy targets (3)
+- partner: cloudflare-workers
+  name: Deploy Speakeasy-generated SDKs as Cloudflare Workers
+  category: Runtime
+  use_case: Package a Speakeasy-generated TypeScript SDK as a Cloudflare Worker so a generated client becomes an edge-deployed adapter for downstream services in one capability call.
+  partner_baseUri: https://api.cloudflare.com
+  partner_api: Cloudflare Workers API
+  provider_ops:
+    - method: GET
+      path: /v1/artifacts/namespaces/{namespace_name}/tags
+      name: getTags
+      description: List Speakeasy registry tags to pin the SDK build.
+    - method: GET
+      path: /v1/oci/v2/{organization_slug}/{workspace_slug}/{namespace_name}/blobs/{digest}
+      name: getBlob
+      description: Pull the generated SDK artifact blob from the Speakeasy registry.
+  partner_ops:
+    - method: PUT
+      path: /client/v4/accounts/{account_id}/workers/scripts/{script_name}
+      name: uploadWorkerScript
+    - method: POST
+      path: /client/v4/accounts/{account_id}/workers/deployments
+      name: createDeployment
+
+- partner: vercel
+  name: Deploy Speakeasy-generated SDK docs sites to Vercel
+  category: Runtime
+  use_case: When a Speakeasy SDK regen completes, trigger a Vercel deploy of the matching docs site so generated reference docs ship in lockstep with the SDK.
+  partner_baseUri: https://api.vercel.com
+  partner_api: Vercel API
+  provider_ops:
+    - method: GET
+      path: /v1/artifacts/namespaces/{namespace_name}/revisions
+      name: getRevisions
+      description: Read the latest Speakeasy registry revision driving the docs deploy.
+    - method: POST
+      path: /v1/github/trigger_action
+      name: githubTriggerAction
+      description: Trigger the Speakeasy GitHub Action that builds the docs site bundle.
+  partner_ops:
+    - method: POST
+      path: /v13/deployments
+      name: createDeployment
+    - method: GET
+      path: /v13/deployments/{idOrUrl}
+      name: getDeployment
+
+- partner: fastapi
+  name: Generate a FastAPI server stub from a Speakeasy-managed spec
+  category: Runtime
+  use_case: For a Python team that owns the OpenAPI document via Speakeasy, regenerate a FastAPI server stub matching the latest registry revision so the implementation scaffold tracks the spec.
+  partner_baseUri: https://fastapi-codegen.example.com
+  partner_api: FastAPI Codegen Service
+  provider_ops:
+    - method: GET
+      path: /v1/artifacts/namespaces/{namespace_name}/tags
+      name: getTags
+      description: Read the Speakeasy registry tag to pin the FastAPI generation against.
+    - method: GET
+      path: /v1/oci/v2/{organization_slug}/{workspace_slug}/{namespace_name}/manifests/{revision_reference}
+      name: getManifest
+      description: Pull the registry manifest for the FastAPI codegen input.
+  partner_ops:
+    - method: POST
+      path: /v1/generate
+      name: generateServer
+    - method: GET
+      path: /v1/jobs/{jobId}
+      name: getJob
+
+# Agent / AI tooling (1)
+- partner: openai-codex
+  name: Use OpenAI Codex to author Speakeasy-suggest follow-ups
+  category: AI tooling
+  use_case: Take Speakeasy's suggested OpenAPI improvements and have OpenAI Codex draft the matching server-side handler diffs so the OpenAPI change and the implementation change ship together.
+  partner_baseUri: https://api.openai.com
+  partner_api: OpenAI API
+  provider_ops:
+    - method: POST
+      path: /v1/suggest/openapi_from_summary
+      name: suggest
+      description: Generate Speakeasy suggestions for the OpenAPI document.
+    - method: POST
+      path: /v1/suggest/items
+      name: suggestItems
+      description: Generate generic Speakeasy suggestions for the changed items.
+    - method: GET
+      path: /v1/reports/changes/{documentChecksum}
+      name: getChangesReportSignedUrl
+      description: Pull the Speakeasy change report for context.
+  partner_ops:
+    - method: POST
+      path: /v1/chat/completions
+      name: createChatCompletion
+    - method: POST
+      path: /v1/responses
+      name: createResponse

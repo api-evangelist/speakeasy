@@ -1,0 +1,129 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Deploy Speakeasy-generated SDK docs sites to Vercel
+  description: When a Speakeasy SDK regen completes, trigger a Vercel deploy of the matching docs site so generated reference docs ship in lockstep with the SDK.
+  tags:
+  - Speakeasy
+  - Integration
+  - Runtime
+  - vercel
+  created: '2026-05-20'
+  modified: '2026-05-20'
+binds:
+- namespace: env
+  keys:
+    SPEAKEASY_API_KEY: SPEAKEASY_API_KEY
+    VERCEL_API_KEY: VERCEL_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: speakeasy
+    baseUri: https://api.prod.speakeasy.com
+    description: Speakeasy API operations consumed by this integration.
+    resources:
+    - name: v1-artifacts-namespaces-namespace-name-revisions
+      path: /v1/artifacts/namespaces/{namespace_name}/revisions
+      operations:
+      - name: getrevisions
+        method: GET
+        description: Read the latest Speakeasy registry revision driving the docs deploy.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: namespace_name
+          in: path
+          type: string
+          description: Path parameter namespace_name.
+          required: true
+    - name: v1-github-trigger-action
+      path: /v1/github/trigger_action
+      operations:
+      - name: githubtriggeraction
+        method: POST
+        description: Trigger the Speakeasy GitHub Action that builds the docs site bundle.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+  - type: http
+    namespace: vercel
+    baseUri: https://api.vercel.com
+    description: Vercel API operations consumed by this integration.
+    resources:
+    - name: v13-deployments
+      path: /v13/deployments
+      operations:
+      - name: createdeployment
+        method: POST
+        description: 'Vercel API: createDeployment'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: v13-deployments-idorurl
+      path: /v13/deployments/{idOrUrl}
+      operations:
+      - name: getdeployment
+        method: GET
+        description: 'Vercel API: getDeployment'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: idOrUrl
+          in: path
+          type: string
+          description: Path parameter idOrUrl.
+          required: true
+  exposes:
+  - type: mcp
+    namespace: speakeasy-vercel-mcp
+    description: MCP adapter for the speakeasy-vercel integration.
+    tools:
+    - name: speakeasy_vercel
+      description: Execute the speakeasy vercel integration end-to-end.
+      inputSchema:
+        type: object
+        properties:
+          trigger_event:
+            type: object
+            description: Triggering event payload.
+        required:
+        - trigger_event
+  - type: rest
+    namespace: speakeasy-vercel-rest
+    port: 8080
+    description: REST adapter for the speakeasy-vercel integration.
+    resources:
+    - path: /speakeasy-vercel
+      name: speakeasy-vercel
+      description: REST surface for the speakeasy-vercel integration.
+      operations:
+      - method: POST
+        name: trigger
+        description: Trigger the speakeasy-vercel integration.
+        call: speakeasy_vercel
+        with:
+          trigger_event: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.

@@ -1,0 +1,156 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Sync Speakeasy SDK regeneration into GitLab merge requests
+  description: Mirror the GitHub flow for teams on GitLab — on push to main, regenerate SDKs via Speakeasy and open a GitLab merge request with the diffed code-sample and SDK artifacts.
+  tags:
+  - Speakeasy
+  - Integration
+  - DevOps
+  - gitlab
+  created: '2026-05-20'
+  modified: '2026-05-20'
+binds:
+- namespace: env
+  keys:
+    SPEAKEASY_API_KEY: SPEAKEASY_API_KEY
+    GITLAB_API_KEY: GITLAB_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: speakeasy
+    baseUri: https://api.prod.speakeasy.com
+    description: Speakeasy API operations consumed by this integration.
+    resources:
+    - name: v1-suggest-openapi-from-summary
+      path: /v1/suggest/openapi_from_summary
+      operations:
+      - name: suggest
+        method: POST
+        description: Run Speakeasy suggest against the GitLab-hosted OpenAPI document.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: v1-code-sample-preview-async
+      path: /v1/code_sample/preview/async
+      operations:
+      - name: generatecodesamplepreviewasync
+        method: POST
+        description: Initiate async code sample preview generation for large specs.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: v1-code-sample-preview-async-jobid
+      path: /v1/code_sample/preview/async/{jobID}
+      operations:
+      - name: getcodesamplepreviewasync
+        method: GET
+        description: Poll for completion of the async code sample preview job.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: jobID
+          in: path
+          type: string
+          description: Path parameter jobID.
+          required: true
+  - type: http
+    namespace: gitlab
+    baseUri: https://gitlab.com/api
+    description: GitLab REST API operations consumed by this integration.
+    resources:
+    - name: v4-projects-id-repository-files-file-path
+      path: /v4/projects/{id}/repository/files/{file_path}
+      operations:
+      - name: getrepofile
+        method: GET
+        description: 'GitLab REST API: getRepoFile'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: Path parameter id.
+          required: true
+        - name: file_path
+          in: path
+          type: string
+          description: Path parameter file_path.
+          required: true
+    - name: v4-projects-id-merge-requests
+      path: /v4/projects/{id}/merge_requests
+      operations:
+      - name: createmergerequest
+        method: POST
+        description: 'GitLab REST API: createMergeRequest'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: Path parameter id.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+  exposes:
+  - type: mcp
+    namespace: speakeasy-gitlab-mcp
+    description: MCP adapter for the speakeasy-gitlab integration.
+    tools:
+    - name: speakeasy_gitlab
+      description: Execute the speakeasy gitlab integration end-to-end.
+      inputSchema:
+        type: object
+        properties:
+          trigger_event:
+            type: object
+            description: Triggering event payload.
+        required:
+        - trigger_event
+  - type: rest
+    namespace: speakeasy-gitlab-rest
+    port: 8080
+    description: REST adapter for the speakeasy-gitlab integration.
+    resources:
+    - path: /speakeasy-gitlab
+      name: speakeasy-gitlab
+      description: REST surface for the speakeasy-gitlab integration.
+      operations:
+      - method: POST
+        name: trigger
+        description: Trigger the speakeasy-gitlab integration.
+        call: speakeasy_gitlab
+        with:
+          trigger_event: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.

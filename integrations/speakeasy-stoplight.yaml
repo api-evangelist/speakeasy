@@ -1,0 +1,139 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Push Speakeasy-suggested spec improvements into Stoplight projects
+  description: Run Speakeasy's OpenAPI suggest engine over a Stoplight-hosted spec and push the improved document back into the Stoplight project so docs stay current with the source-of-truth.
+  tags:
+  - Speakeasy
+  - Integration
+  - Docs
+  - stoplight
+  created: '2026-05-20'
+  modified: '2026-05-20'
+binds:
+- namespace: env
+  keys:
+    SPEAKEASY_API_KEY: SPEAKEASY_API_KEY
+    STOPLIGHT_API_KEY: STOPLIGHT_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: speakeasy
+    baseUri: https://api.prod.speakeasy.com
+    description: Speakeasy API operations consumed by this integration.
+    resources:
+    - name: v1-suggest-openapi-from-summary
+      path: /v1/suggest/openapi_from_summary
+      operations:
+      - name: suggest
+        method: POST
+        description: Generate suggestions for improving an OpenAPI document.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: v1-artifacts-namespaces-namespace-name-revisions
+      path: /v1/artifacts/namespaces/{namespace_name}/revisions
+      operations:
+      - name: getrevisions
+        method: GET
+        description: Pull the Speakeasy registry revisions for the spec under review.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: namespace_name
+          in: path
+          type: string
+          description: Path parameter namespace_name.
+          required: true
+  - type: http
+    namespace: stoplight
+    baseUri: https://stoplight.io/api
+    description: Stoplight Platform API operations consumed by this integration.
+    resources:
+    - name: v1-projects-projectid-nodes
+      path: /v1/projects/{projectId}/nodes
+      operations:
+      - name: listprojectnodes
+        method: GET
+        description: 'Stoplight Platform API: listProjectNodes'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: projectId
+          in: path
+          type: string
+          description: Path parameter projectId.
+          required: true
+    - name: v1-projects-projectid-nodes-nodeid
+      path: /v1/projects/{projectId}/nodes/{nodeId}
+      operations:
+      - name: updateprojectnode
+        method: PUT
+        description: 'Stoplight Platform API: updateProjectNode'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: projectId
+          in: path
+          type: string
+          description: Path parameter projectId.
+          required: true
+        - name: nodeId
+          in: path
+          type: string
+          description: Path parameter nodeId.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+  exposes:
+  - type: mcp
+    namespace: speakeasy-stoplight-mcp
+    description: MCP adapter for the speakeasy-stoplight integration.
+    tools:
+    - name: speakeasy_stoplight
+      description: Execute the speakeasy stoplight integration end-to-end.
+      inputSchema:
+        type: object
+        properties:
+          trigger_event:
+            type: object
+            description: Triggering event payload.
+        required:
+        - trigger_event
+  - type: rest
+    namespace: speakeasy-stoplight-rest
+    port: 8080
+    description: REST adapter for the speakeasy-stoplight integration.
+    resources:
+    - path: /speakeasy-stoplight
+      name: speakeasy-stoplight
+      description: REST surface for the speakeasy-stoplight integration.
+      operations:
+      - method: POST
+        name: trigger
+        description: Trigger the speakeasy-stoplight integration.
+        call: speakeasy_stoplight
+        with:
+          trigger_event: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.

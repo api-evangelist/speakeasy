@@ -1,0 +1,149 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Publish Speakeasy registry specs to a Redocly docs portal
+  description: When a Speakeasy registry revision is promoted, push the canonical OpenAPI document to a Redocly portal so the public docs always render the version that drives the SDKs.
+  tags:
+  - Speakeasy
+  - Integration
+  - Docs
+  - redocly
+  created: '2026-05-20'
+  modified: '2026-05-20'
+binds:
+- namespace: env
+  keys:
+    SPEAKEASY_API_KEY: SPEAKEASY_API_KEY
+    REDOCLY_API_KEY: REDOCLY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: speakeasy
+    baseUri: https://api.prod.speakeasy.com
+    description: Speakeasy API operations consumed by this integration.
+    resources:
+    - name: v1-artifacts-namespaces-namespace-name-revisions
+      path: /v1/artifacts/namespaces/{namespace_name}/revisions
+      operations:
+      - name: getrevisions
+        method: GET
+        description: Pull the Speakeasy registry revisions for the spec.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: namespace_name
+          in: path
+          type: string
+          description: Path parameter namespace_name.
+          required: true
+    - name: v1-artifacts-namespaces-namespace-name-tags
+      path: /v1/artifacts/namespaces/{namespace_name}/tags
+      operations:
+      - name: posttags
+        method: POST
+        description: Tag the registry revision that was published to Redocly.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: namespace_name
+          in: path
+          type: string
+          description: Path parameter namespace_name.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+  - type: http
+    namespace: redocly
+    baseUri: https://api.redocly.com
+    description: Redocly Workflows API operations consumed by this integration.
+    resources:
+    - name: orgs-orgid-portals-portalid-publish
+      path: /orgs/{orgId}/portals/{portalId}/publish
+      operations:
+      - name: publishportal
+        method: POST
+        description: 'Redocly Workflows API: publishPortal'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: orgId
+          in: path
+          type: string
+          description: Path parameter orgId.
+          required: true
+        - name: portalId
+          in: path
+          type: string
+          description: Path parameter portalId.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: orgs-orgid-portals-portalid
+      path: /orgs/{orgId}/portals/{portalId}
+      operations:
+      - name: getportal
+        method: GET
+        description: 'Redocly Workflows API: getPortal'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: orgId
+          in: path
+          type: string
+          description: Path parameter orgId.
+          required: true
+        - name: portalId
+          in: path
+          type: string
+          description: Path parameter portalId.
+          required: true
+  exposes:
+  - type: mcp
+    namespace: speakeasy-redocly-mcp
+    description: MCP adapter for the speakeasy-redocly integration.
+    tools:
+    - name: speakeasy_redocly
+      description: Execute the speakeasy redocly integration end-to-end.
+      inputSchema:
+        type: object
+        properties:
+          trigger_event:
+            type: object
+            description: Triggering event payload.
+        required:
+        - trigger_event
+  - type: rest
+    namespace: speakeasy-redocly-rest
+    port: 8080
+    description: REST adapter for the speakeasy-redocly integration.
+    resources:
+    - path: /speakeasy-redocly
+      name: speakeasy-redocly
+      description: REST surface for the speakeasy-redocly integration.
+      operations:
+      - method: POST
+        name: trigger
+        description: Trigger the speakeasy-redocly integration.
+        call: speakeasy_redocly
+        with:
+          trigger_event: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.

@@ -1,0 +1,129 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Track Speakeasy spec changes as Bump.sh API changelog entries
+  description: For every promoted Speakeasy registry revision, post the diff into Bump.sh so the public API changelog tracks every breaking and non-breaking change as it ships.
+  tags:
+  - Speakeasy
+  - Integration
+  - Docs
+  - bump-sh
+  created: '2026-05-20'
+  modified: '2026-05-20'
+binds:
+- namespace: env
+  keys:
+    SPEAKEASY_API_KEY: SPEAKEASY_API_KEY
+    BUMP_SH_API_KEY: BUMP_SH_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: speakeasy
+    baseUri: https://api.prod.speakeasy.com
+    description: Speakeasy API operations consumed by this integration.
+    resources:
+    - name: v1-reports-changes-documentchecksum
+      path: /v1/reports/changes/{documentChecksum}
+      operations:
+      - name: getchangesreportsignedurl
+        method: GET
+        description: Get the signed URL for the Speakeasy change report between two revisions.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: documentChecksum
+          in: path
+          type: string
+          description: Path parameter documentChecksum.
+          required: true
+    - name: v1-artifacts-namespaces-namespace-name-revisions
+      path: /v1/artifacts/namespaces/{namespace_name}/revisions
+      operations:
+      - name: getrevisions
+        method: GET
+        description: List the registry revisions whose diff was generated.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: namespace_name
+          in: path
+          type: string
+          description: Path parameter namespace_name.
+          required: true
+  - type: http
+    namespace: bump-sh
+    baseUri: https://bump.sh/api
+    description: Bump.sh API operations consumed by this integration.
+    resources:
+    - name: v1-versions
+      path: /v1/versions
+      operations:
+      - name: createversion
+        method: POST
+        description: 'Bump.sh API: createVersion'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: v1-previews
+      path: /v1/previews
+      operations:
+      - name: createpreview
+        method: POST
+        description: 'Bump.sh API: createPreview'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+  exposes:
+  - type: mcp
+    namespace: speakeasy-bump-sh-mcp
+    description: MCP adapter for the speakeasy-bump-sh integration.
+    tools:
+    - name: speakeasy_bump_sh
+      description: Execute the speakeasy bump sh integration end-to-end.
+      inputSchema:
+        type: object
+        properties:
+          trigger_event:
+            type: object
+            description: Triggering event payload.
+        required:
+        - trigger_event
+  - type: rest
+    namespace: speakeasy-bump-sh-rest
+    port: 8080
+    description: REST adapter for the speakeasy-bump-sh integration.
+    resources:
+    - path: /speakeasy-bump-sh
+      name: speakeasy-bump-sh
+      description: REST surface for the speakeasy-bump-sh integration.
+      operations:
+      - method: POST
+        name: trigger
+        description: Trigger the speakeasy-bump-sh integration.
+        call: speakeasy_bump_sh
+        with:
+          trigger_event: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.

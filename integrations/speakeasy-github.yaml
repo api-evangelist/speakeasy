@@ -1,0 +1,193 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Open a Speakeasy SDK regen PR on every spec change in GitHub
+  description: When an OpenAPI document changes on GitHub main, suggest improvements via Speakeasy, regenerate code samples, and open a pull request with the regenerated SDK artifacts so source-of-truth lives next to the code.
+  tags:
+  - Speakeasy
+  - Integration
+  - DevOps
+  - github
+  created: '2026-05-20'
+  modified: '2026-05-20'
+binds:
+- namespace: env
+  keys:
+    SPEAKEASY_API_KEY: SPEAKEASY_API_KEY
+    GITHUB_API_KEY: GITHUB_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: speakeasy
+    baseUri: https://api.prod.speakeasy.com
+    description: Speakeasy API operations consumed by this integration.
+    resources:
+    - name: v1-suggest-openapi-from-summary
+      path: /v1/suggest/openapi_from_summary
+      operations:
+      - name: suggest
+        method: POST
+        description: Run Speakeasy's suggest engine over the changed OpenAPI document.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: v1-code-sample-preview
+      path: /v1/code_sample/preview
+      operations:
+      - name: generatecodesamplepreview
+        method: POST
+        description: Regenerate code sample previews from the updated spec.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: v1-github-trigger-action
+      path: /v1/github/trigger_action
+      operations:
+      - name: githubtriggeraction
+        method: POST
+        description: Kick off the Speakeasy GitHub Action wired to the target repo.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+  - type: http
+    namespace: github
+    baseUri: https://api.github.com
+    description: GitHub REST API operations consumed by this integration.
+    resources:
+    - name: repos-owner-repo-contents-path
+      path: /repos/{owner}/{repo}/contents/{path}
+      operations:
+      - name: getrepocontent
+        method: GET
+        description: 'GitHub REST API: getRepoContent'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: owner
+          in: path
+          type: string
+          description: Path parameter owner.
+          required: true
+        - name: repo
+          in: path
+          type: string
+          description: Path parameter repo.
+          required: true
+        - name: path
+          in: path
+          type: string
+          description: Path parameter path.
+          required: true
+    - name: repos-owner-repo-pulls
+      path: /repos/{owner}/{repo}/pulls
+      operations:
+      - name: createpullrequest
+        method: POST
+        description: 'GitHub REST API: createPullRequest'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: owner
+          in: path
+          type: string
+          description: Path parameter owner.
+          required: true
+        - name: repo
+          in: path
+          type: string
+          description: Path parameter repo.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: repos-owner-repo-commits-ref
+      path: /repos/{owner}/{repo}/commits/{ref}
+      operations:
+      - name: getcommit
+        method: GET
+        description: 'GitHub REST API: getCommit'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: owner
+          in: path
+          type: string
+          description: Path parameter owner.
+          required: true
+        - name: repo
+          in: path
+          type: string
+          description: Path parameter repo.
+          required: true
+        - name: ref
+          in: path
+          type: string
+          description: Path parameter ref.
+          required: true
+  exposes:
+  - type: mcp
+    namespace: speakeasy-github-mcp
+    description: MCP adapter for the speakeasy-github integration.
+    tools:
+    - name: speakeasy_github
+      description: Execute the speakeasy github integration end-to-end.
+      inputSchema:
+        type: object
+        properties:
+          trigger_event:
+            type: object
+            description: Triggering event payload.
+        required:
+        - trigger_event
+  - type: rest
+    namespace: speakeasy-github-rest
+    port: 8080
+    description: REST adapter for the speakeasy-github integration.
+    resources:
+    - path: /speakeasy-github
+      name: speakeasy-github
+      description: REST surface for the speakeasy-github integration.
+      operations:
+      - method: POST
+        name: trigger
+        description: Trigger the speakeasy-github integration.
+        call: speakeasy_github
+        with:
+          trigger_event: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.

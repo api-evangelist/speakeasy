@@ -1,0 +1,159 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Deploy Speakeasy-generated SDKs as Cloudflare Workers
+  description: Package a Speakeasy-generated TypeScript SDK as a Cloudflare Worker so a generated client becomes an edge-deployed adapter for downstream services in one capability call.
+  tags:
+  - Speakeasy
+  - Integration
+  - Runtime
+  - cloudflare-workers
+  created: '2026-05-20'
+  modified: '2026-05-20'
+binds:
+- namespace: env
+  keys:
+    SPEAKEASY_API_KEY: SPEAKEASY_API_KEY
+    CLOUDFLARE_WORKERS_API_KEY: CLOUDFLARE_WORKERS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: speakeasy
+    baseUri: https://api.prod.speakeasy.com
+    description: Speakeasy API operations consumed by this integration.
+    resources:
+    - name: v1-artifacts-namespaces-namespace-name-tags
+      path: /v1/artifacts/namespaces/{namespace_name}/tags
+      operations:
+      - name: gettags
+        method: GET
+        description: List Speakeasy registry tags to pin the SDK build.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: namespace_name
+          in: path
+          type: string
+          description: Path parameter namespace_name.
+          required: true
+    - name: v1-oci-v2-organization-slug-workspace-slug-namespace-name-bl
+      path: /v1/oci/v2/{organization_slug}/{workspace_slug}/{namespace_name}/blobs/{digest}
+      operations:
+      - name: getblob
+        method: GET
+        description: Pull the generated SDK artifact blob from the Speakeasy registry.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: organization_slug
+          in: path
+          type: string
+          description: Path parameter organization_slug.
+          required: true
+        - name: workspace_slug
+          in: path
+          type: string
+          description: Path parameter workspace_slug.
+          required: true
+        - name: namespace_name
+          in: path
+          type: string
+          description: Path parameter namespace_name.
+          required: true
+        - name: digest
+          in: path
+          type: string
+          description: Path parameter digest.
+          required: true
+  - type: http
+    namespace: cloudflare-workers
+    baseUri: https://api.cloudflare.com
+    description: Cloudflare Workers API operations consumed by this integration.
+    resources:
+    - name: client-v4-accounts-account-id-workers-scripts-script-name
+      path: /client/v4/accounts/{account_id}/workers/scripts/{script_name}
+      operations:
+      - name: uploadworkerscript
+        method: PUT
+        description: 'Cloudflare Workers API: uploadWorkerScript'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: account_id
+          in: path
+          type: string
+          description: Path parameter account_id.
+          required: true
+        - name: script_name
+          in: path
+          type: string
+          description: Path parameter script_name.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: client-v4-accounts-account-id-workers-deployments
+      path: /client/v4/accounts/{account_id}/workers/deployments
+      operations:
+      - name: createdeployment
+        method: POST
+        description: 'Cloudflare Workers API: createDeployment'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: account_id
+          in: path
+          type: string
+          description: Path parameter account_id.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+  exposes:
+  - type: mcp
+    namespace: speakeasy-cloudflare-workers-mcp
+    description: MCP adapter for the speakeasy-cloudflare-workers integration.
+    tools:
+    - name: speakeasy_cloudflare_workers
+      description: Execute the speakeasy cloudflare workers integration end-to-end.
+      inputSchema:
+        type: object
+        properties:
+          trigger_event:
+            type: object
+            description: Triggering event payload.
+        required:
+        - trigger_event
+  - type: rest
+    namespace: speakeasy-cloudflare-workers-rest
+    port: 8080
+    description: REST adapter for the speakeasy-cloudflare-workers integration.
+    resources:
+    - path: /speakeasy-cloudflare-workers
+      name: speakeasy-cloudflare-workers
+      description: REST surface for the speakeasy-cloudflare-workers integration.
+      operations:
+      - method: POST
+        name: trigger
+        description: Trigger the speakeasy-cloudflare-workers integration.
+        call: speakeasy_cloudflare_workers
+        with:
+          trigger_event: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.

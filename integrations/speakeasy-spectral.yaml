@@ -1,0 +1,127 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Lint Speakeasy registry specs with Spectral before promotion
+  description: Before promoting a Speakeasy registry revision to the production tag, run the OpenAPI document through a Spectral ruleset and block promotion on rule violations.
+  tags:
+  - Speakeasy
+  - Integration
+  - Governance
+  - spectral
+  created: '2026-05-20'
+  modified: '2026-05-20'
+binds:
+- namespace: env
+  keys:
+    SPEAKEASY_API_KEY: SPEAKEASY_API_KEY
+    SPECTRAL_API_KEY: SPECTRAL_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: speakeasy
+    baseUri: https://api.prod.speakeasy.com
+    description: Speakeasy API operations consumed by this integration.
+    resources:
+    - name: v1-oci-v2-organization-slug-workspace-slug-namespace-name-ma
+      path: /v1/oci/v2/{organization_slug}/{workspace_slug}/{namespace_name}/manifests/{revision_reference}
+      operations:
+      - name: getmanifest
+        method: GET
+        description: Pull the registry manifest for the revision being linted.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: organization_slug
+          in: path
+          type: string
+          description: Path parameter organization_slug.
+          required: true
+        - name: workspace_slug
+          in: path
+          type: string
+          description: Path parameter workspace_slug.
+          required: true
+        - name: namespace_name
+          in: path
+          type: string
+          description: Path parameter namespace_name.
+          required: true
+        - name: revision_reference
+          in: path
+          type: string
+          description: Path parameter revision_reference.
+          required: true
+    - name: v1-reports-linting-documentchecksum
+      path: /v1/reports/linting/{documentChecksum}
+      operations:
+      - name: getlintingreportsignedurl
+        method: GET
+        description: Get the signed URL for the Speakeasy-side linting report.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: documentChecksum
+          in: path
+          type: string
+          description: Path parameter documentChecksum.
+          required: true
+  - type: http
+    namespace: spectral
+    baseUri: https://api.stoplight.io
+    description: Stoplight Spectral API operations consumed by this integration.
+    resources:
+    - name: spectral-lint
+      path: /spectral/lint
+      operations:
+      - name: lintdocument
+        method: POST
+        description: 'Stoplight Spectral API: lintDocument'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+  exposes:
+  - type: mcp
+    namespace: speakeasy-spectral-mcp
+    description: MCP adapter for the speakeasy-spectral integration.
+    tools:
+    - name: speakeasy_spectral
+      description: Execute the speakeasy spectral integration end-to-end.
+      inputSchema:
+        type: object
+        properties:
+          trigger_event:
+            type: object
+            description: Triggering event payload.
+        required:
+        - trigger_event
+  - type: rest
+    namespace: speakeasy-spectral-rest
+    port: 8080
+    description: REST adapter for the speakeasy-spectral integration.
+    resources:
+    - path: /speakeasy-spectral
+      name: speakeasy-spectral
+      description: REST surface for the speakeasy-spectral integration.
+      operations:
+      - method: POST
+        name: trigger
+        description: Trigger the speakeasy-spectral integration.
+        call: speakeasy_spectral
+        with:
+          trigger_event: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
