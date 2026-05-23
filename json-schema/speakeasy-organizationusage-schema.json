@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/OrganizationUsage",
+  "title": "OrganizationUsage",
+  "type": "object",
+  "properties": {
+    "number_of_operations": {
+      "type": "integer",
+      "description": "Number of operations performed"
+    },
+    "max_operations": {
+      "type": "integer",
+      "description": "Maximum Number of operations per SDK specific in contract"
+    },
+    "language": {
+      "type": "string",
+      "description": "The programming language used"
+    },
+    "used_features": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Features that have been used"
+    },
+    "accessible_features": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Features that are accessible"
+    },
+    "accessible": {
+      "type": "boolean",
+      "description": "Indicates if the features are accessible"
+    },
+    "workspaces": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of workspace IDs"
+    },
+    "gen_lock_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of generation lock IDs"
+    }
+  },
+  "required": [
+    "number_of_operations",
+    "max_operations",
+    "language",
+    "used_features",
+    "accessible_features",
+    "accessible",
+    "workspaces",
+    "gen_lock_ids"
+  ]
+}

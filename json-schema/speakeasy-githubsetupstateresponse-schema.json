@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GithubSetupStateResponse",
+  "title": "GithubSetupStateResponse",
+  "description": "The state of a particular SDK targets github setup",
+  "type": "object",
+  "properties": {
+    "app_installed": {
+      "type": "boolean"
+    },
+    "actions": {
+      "type": "object",
+      "properties": {
+        "generation_action_configured": {
+          "type": "boolean"
+        },
+        "publish_action_configured": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "generation_action_configured",
+        "publish_action_configured"
+      ]
+    },
+    "secrets": {
+      "type": "object",
+      "properties": {
+        "api_key_configured": {
+          "type": "boolean"
+        },
+        "publishing_secrets_configured": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "api_key_configured",
+        "publishing_secrets_configured"
+      ]
+    }
+  },
+  "required": [
+    "app_installed",
+    "actions",
+    "secrets"
+  ]
+}

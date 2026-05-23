@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Manifest",
+  "title": "Manifest",
+  "description": "Returns the requested manifest file",
+  "example": {
+    "config": {
+      "digest": "sha256:6d1ef012b5674ad8a127ecfa9b5e6f5178d171b90ee462846974177fd9bdd39f",
+      "mediaType": "application/vnd.docker.container.image.v1+json",
+      "size": 1512
+    },
+    "layers": [
+      {
+        "digest": "sha256:5d20c808ce198565ff70b3ed23a991dd49afac45dece63474b27ce6ed036adc6",
+        "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+        "size": 2107098
+      }
+    ],
+    "mediaType": "application/vnd.docker.distribution.manifest.v2+json",
+    "schemaVersion": 2
+  },
+  "properties": {
+    "schemaVersion": {
+      "description": "Schema version",
+      "type": "integer"
+    },
+    "mediaType": {
+      "description": "Media type usually application/vnd.docker.distribution.manifest.v2+json if this is in the accept header",
+      "type": "string"
+    },
+    "artifactType": {
+      "description": "Type of artifact",
+      "type": "string"
+    },
+    "annotations": {
+      "$ref": "#/components/schemas/Annotations"
+    },
+    "layers": {
+      "description": "List of V2 image layer information",
+      "items": {
+        "$ref": "#/components/schemas/V2Descriptor"
+      },
+      "type": "array"
+    }
+  }
+}

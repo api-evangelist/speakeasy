@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CodeSampleSchemaInput",
+  "title": "CodeSampleSchemaInput",
+  "type": "object",
+  "required": [
+    "schema_file",
+    "language"
+  ],
+  "properties": {
+    "package_name": {
+      "type": "string",
+      "description": "The name of the package"
+    },
+    "sdk_class_name": {
+      "type": "string",
+      "description": "The SDK class name"
+    },
+    "language": {
+      "type": "string",
+      "description": "The language to generate code samples for"
+    },
+    "operation_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "A list of operations IDs to generate code samples for"
+    },
+    "schema_file": {
+      "type": "string",
+      "format": "binary",
+      "description": "The OpenAPI file to be uploaded"
+    }
+  }
+}

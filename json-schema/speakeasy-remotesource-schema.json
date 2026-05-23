@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/RemoteSource",
+  "title": "RemoteSource",
+  "description": "Remote source configuration",
+  "properties": {
+    "inputs": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/RemoteDocument"
+      }
+    },
+    "overlays": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/RemoteDocument"
+      }
+    },
+    "output": {
+      "$ref": "#/components/schemas/RemoteDocument"
+    }
+  },
+  "required": [
+    "inputs",
+    "output"
+  ]
+}

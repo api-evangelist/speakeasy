@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Annotations",
+  "title": "Annotations",
+  "description": "Annotations",
+  "properties": {
+    "org.opencontainers.image.created": {
+      "type": "string",
+      "description": "The time the image was created"
+    },
+    "org.opencontainers.image.authors": {
+      "type": "string",
+      "description": "The authors of the image"
+    },
+    "org.opencontainers.image.url": {
+      "type": "string",
+      "description": "The URL of the image"
+    },
+    "org.opencontainers.image.documentation": {
+      "type": "string",
+      "description": "The documentation URL of the image"
+    },
+    "org.opencontainers.image.source": {
+      "type": "string",
+      "description": "The URL to get source code for building the image"
+    },
+    "org.opencontainers.image.version": {
+      "type": "string",
+      "description": "The version of the packaged software"
+    },
+    "org.opencontainers.image.revision": {
+      "type": "string",
+      "description": "Source control revision identifier"
+    },
+    "org.opencontainers.image.vendor": {
+      "type": "string",
+      "description": "Name of the distributing entity, organization or individual."
+    },
+    "org.opencontainers.image.licenses": {
+      "type": "string"
+    },
+    "org.opencontainers.image.ref.name": {
+      "type": "string",
+      "description": "Name of the reference for a target"
+    },
+    "org.opencontainers.image.title": {
+      "type": "string",
+      "description": "Human-readable title of the image"
+    },
+    "org.opencontainers.image.description": {
+      "type": "string",
+      "description": "Human-readable description of the software packaged in the image"
+    }
+  }
+}

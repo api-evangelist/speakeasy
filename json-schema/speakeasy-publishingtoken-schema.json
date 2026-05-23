@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PublishingToken",
+  "title": "PublishingToken",
+  "description": "A token used to publish to a target",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "token": {
+      "type": "string"
+    },
+    "valid_until": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "token_name": {
+      "type": "string"
+    },
+    "target_id": {
+      "type": "string"
+    },
+    "target_resource": {
+      "enum": [
+        "document"
+      ]
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "created_by": {
+      "type": "string"
+    },
+    "updated_by": {
+      "type": "string"
+    },
+    "organization_id": {
+      "type": "string"
+    },
+    "workspace_id": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "target_id",
+    "target_resource",
+    "valid_until",
+    "token_name",
+    "id",
+    "token",
+    "created_at",
+    "created_by",
+    "organization_id",
+    "workspace_id"
+  ]
+}

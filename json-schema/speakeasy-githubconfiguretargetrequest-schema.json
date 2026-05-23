@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GithubConfigureTargetRequest",
+  "title": "GithubConfigureTargetRequest",
+  "description": "A request to configure a GitHub target",
+  "type": "object",
+  "properties": {
+    "org": {
+      "type": "string",
+      "description": "The GitHub organization name"
+    },
+    "repo_name": {
+      "type": "string",
+      "description": "The GitHub repository name"
+    }
+  },
+  "required": [
+    "org",
+    "repo_name"
+  ]
+}

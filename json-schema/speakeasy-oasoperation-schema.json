@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/OASOperation",
+  "title": "OASOperation",
+  "type": "object",
+  "properties": {
+    "method": {
+      "type": "string"
+    },
+    "path": {
+      "type": "string"
+    },
+    "operation_id": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "method_name_override": {
+      "type": "string"
+    },
+    "group_override": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "method",
+    "path",
+    "operation_id",
+    "description",
+    "tags"
+  ]
+}

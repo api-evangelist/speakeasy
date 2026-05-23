@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CliEventBatch",
+  "title": "CliEventBatch",
+  "type": "array",
+  "items": {
+    "$ref": "#/components/schemas/CliEvent"
+  },
+  "minItems": 1
+}

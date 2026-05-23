@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PreflightToken",
+  "title": "PreflightToken",
+  "description": "A PreflightToken is a token that allows access to the OCI distribution endpoints.",
+  "properties": {
+    "auth_token": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "access_token"
+  ]
+}

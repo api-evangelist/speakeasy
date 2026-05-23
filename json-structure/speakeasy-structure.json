@@ -1,0 +1,1398 @@
+{
+  "provider": "Speakeasy",
+  "providerId": "speakeasy",
+  "kind": "json-structure",
+  "description": "Structural overview of the Speakeasy API surface; extracted from openapi/.",
+  "schemaCount": 73,
+  "operationCount": 77,
+  "schemas": [
+    {
+      "name": "GithubConfigureCodeSamplesRequest",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "org",
+        "repo",
+        "targetName"
+      ]
+    },
+    {
+      "name": "GithubConfigureCodeSamplesResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "source",
+        "codeSampleOverlayRegistryURL"
+      ]
+    },
+    {
+      "name": "WorkflowDocument",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "location"
+      ]
+    },
+    {
+      "name": "GithubConfigureMintlifyRepoRequest",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "org",
+        "repo",
+        "input",
+        "overlays"
+      ]
+    },
+    {
+      "name": "GithubConfigureTargetRequest",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "org",
+        "repo_name"
+      ]
+    },
+    {
+      "name": "GithubMissingPublishingSecretsResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "GithubSetupStateResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "app_installed",
+        "actions",
+        "secrets"
+      ]
+    },
+    {
+      "name": "GithubPublishingPRResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "GithubStorePublishingSecretsRequest",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "generate_gen_lock_id"
+      ]
+    },
+    {
+      "name": "GithubTriggerActionRequest",
+      "type": "object",
+      "propertyCount": 6,
+      "required": [
+        "org",
+        "repo_name",
+        "gen_lock_id"
+      ]
+    },
+    {
+      "name": "GithubGetActionResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "ApiKeyDetails",
+      "type": "object",
+      "propertyCount": 10,
+      "required": [
+        "workspace_id",
+        "account_type_v2",
+        "enabled_features",
+        "workspace_slug",
+        "org_slug",
+        "workspace_created_at",
+        "telemetry_disabled",
+        "billing_add_ons"
+      ]
+    },
+    {
+      "name": "AccessDetails",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "generation_allowed",
+        "message"
+      ]
+    },
+    {
+      "name": "AccessToken",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "access_token",
+        "claims",
+        "user"
+      ]
+    },
+    {
+      "name": "Error",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "message",
+        "status_code"
+      ]
+    },
+    {
+      "name": "FeatureFlag",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "feature_flag"
+      ]
+    },
+    {
+      "name": "PublishingToken",
+      "type": "object",
+      "propertyCount": 12,
+      "required": [
+        "target_id",
+        "target_resource",
+        "valid_until",
+        "token_name",
+        "id",
+        "token",
+        "created_at",
+        "created_by",
+        "organization_id",
+        "workspace_id"
+      ]
+    },
+    {
+      "name": "PublishingTokenRequest",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "target_id",
+        "target_resource"
+      ]
+    },
+    {
+      "name": "WorkspaceFeatureFlag",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "WorkspaceFeatureFlagRequest",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "feature_flags"
+      ]
+    },
+    {
+      "name": "WorkspaceFeatureFlagResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "Organization",
+      "type": "object",
+      "propertyCount": 11,
+      "required": [
+        "id",
+        "name",
+        "slug",
+        "account_type",
+        "telemetry_disabled",
+        "sso_activated",
+        "created_at",
+        "updated_at"
+      ]
+    },
+    {
+      "name": "OrganizationBillingAddOnRequest",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "add_ons"
+      ]
+    },
+    {
+      "name": "OrganizationBillingAddOnResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "add_ons"
+      ]
+    },
+    {
+      "name": "OrganizationUsageResponse",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "usage",
+        "total_allowed_languages",
+        "allowed_languages"
+      ]
+    },
+    {
+      "name": "OrganizationUsage",
+      "type": "object",
+      "propertyCount": 8,
+      "required": [
+        "number_of_operations",
+        "max_operations",
+        "language",
+        "used_features",
+        "accessible_features",
+        "accessible",
+        "workspaces",
+        "gen_lock_ids"
+      ]
+    },
+    {
+      "name": "CliEventBatch",
+      "type": "array",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "CliEvent",
+      "type": "object",
+      "propertyCount": 82,
+      "required": [
+        "id",
+        "execution_id",
+        "workspace_id",
+        "speakeasy_api_key_name",
+        "interaction_type",
+        "local_started_at",
+        "created_at",
+        "speakeasy_version",
+        "success"
+      ]
+    },
+    {
+      "name": "InteractionType",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "TargetSDKList",
+      "type": "array",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "TargetSDK",
+      "type": "object",
+      "propertyCount": 45,
+      "required": [
+        "id",
+        "generate_target",
+        "generate_gen_lock_id",
+        "last_event_id",
+        "last_event_created_at",
+        "last_event_interaction_type"
+      ]
+    },
+    {
+      "name": "User",
+      "type": "object",
+      "propertyCount": 16,
+      "required": [
+        "id",
+        "email",
+        "email_verified",
+        "display_name",
+        "confirmed",
+        "whitelisted",
+        "admin",
+        "created_at",
+        "updated_at"
+      ]
+    },
+    {
+      "name": "Report",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "SuggestOptsOld",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "suggestion_type"
+      ]
+    },
+    {
+      "name": "SuggestRequestBody",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "oas_summary",
+        "suggestion_type",
+        "diagnostics"
+      ]
+    },
+    {
+      "name": "SuggestItemsRequestBody",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "prompt",
+        "items"
+      ]
+    },
+    {
+      "name": "Diagnostic",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "message",
+        "path",
+        "type"
+      ]
+    },
+    {
+      "name": "OASInfo",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "title",
+        "summary",
+        "description",
+        "version",
+        "license"
+      ]
+    },
+    {
+      "name": "OASOperation",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "method",
+        "path",
+        "operation_id",
+        "description",
+        "tags"
+      ]
+    },
+    {
+      "name": "OASSummary",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "info",
+        "operations"
+      ]
+    },
+    {
+      "name": "SchemaStoreItem",
+      "type": "object",
+      "propertyCount": 6,
+      "required": [
+        "id",
+        "spec",
+        "created_at",
+        "format",
+        "packageName",
+        "sdkClassname"
+      ]
+    },
+    {
+      "name": "ShortURL",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "short_url",
+        "full_url"
+      ]
+    },
+    {
+      "name": "AccountType",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "BillingAddOn",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "Workspace",
+      "type": "object",
+      "propertyCount": 9,
+      "required": [
+        "created_at",
+        "id",
+        "name",
+        "organization_id",
+        "slug",
+        "updated_at",
+        "verified"
+      ]
+    },
+    {
+      "name": "WorkspaceInviteResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "relationship"
+      ]
+    },
+    {
+      "name": "WorkspaceToken",
+      "type": "object",
+      "propertyCount": 11,
+      "required": [
+        "id",
+        "name",
+        "alg",
+        "key",
+        "created_at",
+        "workspace_id"
+      ]
+    },
+    {
+      "name": "WorkspaceAndOrganization",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "workspace",
+        "organization"
+      ]
+    },
+    {
+      "name": "WorkspaceTeamResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "users"
+      ]
+    },
+    {
+      "name": "CodeSampleSchemaInput",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "schema_file",
+        "language"
+      ]
+    },
+    {
+      "name": "CodeSamplesJobStatus",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "SSOMetadata",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "sso_activated",
+        "sso_domains"
+      ]
+    },
+    {
+      "name": "UsageSnippets",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "snippets"
+      ]
+    },
+    {
+      "name": "CodeSampleOperationIdFilter",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "type",
+        "operationId"
+      ]
+    },
+    {
+      "name": "CodeSampleMethodPathFilter",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "type",
+        "method",
+        "path"
+      ]
+    },
+    {
+      "name": "HttpMethod",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "UsageSnippet",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "path",
+        "method",
+        "operationId",
+        "language",
+        "code"
+      ]
+    },
+    {
+      "name": "WorkspaceSettings",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "workspace_id",
+        "webhook_url",
+        "created_at",
+        "updated_at"
+      ]
+    },
+    {
+      "name": "Annotations",
+      "type": "object",
+      "propertyCount": 12,
+      "required": []
+    },
+    {
+      "name": "Manifest",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "V2Descriptor",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "PreflightToken",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "access_token"
+      ]
+    },
+    {
+      "name": "GetNamespacesResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "items"
+      ]
+    },
+    {
+      "name": "GetRevisionsResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "items",
+        "next_page_token"
+      ]
+    },
+    {
+      "name": "GetTagsResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "items"
+      ]
+    },
+    {
+      "name": "Tag",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "id",
+        "name",
+        "namespace_name",
+        "revision_digest"
+      ]
+    },
+    {
+      "name": "Namespace",
+      "type": "object",
+      "propertyCount": 8,
+      "required": [
+        "id",
+        "name",
+        "created_at",
+        "updated_at"
+      ]
+    },
+    {
+      "name": "RemoteSourceSubscriptionSettings",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "base_spec_namespaces",
+        "overlay_namespaces",
+        "output_namespace"
+      ]
+    },
+    {
+      "name": "Revision",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "id",
+        "namespace_name",
+        "digest",
+        "tags",
+        "created_at",
+        "updated_at"
+      ]
+    },
+    {
+      "name": "RevisionContentsMetadata",
+      "type": "object",
+      "propertyCount": 13,
+      "required": [
+        "workspace_id",
+        "namespace",
+        "revision_digest",
+        "type",
+        "title",
+        "description",
+        "version",
+        "hash",
+        "tags",
+        "operation_ids",
+        "num_overlay_actions",
+        "contains_code_samples",
+        "created_at"
+      ]
+    },
+    {
+      "name": "AddTags",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "revision_digest",
+        "tags"
+      ]
+    },
+    {
+      "name": "RemoteSource",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "inputs",
+        "output"
+      ]
+    },
+    {
+      "name": "RemoteDocument",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "registry_url"
+      ]
+    }
+  ],
+  "operations": [
+    {
+      "method": "GET",
+      "path": "/v1/auth/validate",
+      "operationId": "validateApiKey",
+      "summary": "Validate the Current API Key",
+      "tags": [
+        "Auth"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/v1/user",
+      "operationId": "getUser",
+      "summary": "Get Information About the Current User",
+      "tags": [
+        "Auth"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/v1/auth/access_token",
+      "operationId": "getAccessToken",
+      "summary": "Get or Refresh an Access Token for the Current Workspace",
+      "tags": [
+        "Auth"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/v1/code_sample",
+      "operationId": "getCodeSamples",
+      "summary": "Retrieve Usage Snippets",
+      "tags": [
+        "CodeSamples"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/v1/code_sample/preview",
+      "operationId": "generateCodeSamplePreview",
+      "summary": "Generate Code Sample Previews from a File and Configuration Parameters",
+      "tags": [
+        "CodeSamples"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/v1/code_sample/preview/async",
+      "operationId": "generateCodeSamplePreviewAsync",
+      "summary": "Initiate Asynchronous Code Sample Preview Generation from a File and Configuration Parameters, Receiving an Async JobID Response for Polling",
+      "tags": [
+        "CodeSamples"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/v1/code_sample/preview/async/{jobID}",
+      "operationId": "getCodeSamplePreviewAsync",
+      "summary": "Poll for the Result of an Asynchronous Code Sample Preview Generation",
+      "tags": [
+        "CodeSamples"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/v1/github/setup",
+      "operationId": "getGithubSetupState",
+      "summary": null,
+      "tags": [
+        "Github"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/v1/github/check_access",
+      "operationId": "checkGithubAccess",
+      "summary": null,
+      "tags": [
+        "Github"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/v1/github/link",
+      "operationId": "linkGithubAccess",
+      "summary": null,
+      "tags": [
+        "Github"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/v1/github/publishing_prs",
+      "operationId": "githubCheckPublishingPRs",
+      "summary": null,
+      "tags": [
+        "Github"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/v1/github/publishing_secrets",
+      "operationId": "githubCheckPublishingSecrets",
+      "summary": null,
+      "tags": [
+        "Github"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/v1/github/publishing_secrets",
+      "operationId": "githubStorePublishingSecrets",
+      "summary": null,
+      "tags": [
+        "Github"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/v1/github/configure_code_samples",
+      "operationId": "githubConfigureCodeSamples",
+      "summary": null,
+      "tags": [
+        "Github"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/v1/github/configure_mintlify_repo",
+      "operationId": "githubConfigureMintlifyRepo",
+      "summary": null,
+      "tags": [
+        "Github"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/v1/github/configure_target",
+      "operationId": "githubConfigureTarget",
+      "summary": null,
+      "tags": [
+        "Github"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/v1/github/trigger_action",
+      "operationId": "githubTriggerAction",
+      "summary": null,
+      "tags": [
+        "Github"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/v1/github/action",
+      "operationId": "getGitHubAction",
+      "summary": null,
+      "tags": [
+        "Github"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/v1/organizations",
+      "operationId": "getOrganizations",
+      "summary": "Get Organizations for a User",
+      "tags": [
+        "Organizations"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/v1/organization",
+      "operationId": "createOrganization",
+      "summary": "Create an Organization",
+      "tags": [
+        "Organizations"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/v1/organization/{organizationID}",
+      "operationId": "getOrganization",
+      "summary": "Get Organization",
+      "tags": [
+        "Organizations"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/v1/organization/free_trial",
+      "operationId": "createFreeTrial",
+      "summary": "Create a Free Trial for an Organization",
+      "tags": [
+        "Organizations"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/v1/organization/usage",
+      "operationId": "getOrganizationUsage",
+      "summary": "Get Billing Usage Summary for a Particular Organization",
+      "tags": [
+        "Organizations"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/v1/organization/add_ons",
+      "operationId": "getBillingAddOns",
+      "summary": "Get Billing Add Ons",
+      "tags": [
+        "Organizations"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/v1/organization/add_ons",
+      "operationId": "createBillingAddOns",
+      "summary": "Create Billing Add Ons",
+      "tags": [
+        "Organizations"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/v1/organization/add_ons/{add_on}",
+      "operationId": "deleteBillingAddOn",
+      "summary": "Delete Billing Add Ons",
+      "tags": [
+        "Organizations"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/v1/publishing-tokens",
+      "operationId": "getPublishingToken",
+      "summary": "Get Publishing Tokens for a Workspace",
+      "tags": [
+        "PublishingTokens"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/v1/publishing-tokens",
+      "operationId": "createPublishingToken",
+      "summary": "Create a Publishing Token for a Workspace",
+      "tags": [
+        "PublishingTokens"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/v1/publishing-tokens/{tokenID}",
+      "operationId": "getPublishingTokenByID",
+      "summary": "Get a Specific Publishing Token",
+      "tags": [
+        "PublishingTokens"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/v1/publishing-tokens/{tokenID}",
+      "operationId": "updatePublishingTokenExpiration",
+      "summary": "Updates the Validitity Period of a Publishing Token",
+      "tags": [
+        "PublishingTokens"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/v1/publishing-tokens/{tokenID}",
+      "operationId": "deletePublishingToken",
+      "summary": "Delete a Specific Publishing Token",
+      "tags": [
+        "PublishingTokens"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/v1/publishing-tokens/{tokenID}/target",
+      "operationId": "getPublishingTokenTargetByID",
+      "summary": "Get a Specific Publishing Token Target",
+      "tags": [
+        "PublishingTokens"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/v1/publishing-tokens/{tokenID}/metadata",
+      "operationId": "getPublishingTokenPublicMetadata",
+      "summary": "Get Metadata About the Token",
+      "tags": [
+        "PublishingTokens"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/v1/workspaces",
+      "operationId": "getWorkspaces",
+      "summary": "Get Workspaces for a User",
+      "tags": [
+        "Workspaces"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/v1/workspace",
+      "operationId": "getWorkspaceByContext",
+      "summary": "Get Workspace by Context",
+      "tags": [
+        "Workspaces"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/v1/workspace",
+      "operationId": "createWorkspace",
+      "summary": "Create a Workspace",
+      "tags": [
+        "Workspaces"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/v1/workspace/{workspace_id}",
+      "operationId": "getWorkspace",
+      "summary": "Get Workspace",
+      "tags": [
+        "Workspaces"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/v1/workspace/{workspace_id}/details",
+      "operationId": "updateWorkspaceDetails",
+      "summary": "Update Workspace Details",
+      "tags": [
+        "Workspaces"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/v1/workspace/{workspace_id}/settings",
+      "operationId": "getWorkspaceSettings",
+      "summary": "Get Workspace Settings",
+      "tags": [
+        "Workspaces"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/v1/workspace/{workspace_id}/settings",
+      "operationId": "updateWorkspaceSettings",
+      "summary": "Update Workspace Settings",
+      "tags": [
+        "Workspaces"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/v1/workspace/{workspace_id}/events",
+      "operationId": "searchWorkspaceEvents",
+      "summary": null,
+      "tags": [
+        "Events"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/v1/workspace/{workspace_id}/events",
+      "operationId": "postWorkspaceEvents",
+      "summary": "Post Events for a Specific Workspace",
+      "tags": [
+        "Events"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/v1/workspace/{workspace_id}/team",
+      "operationId": "getWorkspaceTeam",
+      "summary": "Get Team Members for a Particular Workspace",
+      "tags": [
+        "Workspaces"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/v1/workspace/{workspace_id}/team/email/{email}",
+      "operationId": "grantUserAccessToWorkspace",
+      "summary": "Grant a User Access to a Particular Workspace",
+      "tags": [
+        "Workspaces"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/v1/workspace/{workspace_id}/team/{userId}",
+      "operationId": "revokeUserAccessToWorkspace",
+      "summary": "Revoke a User's Access to a Particular Workspace",
+      "tags": [
+        "Workspaces"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/v1/workspace/{workspace_id}/tokens",
+      "operationId": "getWorkspaceTokens",
+      "summary": "Get Tokens for a Particular Workspace",
+      "tags": [
+        "Workspaces"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/v1/workspace/{workspace_id}/tokens",
+      "operationId": "createWorkspaceToken",
+      "summary": "Create a Token for a Particular Workspace",
+      "tags": [
+        "Workspaces"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/v1/workspace/{workspace_id}/tokens/{tokenID}",
+      "operationId": "deleteWorkspaceToken",
+      "summary": "Delete a Token for a Particular Workspace",
+      "tags": [
+        "Workspaces"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/v1/workspace/feature_flags",
+      "operationId": "setWorkspaceFeatureFlags",
+      "summary": "Set Workspace Feature Flags",
+      "tags": [
+        "Workspaces"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/v1/workspace/{workspace_id}/feature_flags",
+      "operationId": "getWorkspaceFeatureFlags",
+      "summary": "Get Workspace Feature Flags",
+      "tags": [
+        "Workspaces"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/v1/workspace/{workspace_id}/events/targets/{target_id}/events",
+      "operationId": "getWorkspaceEventsByTarget",
+      "summary": null,
+      "tags": [
+        "Events"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/v1/workspace/access",
+      "operationId": "getWorkspaceAccess",
+      "summary": "Get Access Allowances for a Particular Workspace",
+      "tags": [
+        "Auth"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/v1/workspace/events/targets",
+      "operationId": "getWorkspaceTargets",
+      "summary": null,
+      "tags": [
+        "Events"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/v1/workspace/{workspace_id}/events/targets",
+      "operationId": "getWorkspaceTargetsDeprecated",
+      "summary": null,
+      "tags": [
+        "Events"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/v1/reports",
+      "operationId": "uploadReport",
+      "summary": "Upload a Report",
+      "tags": [
+        "Reports"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/v1/reports/linting/{documentChecksum}",
+      "operationId": "getLintingReportSignedUrl",
+      "summary": "Get the Signed Access URL for the Linting Reports for a Particular Document",
+      "tags": [
+        "Reports"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/v1/reports/changes/{documentChecksum}",
+      "operationId": "getChangesReportSignedUrl",
+      "summary": "Get the Signed Access URL for the Change Reports for a Particular Document",
+      "tags": [
+        "Reports"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/v1/suggest/openapi",
+      "operationId": "suggestOpenAPI",
+      "summary": "(DEPRECATED) Generate Suggestions for Improving an OpenAPI Document",
+      "tags": [
+        "Suggest"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/v1/suggest/openapi_from_summary",
+      "operationId": "suggest",
+      "summary": "Generate Suggestions for Improving an OpenAPI Document",
+      "tags": [
+        "Suggest"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/v1/suggest/items",
+      "operationId": "suggestItems",
+      "summary": "Generate Generic Suggestions for a List of Items",
+      "tags": [
+        "Suggest"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/v1/suggest/openapi/{namespace_name}/{revision_reference}",
+      "operationId": "suggestOpenAPIRegistry",
+      "summary": "Generate Suggestions for Improving an OpenAPI Document Stored in the Registry",
+      "tags": [
+        "Suggest"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/v1/schema_store",
+      "operationId": "getSchemaStoreItem",
+      "summary": "Get a OAS Schema from the Schema Store",
+      "tags": [
+        "SchemaStore"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/v1/schema_store",
+      "operationId": "createSchemaStoreItem",
+      "summary": "Create a Schema in the Schema Store",
+      "tags": [
+        "SchemaStore"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/v1/short_urls",
+      "operationId": "create",
+      "summary": "Shorten a URL",
+      "tags": [
+        "ShortURLs"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/v1/artifacts/preflight",
+      "operationId": "preflight",
+      "summary": "Get Access Token for Communicating with OCI Distribution Endpoints",
+      "tags": [
+        "Artifacts"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/v1/artifacts/namespaces",
+      "operationId": "getNamespaces",
+      "summary": "Each Namespace Contains Many Revisions",
+      "tags": [
+        "Artifacts"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/v1/artifacts/namespaces/{namespace_name}/archive",
+      "operationId": "archiveNamespace",
+      "summary": "Set Whether a Namespace is Archived",
+      "tags": [
+        "Artifacts"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/v1/artifacts/namespaces/{namespace_name}/revisions",
+      "operationId": "getRevisions",
+      "summary": null,
+      "tags": [
+        "Artifacts"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/v1/artifacts/namespaces/{namespace_name}/tags",
+      "operationId": "getTags",
+      "summary": null,
+      "tags": [
+        "Artifacts"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/v1/artifacts/namespaces/{namespace_name}/tags",
+      "operationId": "postTags",
+      "summary": "Add Tags to an Existing Revision",
+      "tags": [
+        "Artifacts"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/v1/artifacts/namespaces/{namespace_name}/visibility",
+      "operationId": "setVisibility",
+      "summary": "Set Visibility of a Namespace with an Existing Metadata Entry",
+      "tags": [
+        "Artifacts"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/v1/artifacts/remote_sources",
+      "operationId": "listRemoteSources",
+      "summary": "Get Remote Sources Attached to a Particular Namespace",
+      "tags": [
+        "Artifacts"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/v1/artifacts/remote_sources",
+      "operationId": "createRemoteSource",
+      "summary": "Configure a New Remote Source",
+      "tags": [
+        "Artifacts"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/v1/oci/v2/{organization_slug}/{workspace_slug}/{namespace_name}/manifests/{revision_reference}",
+      "operationId": "getManifest",
+      "summary": "Get Manifest for a Particular Reference",
+      "tags": [
+        "Artifacts"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/v1/oci/v2/{organization_slug}/{workspace_slug}/{namespace_name}/blobs/{digest}",
+      "operationId": "getBlob",
+      "summary": "Get Blob for a Particular Digest",
+      "tags": [
+        "Artifacts"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/v1/subscriptions/{subscriptionID}/{namespaceName}/ignore",
+      "operationId": "ignoreSubscriptionNamespace",
+      "summary": "Ignored a Namespace for a Subscription",
+      "tags": [
+        "Subscriptions"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/v1/subscriptions/{subscriptionID}/{namespaceName}/activate",
+      "operationId": "activateSubscriptionNamespace",
+      "summary": "Activate an Ignored Namespace for a Subscription",
+      "tags": [
+        "Subscriptions"
+      ]
+    }
+  ]
+}

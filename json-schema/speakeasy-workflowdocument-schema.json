@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/WorkflowDocument",
+  "title": "WorkflowDocument",
+  "description": "A document referenced by a workflow",
+  "properties": {
+    "location": {
+      "type": "string"
+    },
+    "auth": {
+      "type": "object",
+      "properties": {
+        "header": {
+          "type": "string"
+        },
+        "secret": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "header",
+        "secret"
+      ]
+    }
+  },
+  "required": [
+    "location"
+  ]
+}

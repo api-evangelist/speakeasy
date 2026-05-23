@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PublishingTokenRequest",
+  "title": "PublishingTokenRequest",
+  "description": "A request to create a publishing token",
+  "type": "object",
+  "properties": {
+    "target_id": {
+      "type": "string"
+    },
+    "target_resource": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "target_id",
+    "target_resource"
+  ]
+}

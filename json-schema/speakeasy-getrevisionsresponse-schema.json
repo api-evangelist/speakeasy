@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GetRevisionsResponse",
+  "title": "GetRevisionsResponse",
+  "properties": {
+    "items": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Revision"
+      }
+    },
+    "next_page_token": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "items",
+    "next_page_token"
+  ]
+}

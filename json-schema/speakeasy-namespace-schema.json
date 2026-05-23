@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Namespace",
+  "title": "Namespace",
+  "description": "A namespace contains many revisions.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "{organization_slug}/{workspace_slug}/{namespace_name}"
+    },
+    "name": {
+      "type": "string",
+      "description": "A human-readable name for the namespace."
+    },
+    "created_at": {
+      "format": "date-time",
+      "readOnly": true,
+      "type": "string"
+    },
+    "updated_at": {
+      "format": "date-time",
+      "readOnly": true,
+      "type": "string"
+    },
+    "public": {
+      "readOnly": true,
+      "type": "boolean",
+      "description": "Indicates whether the namespace is publicly accessible"
+    },
+    "archived_at": {
+      "format": "date-time",
+      "readOnly": true,
+      "type": "string"
+    },
+    "latest_revision_metadata": {
+      "$ref": "#/components/schemas/RevisionContentsMetadata"
+    },
+    "composite_spec_metadata": {
+      "type": "object",
+      "properties": {
+        "subscription_id": {
+          "type": "string",
+          "readOnly": true,
+          "description": "The subscription ID for the remote source subscription, if applicable. This indicates that the namespace is created by a remote source and thus is composite."
+        },
+        "subscription_settings": {
+          "$ref": "#/components/schemas/RemoteSourceSubscriptionSettings"
+        }
+      },
+      "required": [
+        "subscription_id",
+        "subscription_settings"
+      ]
+    }
+  },
+  "required": [
+    "id",
+    "name",
+    "created_at",
+    "updated_at"
+  ]
+}

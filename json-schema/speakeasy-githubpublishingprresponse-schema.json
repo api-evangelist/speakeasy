@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GithubPublishingPRResponse",
+  "title": "GithubPublishingPRResponse",
+  "description": "Open generation PRs pending publishing",
+  "type": "object",
+  "properties": {
+    "pull_request": {
+      "type": "string"
+    },
+    "pending_version": {
+      "type": "string"
+    },
+    "pull_request_metadata": {
+      "description": "This can only be populated when the github app is installed for a repo",
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "created_at": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "description": {
+          "description": "truncated to first 1000 characters",
+          "type": "string"
+        },
+        "head_branch": {
+          "type": "string"
+        },
+        "base_branch": {
+          "type": "string"
+        },
+        "can_merge": {
+          "type": "boolean"
+        },
+        "labels": {
+          "description": "List of github labels",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "requested_reviewers": {
+          "description": "List of github handles",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

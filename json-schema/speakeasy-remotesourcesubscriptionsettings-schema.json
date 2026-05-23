@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/RemoteSourceSubscriptionSettings",
+  "title": "RemoteSourceSubscriptionSettings",
+  "properties": {
+    "base_spec_namespaces": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "overlay_namespaces": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "ignored_namespaces": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "output_namespace": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "base_spec_namespaces",
+    "overlay_namespaces",
+    "output_namespace"
+  ]
+}

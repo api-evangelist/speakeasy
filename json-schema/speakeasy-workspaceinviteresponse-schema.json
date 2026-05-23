@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/WorkspaceInviteResponse",
+  "title": "WorkspaceInviteResponse",
+  "type": "object",
+  "description": "A response for workspace user invite",
+  "properties": {
+    "relationship": {
+      "type": "object",
+      "properties": {
+        "workspace_id": {
+          "type": "string"
+        },
+        "user_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "workspace_id",
+        "user_id"
+      ]
+    },
+    "invite_link": {
+      "nullable": true,
+      "type": "string"
+    }
+  },
+  "required": [
+    "relationship"
+  ]
+}

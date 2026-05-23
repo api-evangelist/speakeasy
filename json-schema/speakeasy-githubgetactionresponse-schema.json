@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GithubGetActionResponse",
+  "title": "GithubGetActionResponse",
+  "description": "response to a getting the latest action run on a GitHub request",
+  "type": "object",
+  "properties": {
+    "run_url": {
+      "type": "string",
+      "description": "The URL for latest action run if available"
+    },
+    "run_status": {
+      "type": "string",
+      "description": "The status of the latest action run if available"
+    }
+  }
+}

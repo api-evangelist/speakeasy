@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AccessToken",
+  "title": "AccessToken",
+  "description": "An AccessToken is a token that can be used to authenticate with the Speakeasy API.",
+  "properties": {
+    "access_token": {
+      "type": "string"
+    },
+    "claims": {
+      "type": "object"
+    },
+    "user": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "display_name": {
+          "type": "string"
+        },
+        "admin": {
+          "type": "boolean"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "email_verified": {
+          "type": "boolean"
+        }
+      }
+    },
+    "workspaces": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "account_type": {
+            "$ref": "#/components/schemas/AccountType"
+          }
+        }
+      }
+    },
+    "feature_flags": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/FeatureFlag"
+      }
+    }
+  },
+  "required": [
+    "access_token",
+    "claims",
+    "user"
+  ],
+  "type": "object"
+}

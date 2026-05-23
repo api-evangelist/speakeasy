@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ApiKeyDetails",
+  "title": "ApiKeyDetails",
+  "type": "object",
+  "properties": {
+    "workspace_id": {
+      "type": "string"
+    },
+    "workspace_slug": {
+      "type": "string"
+    },
+    "org_slug": {
+      "type": "string"
+    },
+    "generation_access_unlimited": {
+      "type": "boolean"
+    },
+    "account_type_v2": {
+      "$ref": "#/components/schemas/AccountType"
+    },
+    "enabled_features": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "billing_add_ons": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/BillingAddOn"
+      }
+    },
+    "feature_flags": {
+      "deprecated": true,
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "telemetry_disabled": {
+      "type": "boolean"
+    },
+    "workspace_created_at": {
+      "description": "Workspace creation timestamp.",
+      "format": "date-time",
+      "type": "string"
+    }
+  },
+  "required": [
+    "workspace_id",
+    "account_type_v2",
+    "enabled_features",
+    "workspace_slug",
+    "org_slug",
+    "workspace_created_at",
+    "telemetry_disabled",
+    "billing_add_ons"
+  ]
+}

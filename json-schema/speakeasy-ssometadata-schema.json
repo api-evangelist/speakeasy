@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SSOMetadata",
+  "title": "SSOMetadata",
+  "description": "SSO metadata for a workspace",
+  "properties": {
+    "sso_activated": {
+      "type": "boolean"
+    },
+    "sso_domains": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "sso_activated",
+    "sso_domains"
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/WorkspaceTeamResponse",
+  "title": "WorkspaceTeamResponse",
+  "description": "Workspace team response",
+  "properties": {
+    "users": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/User"
+      }
+    },
+    "sso_metadata": {
+      "$ref": "#/components/schemas/SSOMetadata"
+    }
+  },
+  "required": [
+    "users"
+  ]
+}

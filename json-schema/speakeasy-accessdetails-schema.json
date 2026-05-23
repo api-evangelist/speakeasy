@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AccessDetails",
+  "title": "AccessDetails",
+  "type": "object",
+  "properties": {
+    "generation_allowed": {
+      "type": "boolean"
+    },
+    "message": {
+      "type": "string"
+    },
+    "level": {
+      "type": "string",
+      "enum": [
+        "allowed",
+        "warning",
+        "blocked"
+      ]
+    }
+  },
+  "required": [
+    "generation_allowed",
+    "message"
+  ]
+}

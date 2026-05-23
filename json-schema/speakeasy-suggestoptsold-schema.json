@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SuggestOptsOld",
+  "title": "SuggestOptsOld",
+  "type": "object",
+  "properties": {
+    "suggestion_type": {
+      "type": "string",
+      "enum": [
+        "method-names",
+        "diagnostics-only"
+      ]
+    },
+    "diagnostics": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Diagnostic"
+      }
+    }
+  },
+  "required": [
+    "suggestion_type"
+  ]
+}

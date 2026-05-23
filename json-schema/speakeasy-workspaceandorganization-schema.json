@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/WorkspaceAndOrganization",
+  "title": "WorkspaceAndOrganization",
+  "description": "A workspace and organization",
+  "properties": {
+    "workspace": {
+      "$ref": "#/components/schemas/Workspace"
+    },
+    "organization": {
+      "$ref": "#/components/schemas/Organization"
+    }
+  },
+  "required": [
+    "workspace",
+    "organization"
+  ],
+  "type": "object"
+}

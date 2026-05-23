@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/OrganizationUsageResponse",
+  "title": "OrganizationUsageResponse",
+  "description": "A billing summary of organization usage",
+  "type": "object",
+  "properties": {
+    "usage": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/OrganizationUsage"
+      }
+    },
+    "free_trial_expiry": {
+      "format": "date-time",
+      "readOnly": true,
+      "type": "string",
+      "description": "Expiry date of the free trial, will be null if no trial"
+    },
+    "total_allowed_languages": {
+      "type": "integer",
+      "description": "Total number of allowed languages, -1 if unlimited"
+    },
+    "allowed_languages": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of allowed languages"
+    }
+  },
+  "required": [
+    "usage",
+    "total_allowed_languages",
+    "allowed_languages"
+  ]
+}

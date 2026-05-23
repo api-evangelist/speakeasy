@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/FeatureFlag",
+  "title": "FeatureFlag",
+  "description": "A feature flag is a key-value pair that can be used to enable or disable features.",
+  "properties": {
+    "feature_flag": {
+      "$ref": "#/components/schemas/WorkspaceFeatureFlag"
+    },
+    "trial_ends_at": {
+      "type": "string",
+      "format": "date-time",
+      "nullable": true
+    }
+  },
+  "required": [
+    "feature_flag"
+  ]
+}

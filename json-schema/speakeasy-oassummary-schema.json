@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/OASSummary",
+  "title": "OASSummary",
+  "type": "object",
+  "properties": {
+    "info": {
+      "$ref": "#/components/schemas/OASInfo"
+    },
+    "operations": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/OASOperation"
+      }
+    }
+  },
+  "required": [
+    "info",
+    "operations"
+  ]
+}

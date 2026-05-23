@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Revision",
+  "title": "Revision",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Format {namespace_id}/{revision_digest}"
+    },
+    "digest": {
+      "type": "string",
+      "example": "sha256:6d1ef012b5674ad8a127ecfa9b5e6f5178d171b90ee462846974177fd9bdd39f"
+    },
+    "namespace_name": {
+      "type": "string"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "contents_metadata": {
+      "$ref": "#/components/schemas/RevisionContentsMetadata"
+    },
+    "created_at": {
+      "format": "date-time",
+      "readOnly": true,
+      "type": "string"
+    },
+    "updated_at": {
+      "format": "date-time",
+      "readOnly": true,
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "namespace_name",
+    "digest",
+    "tags",
+    "created_at",
+    "updated_at"
+  ]
+}

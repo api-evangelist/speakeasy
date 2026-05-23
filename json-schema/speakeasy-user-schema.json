@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/User",
+  "title": "User",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the user."
+    },
+    "email": {
+      "type": "string",
+      "description": "Email address of the user."
+    },
+    "email_verified": {
+      "type": "boolean",
+      "description": "Indicates whether the email address has been verified."
+    },
+    "github_handle": {
+      "type": "string",
+      "description": "GitHub handle of the user.",
+      "nullable": true
+    },
+    "display_name": {
+      "type": "string",
+      "description": "Display name of the user."
+    },
+    "photo_url": {
+      "type": "string",
+      "nullable": true,
+      "description": "URL of the user's photo."
+    },
+    "default_workspace_id": {
+      "type": "string",
+      "description": "Identifier of the default workspace.",
+      "nullable": true
+    },
+    "confirmed": {
+      "type": "boolean",
+      "description": "Indicates whether the user has been confirmed."
+    },
+    "whitelisted": {
+      "type": "boolean",
+      "description": "Indicates whether the user has been whitelisted."
+    },
+    "last_login_at": {
+      "type": "string",
+      "nullable": true,
+      "format": "date-time",
+      "description": "Timestamp of the last login."
+    },
+    "admin": {
+      "type": "boolean",
+      "description": "Indicates whether the user is an admin."
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp of the user's creation."
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp of the user's last update."
+    },
+    "internal": {
+      "type": "boolean",
+      "description": "Indicates whether the user is internal."
+    },
+    "pylon_identity_hash": {
+      "type": "string",
+      "description": "Hash used for pylon identity verification returned on v1/user."
+    },
+    "has_created_api_key": {
+      "type": "boolean",
+      "description": "Indicates whether the user has created an API key. Not always populated"
+    }
+  },
+  "required": [
+    "id",
+    "email",
+    "email_verified",
+    "display_name",
+    "confirmed",
+    "whitelisted",
+    "admin",
+    "created_at",
+    "updated_at"
+  ]
+}

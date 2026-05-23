@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/RevisionContentsMetadata",
+  "title": "RevisionContentsMetadata",
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "OPENAPI_BUNDLE",
+        "OPENAPI_OVERLAY"
+      ]
+    },
+    "workspace_id": {
+      "type": "string",
+      "description": "The workspace ID"
+    },
+    "namespace": {
+      "type": "string",
+      "description": "The fully qualified namespace"
+    },
+    "revision_digest": {
+      "type": "string",
+      "description": "The digest of the parent bundle"
+    },
+    "title": {
+      "type": "string",
+      "description": "The OAS title"
+    },
+    "description": {
+      "type": "string",
+      "description": "The OAS description"
+    },
+    "version": {
+      "type": "string",
+      "description": "The OAS version"
+    },
+    "hash": {
+      "type": "string",
+      "description": "The hash of the contents"
+    },
+    "tags": {
+      "type": "array",
+      "description": "The tags contained in the OAS -- NOT the OCI tags. Will be empty if the OAS is an overlay.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "operation_ids": {
+      "type": "array",
+      "description": "The operation IDs contained in the OAS. Will be empty if the OAS is an overlay.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "num_overlay_actions": {
+      "type": "integer",
+      "description": "The number of overlay actions in the OAS. Will be 0 if the OAS is not an overlay."
+    },
+    "contains_code_samples": {
+      "type": "boolean",
+      "description": "Whether the OAS contains code samples."
+    },
+    "created_at": {
+      "format": "date-time",
+      "readOnly": true,
+      "type": "string"
+    }
+  },
+  "required": [
+    "workspace_id",
+    "namespace",
+    "revision_digest",
+    "type",
+    "title",
+    "description",
+    "version",
+    "hash",
+    "tags",
+    "operation_ids",
+    "num_overlay_actions",
+    "contains_code_samples",
+    "created_at"
+  ]
+}

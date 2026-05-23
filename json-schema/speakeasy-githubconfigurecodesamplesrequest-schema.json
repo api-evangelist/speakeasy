@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GithubConfigureCodeSamplesRequest",
+  "title": "GithubConfigureCodeSamplesRequest",
+  "description": "A request to configure GitHub code samples",
+  "type": "object",
+  "properties": {
+    "org": {
+      "type": "string",
+      "description": "The GitHub organization name"
+    },
+    "repo": {
+      "type": "string",
+      "description": "The GitHub repository name"
+    },
+    "targetName": {
+      "type": "string",
+      "description": "The target name for the code samples"
+    }
+  },
+  "required": [
+    "org",
+    "repo",
+    "targetName"
+  ]
+}

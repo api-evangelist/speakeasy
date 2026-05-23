@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CodeSampleMethodPathFilter",
+  "title": "CodeSampleMethodPathFilter",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "const": "methodPath"
+    },
+    "method": {
+      "type": "string"
+    },
+    "path": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "type",
+    "method",
+    "path"
+  ]
+}

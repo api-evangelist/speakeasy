@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SuggestRequestBody",
+  "title": "SuggestRequestBody",
+  "type": "object",
+  "properties": {
+    "oas_summary": {
+      "$ref": "#/components/schemas/OASSummary"
+    },
+    "suggestion_type": {
+      "type": "string",
+      "enum": [
+        "method-names",
+        "diagnostics-only"
+      ]
+    },
+    "diagnostics": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Diagnostic"
+      }
+    }
+  },
+  "required": [
+    "oas_summary",
+    "suggestion_type",
+    "diagnostics"
+  ]
+}

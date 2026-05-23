@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AddTags",
+  "title": "AddTags",
+  "description": "Request body of tags to add to a revision",
+  "properties": {
+    "revision_digest": {
+      "description": "revision digest to add tags too sha256:...",
+      "type": "string"
+    },
+    "tags": {
+      "description": "string tags to add to the revision",
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "revision_digest",
+    "tags"
+  ],
+  "type": "object"
+}

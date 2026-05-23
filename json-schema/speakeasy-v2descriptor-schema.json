@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/V2Descriptor",
+  "title": "V2Descriptor",
+  "description": "V2 descriptor",
+  "properties": {
+    "digest": {
+      "description": "Digest",
+      "type": "string"
+    },
+    "mediaType": {
+      "description": "Media type",
+      "type": "string"
+    },
+    "size": {
+      "description": "Size",
+      "type": "integer"
+    },
+    "annotations": {
+      "$ref": "#/components/schemas/Annotations"
+    }
+  }
+}

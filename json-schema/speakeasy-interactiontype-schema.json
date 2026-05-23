@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/InteractionType",
+  "title": "InteractionType",
+  "type": "string",
+  "description": "Type of interaction.",
+  "enum": [
+    "CI_EXEC",
+    "CLI_EXEC",
+    "LINT",
+    "OPENAPI_DIFF",
+    "TARGET_GENERATE",
+    "TOMBSTONE",
+    "AUTHENTICATE",
+    "QUICKSTART",
+    "RUN",
+    "CONFIGURE",
+    "PUBLISH",
+    "TEST"
+  ]
+}

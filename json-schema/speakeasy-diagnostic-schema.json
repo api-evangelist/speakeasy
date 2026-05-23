@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Diagnostic",
+  "title": "Diagnostic",
+  "type": "object",
+  "properties": {
+    "message": {
+      "type": "string",
+      "description": "Message describing the issue"
+    },
+    "path": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Schema path to the issue"
+    },
+    "type": {
+      "type": "string",
+      "description": "Issue type"
+    },
+    "helpMessage": {
+      "type": "string",
+      "description": "Help message for how to fix the issue"
+    }
+  },
+  "required": [
+    "message",
+    "path",
+    "type"
+  ]
+}
