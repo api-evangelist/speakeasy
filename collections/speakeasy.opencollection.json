@@ -1,0 +1,1690 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Speakeasy API",
+    "version": "0.4.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Auth",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Validate the Current API Key",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.prod.speakeasy.com/v1/auth/validate"
+          },
+          "docs": "Validate the Current API Key"
+        },
+        {
+          "info": {
+            "name": "Get Information About the Current User",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.prod.speakeasy.com/v1/user"
+          },
+          "docs": "Get Information About the Current User"
+        },
+        {
+          "info": {
+            "name": "Get or Refresh an Access Token for the Current Workspace",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.prod.speakeasy.com/v1/auth/access_token",
+            "params": [
+              {
+                "name": "workspace_id",
+                "value": "",
+                "type": "query",
+                "description": "The workspace ID"
+              }
+            ]
+          },
+          "docs": "Get or Refresh an Access Token for the Current Workspace"
+        },
+        {
+          "info": {
+            "name": "Get Access Allowances for a Particular Workspace",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.prod.speakeasy.com/v1/workspace/access",
+            "params": [
+              {
+                "name": "genLockId",
+                "value": "",
+                "type": "query",
+                "description": "Unique identifier of the generation target."
+              },
+              {
+                "name": "targetType",
+                "value": "",
+                "type": "query",
+                "description": "The type of the generated target."
+              },
+              {
+                "name": "passive",
+                "value": "",
+                "type": "query",
+                "description": "Skip side-effects like incrementing metrics."
+              }
+            ]
+          },
+          "docs": "Checks if generation is permitted for a particular run of the CLI"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "CodeSamples",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve Usage Snippets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.prod.speakeasy.com/v1/code_sample",
+            "params": [
+              {
+                "name": "registry_url",
+                "value": "https://spec.speakeasy.com/my-org/my-workspace/my-source",
+                "type": "query",
+                "description": "The registry URL from which to retrieve the snippets."
+              },
+              {
+                "name": "operation_ids",
+                "value": "getPets",
+                "type": "query",
+                "description": "The operation IDs to retrieve snippets for."
+              },
+              {
+                "name": "method_paths",
+                "value": "[object Object]",
+                "type": "query",
+                "description": "The method paths to retrieve snippets for."
+              },
+              {
+                "name": "languages",
+                "value": "python,javascript",
+                "type": "query",
+                "description": "The languages to retrieve snippets for."
+              }
+            ]
+          },
+          "docs": "Retrieve usage snippets from an OpenAPI document stored in the registry. Supports filtering by language and operation ID."
+        },
+        {
+          "info": {
+            "name": "Generate Code Sample Previews from a File and Configuration Parameters",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.prod.speakeasy.com/v1/code_sample/preview",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "This endpoint generates Code Sample previews from a file and configuration parameters."
+        },
+        {
+          "info": {
+            "name": "Initiate Asynchronous Code Sample Preview Generation from a File and Configuration Parameters, Receiving an Async JobID Response for Polling",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.prod.speakeasy.com/v1/code_sample/preview/async",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "This endpoint generates Code Sample previews from a file and configuration parameters, receiving an async JobID response for polling."
+        },
+        {
+          "info": {
+            "name": "Poll for the Result of an Asynchronous Code Sample Preview Generation",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.prod.speakeasy.com/v1/code_sample/preview/async/:jobID",
+            "params": [
+              {
+                "name": "jobID",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the job to check the status and retrieve results"
+              }
+            ]
+          },
+          "docs": "Poll for the result of an asynchronous Code Sample preview generation."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Github",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "getGithubSetupState",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.prod.speakeasy.com/v1/github/setup",
+            "params": [
+              {
+                "name": "org",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "repo",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "generate_gen_lock_id",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "checkGithubAccess",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.prod.speakeasy.com/v1/github/check_access",
+            "params": [
+              {
+                "name": "org",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "repo",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "linkGithubAccess",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.prod.speakeasy.com/v1/github/link",
+            "params": [
+              {
+                "name": "installation_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "github_org",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "github_oidc_token",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "githubCheckPublishingPRs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.prod.speakeasy.com/v1/github/publishing_prs",
+            "params": [
+              {
+                "name": "generate_gen_lock_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "org",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "repo",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "githubCheckPublishingSecrets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.prod.speakeasy.com/v1/github/publishing_secrets",
+            "params": [
+              {
+                "name": "generate_gen_lock_id",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "githubStorePublishingSecrets",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.prod.speakeasy.com/v1/github/publishing_secrets",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "githubConfigureCodeSamples",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.prod.speakeasy.com/v1/github/configure_code_samples",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "githubConfigureMintlifyRepo",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.prod.speakeasy.com/v1/github/configure_mintlify_repo",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "githubConfigureTarget",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.prod.speakeasy.com/v1/github/configure_target",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "githubTriggerAction",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.prod.speakeasy.com/v1/github/trigger_action",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "getGitHubAction",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.prod.speakeasy.com/v1/github/action",
+            "params": [
+              {
+                "name": "targetName",
+                "value": "",
+                "type": "query",
+                "description": "The targetName of the workflow target."
+              },
+              {
+                "name": "org",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "repo",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Organizations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Organizations for a User",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.prod.speakeasy.com/v1/organizations"
+          },
+          "docs": "Returns a list of organizations a user has access too"
+        },
+        {
+          "info": {
+            "name": "Create an Organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.prod.speakeasy.com/v1/organization",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates an organization"
+        },
+        {
+          "info": {
+            "name": "Get Organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.prod.speakeasy.com/v1/organization/:organizationID",
+            "params": [
+              {
+                "name": "organizationID",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the organization."
+              }
+            ]
+          },
+          "docs": "Get information about a particular organization."
+        },
+        {
+          "info": {
+            "name": "Create a Free Trial for an Organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.prod.speakeasy.com/v1/organization/free_trial"
+          },
+          "docs": "Creates a free trial for an organization"
+        },
+        {
+          "info": {
+            "name": "Get Billing Usage Summary for a Particular Organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.prod.speakeasy.com/v1/organization/usage"
+          },
+          "docs": "Returns a billing usage summary by target languages for a particular organization"
+        },
+        {
+          "info": {
+            "name": "Get Billing Add Ons",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.prod.speakeasy.com/v1/organization/add_ons"
+          },
+          "docs": "Get Billing Add Ons"
+        },
+        {
+          "info": {
+            "name": "Create Billing Add Ons",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.prod.speakeasy.com/v1/organization/add_ons",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create Billing Add Ons"
+        },
+        {
+          "info": {
+            "name": "Delete Billing Add Ons",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.prod.speakeasy.com/v1/organization/add_ons/:add_on",
+            "params": [
+              {
+                "name": "add_on",
+                "value": "",
+                "type": "path",
+                "description": "The specific add-on to delete."
+              }
+            ]
+          },
+          "docs": "Delete Billing Add Ons"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "PublishingTokens",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Publishing Tokens for a Workspace",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.prod.speakeasy.com/v1/publishing-tokens"
+          },
+          "docs": "Returns a publishing token for the current workspace"
+        },
+        {
+          "info": {
+            "name": "Create a Publishing Token for a Workspace",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.prod.speakeasy.com/v1/publishing-tokens",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a publishing token for the current workspace"
+        },
+        {
+          "info": {
+            "name": "Get a Specific Publishing Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.prod.speakeasy.com/v1/publishing-tokens/:tokenID",
+            "params": [
+              {
+                "name": "tokenID",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the publishing token."
+              }
+            ]
+          },
+          "docs": "Get information about a particular publishing token."
+        },
+        {
+          "info": {
+            "name": "Updates the Validitity Period of a Publishing Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.prod.speakeasy.com/v1/publishing-tokens/:tokenID",
+            "params": [
+              {
+                "name": "tokenID",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the publishing token."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the validity period of a particular publishing token."
+        },
+        {
+          "info": {
+            "name": "Delete a Specific Publishing Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.prod.speakeasy.com/v1/publishing-tokens/:tokenID",
+            "params": [
+              {
+                "name": "tokenID",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the publishing token."
+              }
+            ]
+          },
+          "docs": "Delete a particular publishing token."
+        },
+        {
+          "info": {
+            "name": "Get a Specific Publishing Token Target",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.prod.speakeasy.com/v1/publishing-tokens/:tokenID/target",
+            "params": [
+              {
+                "name": "tokenID",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the publishing token."
+              }
+            ]
+          },
+          "docs": "Get information about a particular publishing token target."
+        },
+        {
+          "info": {
+            "name": "Get Metadata About the Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.prod.speakeasy.com/v1/publishing-tokens/:tokenID/metadata",
+            "params": [
+              {
+                "name": "tokenID",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the publishing token."
+              }
+            ]
+          },
+          "docs": "Get information about a particular publishing token."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Workspaces",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Workspaces for a User",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.prod.speakeasy.com/v1/workspaces"
+          },
+          "docs": "Returns a list of workspaces a user has access too"
+        },
+        {
+          "info": {
+            "name": "Get Workspace by Context",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.prod.speakeasy.com/v1/workspace"
+          },
+          "docs": "Get information about a particular workspace by context."
+        },
+        {
+          "info": {
+            "name": "Create a Workspace",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.prod.speakeasy.com/v1/workspace",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a workspace"
+        },
+        {
+          "info": {
+            "name": "Get Workspace",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.prod.speakeasy.com/v1/workspace/:workspace_id",
+            "params": [
+              {
+                "name": "workspace_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the workspace."
+              }
+            ]
+          },
+          "docs": "Get information about a particular workspace."
+        },
+        {
+          "info": {
+            "name": "Update Workspace Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.prod.speakeasy.com/v1/workspace/:workspace_id/details",
+            "params": [
+              {
+                "name": "workspace_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the workspace."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update information about a particular workspace."
+        },
+        {
+          "info": {
+            "name": "Get Workspace Settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.prod.speakeasy.com/v1/workspace/:workspace_id/settings",
+            "params": [
+              {
+                "name": "workspace_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the workspace."
+              }
+            ]
+          },
+          "docs": "Get settings about a particular workspace."
+        },
+        {
+          "info": {
+            "name": "Update Workspace Settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.prod.speakeasy.com/v1/workspace/:workspace_id/settings",
+            "params": [
+              {
+                "name": "workspace_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the workspace."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update settings about a particular workspace."
+        },
+        {
+          "info": {
+            "name": "Get Team Members for a Particular Workspace",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.prod.speakeasy.com/v1/workspace/:workspace_id/team",
+            "params": [
+              {
+                "name": "workspace_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the workspace."
+              }
+            ]
+          },
+          "docs": "Get Team Members for a Particular Workspace"
+        },
+        {
+          "info": {
+            "name": "Grant a User Access to a Particular Workspace",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.prod.speakeasy.com/v1/workspace/:workspace_id/team/email/:email",
+            "params": [
+              {
+                "name": "workspace_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the workspace."
+              },
+              {
+                "name": "email",
+                "value": "",
+                "type": "path",
+                "description": "Email of the user to grant access to."
+              }
+            ]
+          },
+          "docs": "Grant a User Access to a Particular Workspace"
+        },
+        {
+          "info": {
+            "name": "Revoke a User's Access to a Particular Workspace",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.prod.speakeasy.com/v1/workspace/:workspace_id/team/:userId",
+            "params": [
+              {
+                "name": "workspace_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the workspace."
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the user."
+              }
+            ]
+          },
+          "docs": "Revoke a User's Access to a Particular Workspace"
+        },
+        {
+          "info": {
+            "name": "Get Tokens for a Particular Workspace",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.prod.speakeasy.com/v1/workspace/:workspace_id/tokens",
+            "params": [
+              {
+                "name": "workspace_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the workspace."
+              }
+            ]
+          },
+          "docs": "Get Tokens for a Particular Workspace"
+        },
+        {
+          "info": {
+            "name": "Create a Token for a Particular Workspace",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.prod.speakeasy.com/v1/workspace/:workspace_id/tokens",
+            "params": [
+              {
+                "name": "workspace_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the workspace."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a Token for a Particular Workspace"
+        },
+        {
+          "info": {
+            "name": "Delete a Token for a Particular Workspace",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.prod.speakeasy.com/v1/workspace/:workspace_id/tokens/:tokenID",
+            "params": [
+              {
+                "name": "workspace_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the workspace."
+              },
+              {
+                "name": "tokenID",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the token."
+              }
+            ]
+          },
+          "docs": "Delete a Token for a Particular Workspace"
+        },
+        {
+          "info": {
+            "name": "Set Workspace Feature Flags",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.prod.speakeasy.com/v1/workspace/feature_flags",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Set Workspace Feature Flags"
+        },
+        {
+          "info": {
+            "name": "Get Workspace Feature Flags",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.prod.speakeasy.com/v1/workspace/:workspace_id/feature_flags",
+            "params": [
+              {
+                "name": "workspace_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the workspace."
+              }
+            ]
+          },
+          "docs": "Get Workspace Feature Flags"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Events",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "searchWorkspaceEvents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.prod.speakeasy.com/v1/workspace/:workspace_id/events",
+            "params": [
+              {
+                "name": "workspace_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the workspace."
+              },
+              {
+                "name": "source_revision_digest",
+                "value": "",
+                "type": "query",
+                "description": "Unique identifier of the source revision digest."
+              },
+              {
+                "name": "lint_report_digest",
+                "value": "",
+                "type": "query",
+                "description": "Unique identifier of the lint report digest."
+              },
+              {
+                "name": "openapi_diff_report_digest",
+                "value": "",
+                "type": "query",
+                "description": "Unique identifier of the openapi diff report digest."
+              },
+              {
+                "name": "interaction_type",
+                "value": "",
+                "type": "query",
+                "description": "Specified interaction type for events."
+              },
+              {
+                "name": "generate_gen_lock_id",
+                "value": "",
+                "type": "query",
+                "description": "A specific gen lock ID for the events."
+              },
+              {
+                "name": "execution_id",
+                "value": "",
+                "type": "query",
+                "description": "Shared execution ID for cli events across a single action."
+              },
+              {
+                "name": "success",
+                "value": "",
+                "type": "query",
+                "description": "Whether the event was successful or not."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return."
+              }
+            ]
+          },
+          "docs": "Search events for a particular workspace by any field"
+        },
+        {
+          "info": {
+            "name": "Post Events for a Specific Workspace",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.prod.speakeasy.com/v1/workspace/:workspace_id/events",
+            "params": [
+              {
+                "name": "workspace_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the workspace."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sends an array of events to be stored for a particular workspace."
+        },
+        {
+          "info": {
+            "name": "getWorkspaceEventsByTarget",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.prod.speakeasy.com/v1/workspace/:workspace_id/events/targets/:target_id/events",
+            "params": [
+              {
+                "name": "workspace_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the workspace."
+              },
+              {
+                "name": "target_id",
+                "value": "",
+                "type": "path",
+                "description": "Filter to only return events corresponding to a particular gen_lock_id (gen_lock_id uniquely identifies a target)"
+              },
+              {
+                "name": "after_created_at",
+                "value": "",
+                "type": "query",
+                "description": "Filter to only return events created after this timestamp"
+              }
+            ]
+          },
+          "docs": "Load recent events for a particular workspace"
+        },
+        {
+          "info": {
+            "name": "getWorkspaceTargets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.prod.speakeasy.com/v1/workspace/events/targets",
+            "params": [
+              {
+                "name": "after_last_event_created_at",
+                "value": "",
+                "type": "query",
+                "description": "Filter to only return targets with events created after this timestamp"
+              }
+            ]
+          },
+          "docs": "Load targets for a particular workspace"
+        },
+        {
+          "info": {
+            "name": "getWorkspaceTargetsDeprecated",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.prod.speakeasy.com/v1/workspace/:workspace_id/events/targets",
+            "params": [
+              {
+                "name": "workspace_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the workspace."
+              },
+              {
+                "name": "after_last_event_created_at",
+                "value": "",
+                "type": "query",
+                "description": "Filter to only return targets with events created after this timestamp"
+              }
+            ]
+          },
+          "docs": "Load targets for a particular workspace"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Reports",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Upload a Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.prod.speakeasy.com/v1/reports",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "data",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Upload a Report"
+        },
+        {
+          "info": {
+            "name": "Get the Signed Access URL for the Linting Reports for a Particular Document",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.prod.speakeasy.com/v1/reports/linting/:documentChecksum",
+            "params": [
+              {
+                "name": "documentChecksum",
+                "value": "",
+                "type": "path",
+                "description": "The checksum of the document to retrieve the signed access url for."
+              }
+            ]
+          },
+          "docs": "Get the Signed Access URL for the Linting Reports for a Particular Document"
+        },
+        {
+          "info": {
+            "name": "Get the Signed Access URL for the Change Reports for a Particular Document",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.prod.speakeasy.com/v1/reports/changes/:documentChecksum",
+            "params": [
+              {
+                "name": "documentChecksum",
+                "value": "",
+                "type": "path",
+                "description": "The checksum of the document to retrieve the signed access url for."
+              }
+            ]
+          },
+          "docs": "Get the Signed Access URL for the Change Reports for a Particular Document"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Suggest",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "(DEPRECATED) Generate Suggestions for Improving an OpenAPI Document",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.prod.speakeasy.com/v1/suggest/openapi",
+            "headers": [
+              {
+                "name": "x-session-id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "opts",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "schema",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Get suggestions from an LLM model for improving an OpenAPI document."
+        },
+        {
+          "info": {
+            "name": "Generate Suggestions for Improving an OpenAPI Document",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.prod.speakeasy.com/v1/suggest/openapi_from_summary",
+            "headers": [
+              {
+                "name": "x-session-id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get suggestions from an LLM model for improving an OpenAPI document."
+        },
+        {
+          "info": {
+            "name": "Generate Generic Suggestions for a List of Items",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.prod.speakeasy.com/v1/suggest/items",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Generate Generic Suggestions for a List of Items"
+        },
+        {
+          "info": {
+            "name": "Generate Suggestions for Improving an OpenAPI Document Stored in the Registry",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.prod.speakeasy.com/v1/suggest/openapi/:namespace_name/:revision_reference",
+            "headers": [
+              {
+                "name": "x-session-id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "namespace_name",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "revision_reference",
+                "value": "",
+                "type": "path",
+                "description": "Tag or digest"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get suggestions from an LLM model for improving an OpenAPI document stored in the registry."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "SchemaStore",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a OAS Schema from the Schema Store",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.prod.speakeasy.com/v1/schema_store",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get a OAS Schema from the Schema Store"
+        },
+        {
+          "info": {
+            "name": "Create a Schema in the Schema Store",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.prod.speakeasy.com/v1/schema_store",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a Schema in the Schema Store"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "ShortURLs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Shorten a URL",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.prod.speakeasy.com/v1/short_urls",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Shorten a URL"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Artifacts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Access Token for Communicating with OCI Distribution Endpoints",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.prod.speakeasy.com/v1/artifacts/preflight",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get Access Token for Communicating with OCI Distribution Endpoints"
+        },
+        {
+          "info": {
+            "name": "Each Namespace Contains Many Revisions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.prod.speakeasy.com/v1/artifacts/namespaces"
+          },
+          "docs": "Each Namespace Contains Many Revisions"
+        },
+        {
+          "info": {
+            "name": "Set Whether a Namespace is Archived",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.prod.speakeasy.com/v1/artifacts/namespaces/:namespace_name/archive",
+            "params": [
+              {
+                "name": "namespace_name",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Set Whether a Namespace is Archived"
+        },
+        {
+          "info": {
+            "name": "getRevisions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.prod.speakeasy.com/v1/artifacts/namespaces/:namespace_name/revisions",
+            "params": [
+              {
+                "name": "namespace_name",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "next_page_token",
+                "value": "",
+                "type": "query",
+                "description": "Token to retrieve the next page of results"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getTags",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.prod.speakeasy.com/v1/artifacts/namespaces/:namespace_name/tags",
+            "params": [
+              {
+                "name": "namespace_name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "Add Tags to an Existing Revision",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.prod.speakeasy.com/v1/artifacts/namespaces/:namespace_name/tags",
+            "params": [
+              {
+                "name": "namespace_name",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add Tags to an Existing Revision"
+        },
+        {
+          "info": {
+            "name": "Set Visibility of a Namespace with an Existing Metadata Entry",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.prod.speakeasy.com/v1/artifacts/namespaces/:namespace_name/visibility",
+            "params": [
+              {
+                "name": "namespace_name",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Set Visibility of a Namespace with an Existing Metadata Entry"
+        },
+        {
+          "info": {
+            "name": "Get Remote Sources Attached to a Particular Namespace",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.prod.speakeasy.com/v1/artifacts/remote_sources",
+            "params": [
+              {
+                "name": "namespace_name",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get Remote Sources Attached to a Particular Namespace"
+        },
+        {
+          "info": {
+            "name": "Configure a New Remote Source",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.prod.speakeasy.com/v1/artifacts/remote_sources",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Configure a New Remote Source"
+        },
+        {
+          "info": {
+            "name": "Get Manifest for a Particular Reference",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.prod.speakeasy.com/v1/oci/v2/:organization_slug/:workspace_slug/:namespace_name/manifests/:revision_reference",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "organization_slug",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "workspace_slug",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "namespace_name",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "revision_reference",
+                "value": "",
+                "type": "path",
+                "description": "Tag or digest"
+              }
+            ]
+          },
+          "docs": "Get Manifest for a Particular Reference"
+        },
+        {
+          "info": {
+            "name": "Get Blob for a Particular Digest",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.prod.speakeasy.com/v1/oci/v2/:organization_slug/:workspace_slug/:namespace_name/blobs/:digest",
+            "params": [
+              {
+                "name": "organization_slug",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "workspace_slug",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "namespace_name",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "digest",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Blob for a Particular Digest"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Subscriptions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Ignored a Namespace for a Subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.prod.speakeasy.com/v1/subscriptions/:subscriptionID/:namespaceName/ignore",
+            "params": [
+              {
+                "name": "subscriptionID",
+                "value": "",
+                "type": "path",
+                "description": "The existing subscription ID"
+              },
+              {
+                "name": "namespaceName",
+                "value": "",
+                "type": "path",
+                "description": "The namespace name"
+              }
+            ]
+          },
+          "docs": "Ignored a Namespace for a Subscription"
+        },
+        {
+          "info": {
+            "name": "Activate an Ignored Namespace for a Subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.prod.speakeasy.com/v1/subscriptions/:subscriptionID/:namespaceName/activate",
+            "params": [
+              {
+                "name": "subscriptionID",
+                "value": "",
+                "type": "path",
+                "description": "The existing subscription ID"
+              },
+              {
+                "name": "namespaceName",
+                "value": "",
+                "type": "path",
+                "description": "The namespace name"
+              }
+            ]
+          },
+          "docs": "Activate an Ignored Namespace for a Subscription"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

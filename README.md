@@ -1,8 +1,8 @@
-# Speakeasy
+# Speakeasy (speakeasy)
 
-The platform to build APIs your users love. Speakeasy provides best-in-class API tooling for generating robust SDKs, API documentation, Terraform providers, MCP servers, and end-to-end contract testing — all OpenAPI-native with no proprietary DSLs.
+The platform to Build APIs your users love. Best in class API tooling for robust SDKs, API docs, Terraform providers and end-to-end testing.
 
-**URL:** [https://www.speakeasy.com/](https://www.speakeasy.com/)
+**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/speakeasy/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/speakeasy/refs/heads/main/apis.yml)
 
 ## Scope
 
@@ -12,90 +12,218 @@ The platform to build APIs your users love. Speakeasy provides best-in-class API
 
 ## Tags
 
-AI, Documentation, MCP, Platform, SDKs, Terraform, Testing
+- AI
+- Documentation
+- MCP
+- Platform
+- SDKs
+- Terraform
+- Testing
 
 ## Timestamps
 
 - **Created:** 2025-01-08
-- **Modified:** 2026-05-02
-
-## Products
-
-| Product | Description |
-|---|---|
-| [SDK Generation](https://www.speakeasy.com/product/sdk-generation) | Generate idiomatic, type-safe SDKs in 8+ languages from OpenAPI specs |
-| [Terraform Generation](https://www.speakeasy.com/product/terraform-generation) | Turn your OpenAPI spec into a production-ready Terraform provider |
-| [MCP Server Generation](https://www.speakeasy.com/product/mcp-server) | Generate production-ready MCP server code from OpenAPI specifications |
-| [DocsMD](https://www.speakeasy.com/product/api-docs) | Generate beautiful API documentation from OpenAPI specs |
-| [Contract Testing](https://www.speakeasy.com/docs/sdk-testing) | API contract test generation using OpenAPI and Arazzo specifications |
-| [React Query Hooks](https://www.speakeasy.com/product/react-query) | Generate fully typed TanStack Query hooks from OpenAPI specs |
-| [Gram](https://www.speakeasy.com/product/gram) | MCP Cloud platform for hosting, securing, and monitoring AI agents |
+- **Modified:** 2026-05-19
 
 ## APIs
 
-| API | Base URL | Description |
-|---|---|---|
-| [Speakeasy API](openapi/speakeasy-openapi.yml) | https://api.prod.speakeasy.com | Platform API for workspace management, SDK artifacts, and generation pipeline |
+### Speakeasy
 
-## Artifacts
+The platform to build APIs your users love. Best-in-class API tooling for robust SDKs, API documentation, Terraform providers, MCP servers, and end-to-end contract testing. OpenAPI-native with no proprietary DSLs.
 
-### OpenAPI Specifications
+- **Human URL:** [https://www.speakeasy.com/](https://www.speakeasy.com/)
+- **Base URL:** `https://api.prod.speakeasy.com`
 
-- [speakeasy-openapi.yml](openapi/speakeasy-openapi.yml) — Speakeasy platform API covering Auth, Workspaces, Organizations, Artifacts, Code Samples, GitHub integration, and OpenAPI Suggest
+#### Tags
 
-### Spectral Rules
+- AI
+- Documentation
+- MCP
+- Platform
+- SDKs
+- Terraform
+- Testing
 
-- [speakeasy-rules.yml](rules/speakeasy-rules.yml) — Spectral ruleset enforcing Speakeasy API conventions including versioned paths, camelCase operation IDs, and workspace-scoped resource patterns
+#### Properties
 
-### Naftiko Capabilities
+- [Website](https://www.speakeasy.com/)
+- [Getting Started](https://www.speakeasy.com/docs/sdks/introduction)
+- [OpenAPI](https://www.speakeasy.com/openapi.yaml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Documentation](https://www.speakeasy.com/docs)
+- [C L I](https://www.speakeasy.com/docs/speakeasy-reference/cli)
+- [Git Hub Repo](https://github.com/speakeasy-api/speakeasy)
+- [Postman Collection](collections/speakeasy.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/speakeasy.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
-- [sdk-platform-management.yaml](capabilities/sdk-platform-management.yaml) — Unified REST and MCP capability for SDK platform management workflows (13 tools)
+### Speakeasy SDK Generation
 
-#### Shared Definitions
+Generate idiomatic, type-safe SDKs in 7+ languages from OpenAPI specs. Supports TypeScript, Python, Go, Java, C#, PHP, Ruby, and more with automated CI/CD integration and publishing to popular package managers.
 
-- [shared/speakeasy.yaml](capabilities/shared/speakeasy.yaml) — Per-API consumed definition for the Speakeasy platform API
+- **Human URL:** [https://www.speakeasy.com/product/sdk-generation](https://www.speakeasy.com/product/sdk-generation)
 
-### JSON Schema
+#### Tags
 
-- [speakeasy-workspace-schema.json](json-schema/speakeasy-workspace-schema.json) — Schema for Speakeasy Workspace resources
-- [speakeasy-organization-schema.json](json-schema/speakeasy-organization-schema.json) — Schema for Speakeasy Organization resources
+- Code Generation
+- OpenAPI
+- SDKs
 
-### JSON Structure
+#### Properties
 
-- [speakeasy-workspace-structure.json](json-structure/speakeasy-workspace-structure.json) — Structure documentation for Workspace resources and relationships
+- [Landing](https://www.speakeasy.com/product/sdk-generation)
+- [Documentation](https://www.speakeasy.com/docs/sdks/create-client-sdks)
+- [Postman Collection](collections/speakeasy.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/speakeasy.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
-### JSON-LD
+### Speakeasy Terraform Generation
 
-- [speakeasy-context.jsonld](json-ld/speakeasy-context.jsonld) — JSON-LD context mapping Speakeasy vocabulary to linked data semantics
+Turn your OpenAPI spec into a production-ready Terraform provider without the manual work. Automatically keeps providers synchronized with API changes, eliminating manual drift.
 
-### Examples
+- **Human URL:** [https://www.speakeasy.com/product/terraform-generation](https://www.speakeasy.com/product/terraform-generation)
 
-- [speakeasy-validate-api-key-example.json](examples/speakeasy-validate-api-key-example.json) — Validate API Key request/response example
-- [speakeasy-get-workspaces-example.json](examples/speakeasy-get-workspaces-example.json) — Get Workspaces request/response example
-- [speakeasy-get-organizations-example.json](examples/speakeasy-get-organizations-example.json) — Get Organizations request/response example
+#### Tags
 
-### Vocabulary
+- Code Generation
+- Infrastructure as Code
+- OpenAPI
+- Terraform
 
-- [speakeasy-vocabulary.yml](vocabulary/speakeasy-vocabulary.yml) — Domain vocabulary for Speakeasy platform concepts including Workspace, Organization, SDK Generation, MCP Server, and Artifact terms
+#### Properties
+
+- [Landing](https://www.speakeasy.com/product/terraform-generation)
+- [Documentation](https://www.speakeasy.com/docs/terraform/create-terraform)
+- [Postman Collection](collections/speakeasy.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/speakeasy.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+
+### Speakeasy MCP Server Generation
+
+Generate production-ready MCP server code from OpenAPI specifications. Deploy on your own infrastructure, customize to your needs, and distribute however you want. Supports Cloudflare Workers, Docker, and local deployment.
+
+- **Human URL:** [https://www.speakeasy.com/product/mcp-server](https://www.speakeasy.com/product/mcp-server)
+
+#### Tags
+
+- Agents
+- AI
+- Code Generation
+- MCP
+- OpenAPI
+
+#### Properties
+
+- [Landing](https://www.speakeasy.com/product/mcp-server)
+- [Documentation](https://www.speakeasy.com/docs/model-context-protocol)
+- [Postman Collection](collections/speakeasy.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/speakeasy.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+
+### Speakeasy DocsMD
+
+Generate beautiful API documentation from OpenAPI specs. Automatic synchronization keeps docs current with every API change. Works with Docusaurus, Nextra, or any React and Markdown framework.
+
+- **Human URL:** [https://www.speakeasy.com/product/api-docs](https://www.speakeasy.com/product/api-docs)
+
+#### Tags
+
+- API Reference
+- Documentation
+- OpenAPI
+
+#### Properties
+
+- [Landing](https://www.speakeasy.com/product/api-docs)
+- [Postman Collection](collections/speakeasy.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/speakeasy.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+
+### Speakeasy Contract Testing
+
+API contract test generation using OpenAPI specs and the Arazzo specification. Generates both test code and test data needed to validate API behavior in native testing frameworks like pytest, vitest, and more.
+
+- **Human URL:** [https://www.speakeasy.com/docs/sdk-testing](https://www.speakeasy.com/docs/sdk-testing)
+
+#### Tags
+
+- Contract Testing
+- OpenAPI
+- SDKs
+- Testing
+
+#### Properties
+
+- [Documentation](https://www.speakeasy.com/docs/sdk-testing)
+- [Documentation](https://www.speakeasy.com/docs/sdk-testing/api-contract-tests)
+- [Postman Collection](collections/speakeasy.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/speakeasy.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+
+### Speakeasy React Query Hooks
+
+Turns your OpenAPI spec into fully typed TanStack Query hooks with built-in caching, retries, and pagination, delivered in idiomatic React with zero config required.
+
+- **Human URL:** [https://www.speakeasy.com/product/react-query](https://www.speakeasy.com/product/react-query)
+
+#### Tags
+
+- Frontend
+- React
+- SDKs
+- TypeScript
+
+#### Properties
+
+- [Landing](https://www.speakeasy.com/product/react-query)
+- [Postman Collection](collections/speakeasy.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/speakeasy.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+
+### Speakeasy Gram
+
+The MCP Cloud platform by Speakeasy. Ship better agents with production-ready MCP infrastructure. Host remote MCP servers, power in-application chat, and manage and secure MCP servers for your entire organization through a unified control plane.
+
+- **Human URL:** [https://www.speakeasy.com/product/gram](https://www.speakeasy.com/product/gram)
+
+#### Tags
+
+- Agents
+- AI
+- Cloud
+- MCP
+- Platform
+
+#### Properties
+
+- [Landing](https://www.speakeasy.com/product/gram)
+- [Portal](https://www.getgram.ai/)
+- [Documentation](https://www.getgram.ai/docs/introduction)
+- [Postman Collection](collections/speakeasy.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/speakeasy.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ## Common Properties
 
+- [LinkedIn](https://www.linkedin.com/company/speakeasyapi)
 - [Customers](https://www.speakeasy.com/customers)
 - [Documentation](https://www.speakeasy.com/docs)
 - [Guide](https://www.speakeasy.com/guides)
 - [Blog](https://www.speakeasy.com/blog)
-- [ChangeLog](https://www.speakeasy.com/changelog)
+- [Changelog](https://www.speakeasy.com/changelog)
 - [About](https://www.speakeasy.com/company)
 - [Contact](https://www.speakeasy.com/contact)
 - [Pricing](https://www.speakeasy.com/pricing)
 - [Security](https://www.speakeasy.com/legal/product-security)
-- [TermsOfService](https://www.speakeasy.com/legal/terms-of-service)
-- [PrivacyPolicy](https://www.speakeasy.com/legal/privacy-policy)
-- [CLI](https://www.speakeasy.com/docs/speakeasy-reference/cli)
-- [GitHubOrg](https://github.com/speakeasy-api)
-- [Status](https://status.speakeasyapi.dev)
-- [OpenAPI Hub](https://www.speakeasy.com/openapi)
-- [MCP Hub](https://www.speakeasy.com/mcp)
+- [Terms of Service](https://www.speakeasy.com/legal/terms-of-service)
+- [Privacy Policy](https://www.speakeasy.com/legal/privacy-policy)
+- [Login](https://login.speakeasy.com/?client_id=client_01J0XGGZ8MEQS57C5RKB00KN35&redirect_uri=https%3A%2F%2Fapp.speakeasy.com%2Fv1%2Fauth%2Fcallback&response_type=code&authorization_session_id=01K082RMDQPMT67SWBEMNZG04G)
+- [Sign Up](https://login.speakeasy.com/sign-up?redirect_uri=https%3A%2F%2Fapp.speakeasy.com%2Fv1%2Fauth%2Fcallback&authorization_session_id=01K082RMDQPMT67SWBEMNZG04G)
+- [Git Hub Org](https://github.com/speakeasy-api)
+- [Git Hub Repo](https://github.com/speakeasy-api/speakeasy)
+- [Status Page](https://status.speakeasyapi.dev)
+- [OpenAPI](https://www.speakeasy.com/openapi) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Knowledge](https://www.speakeasy.com/mcp)
+- [Guide](https://www.speakeasy.com/api-design)
+- [Careers](https://www.speakeasy.com/careers)
+- [C L I](https://www.speakeasy.com/docs/speakeasy-reference/cli)
+- [Documentation](https://www.speakeasy.com/docs/speakeasy-reference/workflow-file)
+- [Documentation](https://www.speakeasy.com/docs/speakeasy-reference/skills)
+- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/speakeasy/main/openapi/speakeasy-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Spectral Ruleset](https://raw.githubusercontent.com/api-evangelist/speakeasy/main/rules/speakeasy-rules.yml)
+- [Vocabulary](https://raw.githubusercontent.com/api-evangelist/speakeasy/main/vocabulary/speakeasy-vocabulary.yml)
+- [Features](undefined)
 
 ## Maintainers
 
