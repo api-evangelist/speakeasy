@@ -208,7 +208,7 @@ common:
   - url: >-
       https://login.speakeasy.com/sign-up?redirect_uri=https%3A%2F%2Fapp.speakeasy.com%2Fv1%2Fauth%2Fcallback&authorization_session_id=01K082RMDQPMT67SWBEMNZG04G
     name: Sign up
-    type: SignUp
+    type: Signup
     description: 'null'
   - url: https://github.com/speakeasy-api
     name: GitHub Organization | Speakeasy
