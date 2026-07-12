@@ -1,0 +1,30 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/speakeasy-openapi.yml
+summary:
+  types:
+  - apiKey
+  - http
+  api_key_in:
+  - header
+schemes:
+- name: APIKey
+  type: apiKey
+  in: header
+  parameter: x-api-key
+  description: The API Key for the workspace
+  sources:
+  - openapi/speakeasy-openapi.yml
+- name: WorkspaceIdentifier
+  type: apiKey
+  in: header
+  parameter: x-workspace-identifier
+  description: The API Key for the workspace
+  sources:
+  - openapi/speakeasy-openapi.yml
+- name: Bearer
+  type: http
+  scheme: bearer
+  description: The Bearer token for the workspace
+  sources:
+  - openapi/speakeasy-openapi.yml
