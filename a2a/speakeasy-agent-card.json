@@ -1,0 +1,76 @@
+{
+  "schema_version": "v1",
+  "name": "Speakeasy AI Control Plane",
+  "namespace": "speakeasy",
+  "description": "The AI control plane for the AI-native enterprise. Connect, control, secure, and observe every AI agent across the organization.",
+  "homepage": "https://www.speakeasy.com",
+  "documentation": "https://www.speakeasy.com/docs",
+  "contact": {
+    "email": "support@speakeasy.com",
+    "security": "security@speakeasy.com",
+    "sales": "sales@speakeasy.com"
+  },
+  "discovery": {
+    "llms_txt": "https://www.speakeasy.com/llms.txt",
+    "llms_full_txt": "https://www.speakeasy.com/llms-full.txt",
+    "openapi": "https://www.speakeasy.com/openapi.yaml",
+    "ai_plugin": "https://www.speakeasy.com/.well-known/ai-plugin.json",
+    "ai_catalog": "https://www.speakeasy.com/.well-known/ai-catalog.json",
+    "mcp_server_card": "https://www.speakeasy.com/.well-known/mcp/server-card.json",
+    "evaluation_guide": "https://www.speakeasy.com/eval.md"
+  },
+  "developer_resources": [
+    {
+      "type": "api_documentation",
+      "name": "Speakeasy documentation",
+      "url": "https://www.speakeasy.com/docs"
+    },
+    {
+      "type": "openapi_specification",
+      "name": "Speakeasy Platform OpenAPI spec",
+      "url": "https://www.speakeasy.com/openapi.yaml"
+    },
+    {
+      "type": "authentication",
+      "name": "Authenticating and authorizing MCP servers",
+      "url": "https://www.speakeasy.com/mcp/securing-mcp-servers/authenticating-mcp-servers"
+    },
+    {
+      "type": "webhooks",
+      "name": "OpenAPI webhooks guide",
+      "url": "https://www.speakeasy.com/openapi/webhooks"
+    },
+    {
+      "type": "mcp_server",
+      "name": "Speakeasy Docs MCP server card",
+      "url": "https://www.speakeasy.com/.well-known/mcp/server-card.json"
+    },
+    {
+      "type": "agent_configuration",
+      "name": "AGENTS.md conventions for Speakeasy repos",
+      "url": "https://github.com/speakeasy-api"
+    }
+  ],
+  "capabilities": [
+    "mcp-gateway",
+    "mcp-catalog",
+    "mcp-server-generation",
+    "openapi-to-mcp",
+    "openapi-to-terraform",
+    "openapi-to-cli",
+    "oauth-2.1",
+    "sso-passthrough",
+    "rbac",
+    "runtime-policy-enforcement",
+    "prompt-injection-detection",
+    "pii-redaction",
+    "audit-logging",
+    "siem-integration"
+  ],
+  "categories": [
+    "ai-control-plane",
+    "ai-governance",
+    "mcp-gateway",
+    "api-platform"
+  ]
+}
