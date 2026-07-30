@@ -1,146 +1,380 @@
 aid: speakeasy
 url: https://raw.githubusercontent.com/api-evangelist/speakeasy/refs/heads/main/apis.yml
 apis:
-  - aid: speakeasy:speakeasy
-    name: Speakeasy
-    tags:
-      - AI
-      - Documentation
-      - MCP
-      - Platform
-      - SDKs
-      - Terraform
-      - Testing
-    humanURL: https://www.speakeasy.com/
-    baseURL: https://api.prod.speakeasy.com
-    properties:
-      - url: https://www.speakeasy.com/
-        type: Website
-      - url: https://www.speakeasy.com/docs/sdks/introduction
-        type: GettingStarted
-      - url: https://www.speakeasy.com/openapi.yaml
-        type: OpenAPI
-      - url: https://www.speakeasy.com/docs
-        type: Documentation
-      - url: https://www.speakeasy.com/docs/speakeasy-reference/cli
-        type: CLI
-      - url: https://github.com/speakeasy-api/speakeasy
-        type: GitHubRepo
-    description: >-
-      The platform to build APIs your users love. Best-in-class API tooling for robust SDKs, API documentation,
-      Terraform providers, MCP servers, and end-to-end contract testing. OpenAPI-native with no proprietary DSLs.
-  - aid: speakeasy:sdk-generation
-    name: Speakeasy SDK Generation
-    tags:
-      - Code Generation
-      - OpenAPI
-      - SDKs
-    humanURL: https://www.speakeasy.com/product/sdk-generation
-    properties:
-      - url: https://www.speakeasy.com/product/sdk-generation
-        type: Landing
-      - url: https://www.speakeasy.com/docs/sdks/create-client-sdks
-        type: Documentation
-    description: >-
-      Generate idiomatic, type-safe SDKs in 7+ languages from OpenAPI specs. Supports TypeScript, Python, Go, Java, C#,
-      PHP, Ruby, and more with automated CI/CD integration and publishing to popular package managers.
-  - aid: speakeasy:terraform-generation
-    name: Speakeasy Terraform Generation
-    tags:
-      - Code Generation
-      - Infrastructure as Code
-      - OpenAPI
-      - Terraform
-    humanURL: https://www.speakeasy.com/product/terraform-generation
-    properties:
-      - url: https://www.speakeasy.com/product/terraform-generation
-        type: Landing
-      - url: https://www.speakeasy.com/docs/terraform/create-terraform
-        type: Documentation
-    description: >-
-      Turn your OpenAPI spec into a production-ready Terraform provider without the manual work. Automatically keeps
-      providers synchronized with API changes, eliminating manual drift.
-  - aid: speakeasy:mcp-server
-    name: Speakeasy MCP Server Generation
-    tags:
-      - Agents
-      - AI
-      - Code Generation
-      - MCP
-      - OpenAPI
-    humanURL: https://www.speakeasy.com/product/mcp-server
-    properties:
-      - url: https://www.speakeasy.com/product/mcp-server
-        type: Landing
-      - url: https://www.speakeasy.com/docs/model-context-protocol
-        type: Documentation
-    description: >-
-      Generate production-ready MCP server code from OpenAPI specifications. Deploy on your own infrastructure,
-      customize to your needs, and distribute however you want. Supports Cloudflare Workers, Docker, and local
-      deployment.
-  - aid: speakeasy:api-docs
-    name: Speakeasy DocsMD
-    tags:
-      - API Reference
-      - Documentation
-      - OpenAPI
-    humanURL: https://www.speakeasy.com/product/api-docs
-    properties:
-      - url: https://www.speakeasy.com/product/api-docs
-        type: Landing
-    description: >-
-      Generate beautiful API documentation from OpenAPI specs. Automatic synchronization keeps docs current with every
-      API change. Works with Docusaurus, Nextra, or any React and Markdown framework.
-  - aid: speakeasy:contract-testing
-    name: Speakeasy Contract Testing
-    tags:
-      - Contract Testing
-      - OpenAPI
-      - SDKs
-      - Testing
-    humanURL: https://www.speakeasy.com/docs/sdk-testing
-    properties:
-      - url: https://www.speakeasy.com/docs/sdk-testing
-        type: Documentation
-      - url: https://www.speakeasy.com/docs/sdk-testing/api-contract-tests
-        type: Documentation
-    description: >-
-      API contract test generation using OpenAPI specs and the Arazzo specification. Generates both test code and test
-      data needed to validate API behavior in native testing frameworks like pytest, vitest, and more.
-  - aid: speakeasy:react-query
-    name: Speakeasy React Query Hooks
-    tags:
-      - Frontend
-      - React
-      - SDKs
-      - TypeScript
-    humanURL: https://www.speakeasy.com/product/react-query
-    properties:
-      - url: https://www.speakeasy.com/product/react-query
-        type: Landing
-    description: >-
-      Turns your OpenAPI spec into fully typed TanStack Query hooks with built-in caching, retries, and pagination,
-      delivered in idiomatic React with zero config required.
-  - aid: speakeasy:gram
-    name: Speakeasy Gram
-    tags:
-      - Agents
-      - AI
-      - Cloud
-      - MCP
-      - Platform
-    humanURL: https://www.speakeasy.com/product/gram
-    properties:
-      - url: https://www.speakeasy.com/product/gram
-        type: Landing
-      - url: https://www.getgram.ai/
-        type: Portal
-      - url: https://www.getgram.ai/docs/introduction
-        type: Documentation
-    description: >-
-      The MCP Cloud platform by Speakeasy. Ship better agents with production-ready MCP infrastructure. Host remote MCP
-      servers, power in-application chat, and manage and secure MCP servers for your entire organization through a
-      unified control plane.
+- aid: speakeasy:sdk-generation
+  name: Speakeasy SDK Generation
+  tags:
+  - Code Generation
+  - OpenAPI
+  - SDKs
+  humanURL: https://www.speakeasy.com/product/sdk-generation
+  properties:
+  - url: https://www.speakeasy.com/product/sdk-generation
+    type: Landing
+  - url: https://www.speakeasy.com/docs/sdks/create-client-sdks
+    type: Documentation
+  description: >-
+    Generate idiomatic, type-safe SDKs in 7+ languages from OpenAPI specs. Supports TypeScript, Python,
+    Go, Java, C#, PHP, Ruby, and more with automated CI/CD integration and publishing to popular package
+    managers.
+- aid: speakeasy:terraform-generation
+  name: Speakeasy Terraform Generation
+  tags:
+  - Code Generation
+  - Infrastructure as Code
+  - OpenAPI
+  - Terraform
+  humanURL: https://www.speakeasy.com/product/terraform-generation
+  properties:
+  - url: https://www.speakeasy.com/product/terraform-generation
+    type: Landing
+  - url: https://www.speakeasy.com/docs/terraform/create-terraform
+    type: Documentation
+  description: >-
+    Turn your OpenAPI spec into a production-ready Terraform provider without the manual work. Automatically
+    keeps providers synchronized with API changes, eliminating manual drift.
+- aid: speakeasy:mcp-server
+  name: Speakeasy MCP Server Generation
+  tags:
+  - Agents
+  - AI
+  - Code Generation
+  - MCP
+  - OpenAPI
+  humanURL: https://www.speakeasy.com/product/mcp-server
+  properties:
+  - url: https://www.speakeasy.com/product/mcp-server
+    type: Landing
+  - url: https://www.speakeasy.com/docs/model-context-protocol
+    type: Documentation
+  description: >-
+    Generate production-ready MCP server code from OpenAPI specifications. Deploy on your own infrastructure,
+    customize to your needs, and distribute however you want. Supports Cloudflare Workers, Docker, and
+    local deployment.
+- aid: speakeasy:api-docs
+  name: Speakeasy DocsMD
+  tags:
+  - API Reference
+  - Documentation
+  - OpenAPI
+  humanURL: https://www.speakeasy.com/product/api-docs
+  properties:
+  - url: https://www.speakeasy.com/product/api-docs
+    type: Landing
+  description: >-
+    Generate beautiful API documentation from OpenAPI specs. Automatic synchronization keeps docs current
+    with every API change. Works with Docusaurus, Nextra, or any React and Markdown framework.
+- aid: speakeasy:contract-testing
+  name: Speakeasy Contract Testing
+  tags:
+  - Contract Testing
+  - OpenAPI
+  - SDKs
+  - Testing
+  humanURL: https://www.speakeasy.com/docs/sdk-testing
+  properties:
+  - url: https://www.speakeasy.com/docs/sdk-testing
+    type: Documentation
+  - url: https://www.speakeasy.com/docs/sdk-testing/api-contract-tests
+    type: Documentation
+  description: >-
+    API contract test generation using OpenAPI specs and the Arazzo specification. Generates both test
+    code and test data needed to validate API behavior in native testing frameworks like pytest, vitest,
+    and more.
+- aid: speakeasy:react-query
+  name: Speakeasy React Query Hooks
+  tags:
+  - Frontend
+  - React
+  - SDKs
+  - TypeScript
+  humanURL: https://www.speakeasy.com/product/react-query
+  properties:
+  - url: https://www.speakeasy.com/product/react-query
+    type: Landing
+  description: >-
+    Turns your OpenAPI spec into fully typed TanStack Query hooks with built-in caching, retries, and
+    pagination, delivered in idiomatic React with zero config required.
+- aid: speakeasy:gram
+  name: Speakeasy Gram
+  tags:
+  - Agents
+  - AI
+  - Cloud
+  - MCP
+  - Platform
+  humanURL: https://www.speakeasy.com/product/gram
+  properties:
+  - url: https://www.speakeasy.com/product/gram
+    type: Landing
+  - url: https://www.getgram.ai/
+    type: Portal
+  - url: https://www.getgram.ai/docs/introduction
+    type: Documentation
+  description: >-
+    The MCP Cloud platform by Speakeasy. Ship better agents with production-ready MCP infrastructure.
+    Host remote MCP servers, power in-application chat, and manage and secure MCP servers for your entire
+    organization through a unified control plane.
+- aid: speakeasy:speakeasy-artifacts-api
+  name: Speakeasy Artifacts API
+  description: REST APIs for working with Registry artifacts
+  humanURL: https://www.speakeasy.com/
+  baseURL: https://api.prod.speakeasy.com
+  tags:
+  - Artifacts
+  properties:
+  - type: OpenAPI
+    url: openapi/speakeasy-artifacts-api-openapi.yml
+  - type: Website
+    url: https://www.speakeasy.com/
+  - type: GettingStarted
+    url: https://www.speakeasy.com/docs/sdks/introduction
+  - type: Documentation
+    url: https://www.speakeasy.com/docs
+  - type: CLI
+    url: https://www.speakeasy.com/docs/speakeasy-reference/cli
+  - type: GitHubRepo
+    url: https://github.com/speakeasy-api/speakeasy
+- aid: speakeasy:speakeasy-auth-api
+  name: Speakeasy Auth API
+  description: REST APIs for managing Authentication
+  humanURL: https://www.speakeasy.com/
+  baseURL: https://api.prod.speakeasy.com
+  tags:
+  - Auth
+  properties:
+  - type: OpenAPI
+    url: openapi/speakeasy-auth-api-openapi.yml
+  - type: Website
+    url: https://www.speakeasy.com/
+  - type: GettingStarted
+    url: https://www.speakeasy.com/docs/sdks/introduction
+  - type: Documentation
+    url: https://www.speakeasy.com/docs
+  - type: CLI
+    url: https://www.speakeasy.com/docs/speakeasy-reference/cli
+  - type: GitHubRepo
+    url: https://github.com/speakeasy-api/speakeasy
+- aid: speakeasy:speakeasy-codesamples-api
+  name: Speakeasy CodeSamples API
+  description: REST APIs for retrieving Code Samples
+  humanURL: https://www.speakeasy.com/
+  baseURL: https://api.prod.speakeasy.com
+  tags:
+  - CodeSamples
+  properties:
+  - type: OpenAPI
+    url: openapi/speakeasy-codesamples-api-openapi.yml
+  - type: Website
+    url: https://www.speakeasy.com/
+  - type: GettingStarted
+    url: https://www.speakeasy.com/docs/sdks/introduction
+  - type: Documentation
+    url: https://www.speakeasy.com/docs
+  - type: CLI
+    url: https://www.speakeasy.com/docs/speakeasy-reference/cli
+  - type: GitHubRepo
+    url: https://github.com/speakeasy-api/speakeasy
+- aid: speakeasy:speakeasy-events-api
+  name: Speakeasy Events API
+  description: REST APIs for managing events captured by a speakeasy binary (CLI, GitHub Action etc)
+  humanURL: https://www.speakeasy.com/
+  baseURL: https://api.prod.speakeasy.com
+  tags:
+  - Events
+  properties:
+  - type: OpenAPI
+    url: openapi/speakeasy-events-api-openapi.yml
+  - type: Website
+    url: https://www.speakeasy.com/
+  - type: GettingStarted
+    url: https://www.speakeasy.com/docs/sdks/introduction
+  - type: Documentation
+    url: https://www.speakeasy.com/docs
+  - type: CLI
+    url: https://www.speakeasy.com/docs/speakeasy-reference/cli
+  - type: GitHubRepo
+    url: https://github.com/speakeasy-api/speakeasy
+- aid: speakeasy:speakeasy-github-api
+  name: Speakeasy Github API
+  description: REST APIs for managing the github integration
+  humanURL: https://www.speakeasy.com/
+  baseURL: https://api.prod.speakeasy.com
+  tags:
+  - Github
+  properties:
+  - type: OpenAPI
+    url: openapi/speakeasy-github-api-openapi.yml
+  - type: Website
+    url: https://www.speakeasy.com/
+  - type: GettingStarted
+    url: https://www.speakeasy.com/docs/sdks/introduction
+  - type: Documentation
+    url: https://www.speakeasy.com/docs
+  - type: CLI
+    url: https://www.speakeasy.com/docs/speakeasy-reference/cli
+  - type: GitHubRepo
+    url: https://github.com/speakeasy-api/speakeasy
+- aid: speakeasy:speakeasy-organizations-api
+  name: Speakeasy Organizations API
+  description: REST APIs for managing Organizations (speakeasy L1 Tenancy construct)
+  humanURL: https://www.speakeasy.com/
+  baseURL: https://api.prod.speakeasy.com
+  tags:
+  - Organizations
+  properties:
+  - type: OpenAPI
+    url: openapi/speakeasy-organizations-api-openapi.yml
+  - type: Website
+    url: https://www.speakeasy.com/
+  - type: GettingStarted
+    url: https://www.speakeasy.com/docs/sdks/introduction
+  - type: Documentation
+    url: https://www.speakeasy.com/docs
+  - type: CLI
+    url: https://www.speakeasy.com/docs/speakeasy-reference/cli
+  - type: GitHubRepo
+    url: https://github.com/speakeasy-api/speakeasy
+- aid: speakeasy:speakeasy-publishingtokens-api
+  name: Speakeasy PublishingTokens API
+  description: The PublishingTokens API from Speakeasy — 4 operation(s) for publishingtokens.
+  humanURL: https://www.speakeasy.com/
+  baseURL: https://api.prod.speakeasy.com
+  tags:
+  - PublishingTokens
+  properties:
+  - type: OpenAPI
+    url: openapi/speakeasy-publishingtokens-api-openapi.yml
+  - type: Website
+    url: https://www.speakeasy.com/
+  - type: GettingStarted
+    url: https://www.speakeasy.com/docs/sdks/introduction
+  - type: Documentation
+    url: https://www.speakeasy.com/docs
+  - type: CLI
+    url: https://www.speakeasy.com/docs/speakeasy-reference/cli
+  - type: GitHubRepo
+    url: https://github.com/speakeasy-api/speakeasy
+- aid: speakeasy:speakeasy-reports-api
+  name: Speakeasy Reports API
+  description: REST APIs for managing reports (lint reports, change reports, etc)
+  humanURL: https://www.speakeasy.com/
+  baseURL: https://api.prod.speakeasy.com
+  tags:
+  - Reports
+  properties:
+  - type: OpenAPI
+    url: openapi/speakeasy-reports-api-openapi.yml
+  - type: Website
+    url: https://www.speakeasy.com/
+  - type: GettingStarted
+    url: https://www.speakeasy.com/docs/sdks/introduction
+  - type: Documentation
+    url: https://www.speakeasy.com/docs
+  - type: CLI
+    url: https://www.speakeasy.com/docs/speakeasy-reference/cli
+  - type: GitHubRepo
+    url: https://github.com/speakeasy-api/speakeasy
+- aid: speakeasy:speakeasy-schemastore-api
+  name: Speakeasy SchemaStore API
+  description: The SchemaStore API from Speakeasy — 1 operation(s) for schemastore.
+  humanURL: https://www.speakeasy.com/
+  baseURL: https://api.prod.speakeasy.com
+  tags:
+  - SchemaStore
+  properties:
+  - type: OpenAPI
+    url: openapi/speakeasy-schemastore-api-openapi.yml
+  - type: Website
+    url: https://www.speakeasy.com/
+  - type: GettingStarted
+    url: https://www.speakeasy.com/docs/sdks/introduction
+  - type: Documentation
+    url: https://www.speakeasy.com/docs
+  - type: CLI
+    url: https://www.speakeasy.com/docs/speakeasy-reference/cli
+  - type: GitHubRepo
+    url: https://github.com/speakeasy-api/speakeasy
+- aid: speakeasy:speakeasy-shorturls-api
+  name: Speakeasy ShortURLs API
+  description: REST APIs for managing short URLs
+  humanURL: https://www.speakeasy.com/
+  baseURL: https://api.prod.speakeasy.com
+  tags:
+  - ShortURLs
+  properties:
+  - type: OpenAPI
+    url: openapi/speakeasy-shorturls-api-openapi.yml
+  - type: Website
+    url: https://www.speakeasy.com/
+  - type: GettingStarted
+    url: https://www.speakeasy.com/docs/sdks/introduction
+  - type: Documentation
+    url: https://www.speakeasy.com/docs
+  - type: CLI
+    url: https://www.speakeasy.com/docs/speakeasy-reference/cli
+  - type: GitHubRepo
+    url: https://github.com/speakeasy-api/speakeasy
+- aid: speakeasy:speakeasy-subscriptions-api
+  name: Speakeasy Subscriptions API
+  description: REST APIs for managing subscriptions
+  humanURL: https://www.speakeasy.com/
+  baseURL: https://api.prod.speakeasy.com
+  tags:
+  - Subscriptions
+  properties:
+  - type: OpenAPI
+    url: openapi/speakeasy-subscriptions-api-openapi.yml
+  - type: Website
+    url: https://www.speakeasy.com/
+  - type: GettingStarted
+    url: https://www.speakeasy.com/docs/sdks/introduction
+  - type: Documentation
+    url: https://www.speakeasy.com/docs
+  - type: CLI
+    url: https://www.speakeasy.com/docs/speakeasy-reference/cli
+  - type: GitHubRepo
+    url: https://github.com/speakeasy-api/speakeasy
+- aid: speakeasy:speakeasy-suggest-api
+  name: Speakeasy Suggest API
+  description: REST APIs for managing LLM OAS suggestions
+  humanURL: https://www.speakeasy.com/
+  baseURL: https://api.prod.speakeasy.com
+  tags:
+  - Suggest
+  properties:
+  - type: OpenAPI
+    url: openapi/speakeasy-suggest-api-openapi.yml
+  - type: Website
+    url: https://www.speakeasy.com/
+  - type: GettingStarted
+    url: https://www.speakeasy.com/docs/sdks/introduction
+  - type: Documentation
+    url: https://www.speakeasy.com/docs
+  - type: CLI
+    url: https://www.speakeasy.com/docs/speakeasy-reference/cli
+  - type: GitHubRepo
+    url: https://github.com/speakeasy-api/speakeasy
+- aid: speakeasy:speakeasy-workspaces-api
+  name: Speakeasy Workspaces API
+  description: REST APIs for managing Workspaces (speakeasy tenancy)
+  humanURL: https://www.speakeasy.com/
+  baseURL: https://api.prod.speakeasy.com
+  tags:
+  - Workspaces
+  properties:
+  - type: OpenAPI
+    url: openapi/speakeasy-workspaces-api-openapi.yml
+  - type: Website
+    url: https://www.speakeasy.com/
+  - type: GettingStarted
+    url: https://www.speakeasy.com/docs/sdks/introduction
+  - type: Documentation
+    url: https://www.speakeasy.com/docs
+  - type: CLI
+    url: https://www.speakeasy.com/docs/speakeasy-reference/cli
+  - type: GitHubRepo
+    url: https://github.com/speakeasy-api/speakeasy
 name: Speakeasy
 tags:
   - AI
