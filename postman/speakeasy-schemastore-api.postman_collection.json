@@ -1,0 +1,376 @@
+{
+  "info": {
+    "_postman_id": "6c16fe95-6017-4780-9dea-5c0d5607e681",
+    "name": "Speakeasy Artifacts SchemaStore API",
+    "description": "The Subscriptions API manages subscriptions for CLI and registry events",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:59:45.000Z",
+    "updatedAt": "2026-07-28T02:59:45.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-6c16fe95-6017-4780-9dea-5c0d5607e681"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "schema_store",
+          "item": [
+            {
+              "name": "Get a OAS Schema from the Schema Store",
+              "id": "b600e248-a1fc-4177-9d7a-d3aa2bdeecf1",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v1/schema_store",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "schema_store"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "105554f1-a5c8-402e-be9f-cedd52549d1c",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "x-api-key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/schema_store",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "schema_store"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"spec\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"format\": \"json\",\n  \"packageName\": \"<string>\",\n  \"sdkClassname\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:59:45.000Z",
+                  "updatedAt": "2026-07-28T02:59:45.000Z",
+                  "uid": "35240-105554f1-a5c8-402e-be9f-cedd52549d1c"
+                },
+                {
+                  "id": "b9113f9c-0b49-48cc-80f6-ecb4a0f4f5f3",
+                  "name": "Default error response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "x-api-key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/schema_store",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "schema_store"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"status_code\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T02:59:45.000Z",
+                  "updatedAt": "2026-07-28T02:59:45.000Z",
+                  "uid": "35240-b9113f9c-0b49-48cc-80f6-ecb4a0f4f5f3"
+                }
+              ],
+              "createdAt": "2026-07-28T02:59:45.000Z",
+              "updatedAt": "2026-07-28T02:59:45.000Z",
+              "uid": "35240-b600e248-a1fc-4177-9d7a-d3aa2bdeecf1"
+            },
+            {
+              "name": "Create a Schema in the Schema Store",
+              "id": "4c4f4b21-5e41-4dca-b299-a4be0e1db15c",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"spec\": \"<string>\",\n  \"format\": \"json\",\n  \"packageName\": \"<string>\",\n  \"sdkClassname\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v1/schema_store",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "schema_store"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "bfc019a4-cf49-4423-87ed-3baac95f2ea3",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "x-api-key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"spec\": \"<string>\",\n  \"format\": \"json\",\n  \"packageName\": \"<string>\",\n  \"sdkClassname\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/schema_store",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "schema_store"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"spec\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"format\": \"json\",\n  \"packageName\": \"<string>\",\n  \"sdkClassname\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:59:45.000Z",
+                  "updatedAt": "2026-07-28T02:59:45.000Z",
+                  "uid": "35240-bfc019a4-cf49-4423-87ed-3baac95f2ea3"
+                },
+                {
+                  "id": "4e08fa51-d178-423c-99b1-abfcb2a64c53",
+                  "name": "Default error response",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "x-api-key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"spec\": \"<string>\",\n  \"format\": \"json\",\n  \"packageName\": \"<string>\",\n  \"sdkClassname\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/schema_store",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "schema_store"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"status_code\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T02:59:45.000Z",
+                  "updatedAt": "2026-07-28T02:59:45.000Z",
+                  "uid": "35240-4e08fa51-d178-423c-99b1-abfcb2a64c53"
+                }
+              ],
+              "createdAt": "2026-07-28T02:59:45.000Z",
+              "updatedAt": "2026-07-28T02:59:45.000Z",
+              "uid": "35240-4c4f4b21-5e41-4dca-b299-a4be0e1db15c"
+            }
+          ],
+          "id": "84041e4e-70bb-4da3-811a-ec494dedd3fb",
+          "createdAt": "2026-07-28T02:59:45.000Z",
+          "updatedAt": "2026-07-28T02:59:45.000Z",
+          "uid": "35240-84041e4e-70bb-4da3-811a-ec494dedd3fb"
+        }
+      ],
+      "id": "a39ecd29-9e55-4dd2-bd9f-f5d480607f0e",
+      "createdAt": "2026-07-28T02:59:45.000Z",
+      "updatedAt": "2026-07-28T02:59:45.000Z",
+      "uid": "35240-a39ecd29-9e55-4dd2-bd9f-f5d480607f0e"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.prod.speakeasy.com"
+    }
+  ]
+}

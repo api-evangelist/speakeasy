@@ -1,0 +1,1088 @@
+{
+  "info": {
+    "_postman_id": "20a66816-f86c-45f1-960e-ac09a9cfb2a2",
+    "name": "Speakeasy Artifacts PublishingTokens API",
+    "description": "The Subscriptions API manages subscriptions for CLI and registry events",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:59:43.000Z",
+    "updatedAt": "2026-07-28T02:59:43.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-20a66816-f86c-45f1-960e-ac09a9cfb2a2"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "publishing-tokens",
+          "item": [
+            {
+              "name": "{tokenID}",
+              "item": [
+                {
+                  "name": "target",
+                  "item": [
+                    {
+                      "name": "Get a Specific Publishing Token Target",
+                      "id": "9b443d1d-9d1e-44e0-9796-4a0dfacd5e98",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "text/plain"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/publishing-tokens/:tokenID/target",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "publishing-tokens",
+                            ":tokenID",
+                            "target"
+                          ],
+                          "variable": [
+                            {
+                              "id": "4bf7fbb9-2bc4-4cba-883b-8d34b1c29a0b",
+                              "key": "tokenID",
+                              "value": "<string>",
+                              "description": "(Required) Unique identifier of the publishing token."
+                            }
+                          ]
+                        },
+                        "description": "Get information about a particular publishing token target."
+                      },
+                      "response": [
+                        {
+                          "id": "65e548c7-237c-4947-a765-80d769adb1af",
+                          "name": "OK",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "text/plain"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "x-api-key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/publishing-tokens/:tokenID/target",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "publishing-tokens",
+                                ":tokenID",
+                                "target"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "tokenID"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "text/plain"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{}",
+                          "createdAt": "2026-07-28T02:59:43.000Z",
+                          "updatedAt": "2026-07-28T02:59:43.000Z",
+                          "uid": "35240-65e548c7-237c-4947-a765-80d769adb1af"
+                        },
+                        {
+                          "id": "cebcc95c-e8b3-4bae-8c92-2f121372557d",
+                          "name": "Default error response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "x-api-key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/publishing-tokens/:tokenID/target",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "publishing-tokens",
+                                ":tokenID",
+                                "target"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "tokenID"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"status_code\": \"<integer>\"\n}",
+                          "createdAt": "2026-07-28T02:59:43.000Z",
+                          "updatedAt": "2026-07-28T02:59:43.000Z",
+                          "uid": "35240-cebcc95c-e8b3-4bae-8c92-2f121372557d"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:59:43.000Z",
+                      "updatedAt": "2026-07-28T02:59:43.000Z",
+                      "uid": "35240-9b443d1d-9d1e-44e0-9796-4a0dfacd5e98"
+                    }
+                  ],
+                  "id": "4a8e3418-ff9e-49f1-a42a-7e3846891374",
+                  "createdAt": "2026-07-28T02:59:43.000Z",
+                  "updatedAt": "2026-07-28T02:59:43.000Z",
+                  "uid": "35240-4a8e3418-ff9e-49f1-a42a-7e3846891374"
+                },
+                {
+                  "name": "metadata",
+                  "item": [
+                    {
+                      "name": "Get Metadata About the Token",
+                      "id": "53b86928-56ee-4b7c-87dc-f6befa1fa34c",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/publishing-tokens/:tokenID/metadata",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "publishing-tokens",
+                            ":tokenID",
+                            "metadata"
+                          ],
+                          "variable": [
+                            {
+                              "id": "92709ee7-99fd-4aad-bd95-f90240c1685e",
+                              "key": "tokenID",
+                              "value": "<string>",
+                              "description": "(Required) Unique identifier of the publishing token."
+                            }
+                          ]
+                        },
+                        "description": "Get information about a particular publishing token."
+                      },
+                      "response": [
+                        {
+                          "id": "5e6418fa-5d7d-4578-80e6-b7362189f3b2",
+                          "name": "OK",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "x-api-key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/publishing-tokens/:tokenID/metadata",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "publishing-tokens",
+                                ":tokenID",
+                                "metadata"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "tokenID"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"target_id\": \"<string>\",\n  \"target_resource\": \"<string>\",\n  \"workspace_id\": \"<string>\",\n  \"organization_id\": \"<string>\",\n  \"valid_until\": \"<dateTime>\"\n}",
+                          "createdAt": "2026-07-28T02:59:43.000Z",
+                          "updatedAt": "2026-07-28T02:59:43.000Z",
+                          "uid": "35240-5e6418fa-5d7d-4578-80e6-b7362189f3b2"
+                        },
+                        {
+                          "id": "604873fd-4934-4b44-aab4-951a2780e2d6",
+                          "name": "Default error response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "x-api-key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/publishing-tokens/:tokenID/metadata",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "publishing-tokens",
+                                ":tokenID",
+                                "metadata"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "tokenID"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"status_code\": \"<integer>\"\n}",
+                          "createdAt": "2026-07-28T02:59:43.000Z",
+                          "updatedAt": "2026-07-28T02:59:43.000Z",
+                          "uid": "35240-604873fd-4934-4b44-aab4-951a2780e2d6"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:59:43.000Z",
+                      "updatedAt": "2026-07-28T02:59:43.000Z",
+                      "uid": "35240-53b86928-56ee-4b7c-87dc-f6befa1fa34c"
+                    }
+                  ],
+                  "id": "e2f40321-df65-410a-94e2-75cb3e23be87",
+                  "createdAt": "2026-07-28T02:59:43.000Z",
+                  "updatedAt": "2026-07-28T02:59:43.000Z",
+                  "uid": "35240-e2f40321-df65-410a-94e2-75cb3e23be87"
+                },
+                {
+                  "name": "Get a Specific Publishing Token",
+                  "id": "acb2b692-3875-4d94-916b-558202d6b4fb",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/publishing-tokens/:tokenID",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "publishing-tokens",
+                        ":tokenID"
+                      ],
+                      "variable": [
+                        {
+                          "id": "c362cc87-6adf-4453-8d2a-9461ead7ded8",
+                          "key": "tokenID",
+                          "value": "<string>",
+                          "description": "(Required) Unique identifier of the publishing token."
+                        }
+                      ]
+                    },
+                    "description": "Get information about a particular publishing token."
+                  },
+                  "response": [
+                    {
+                      "id": "69efa78a-2885-47c7-bc4b-fd3cbee8ee57",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-api-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/publishing-tokens/:tokenID",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "publishing-tokens",
+                            ":tokenID"
+                          ],
+                          "variable": [
+                            {
+                              "key": "tokenID"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"target_id\": \"<string>\",\n  \"target_resource\": \"document\",\n  \"valid_until\": \"<dateTime>\",\n  \"token_name\": \"<string>\",\n  \"id\": \"<string>\",\n  \"token\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"created_by\": \"<string>\",\n  \"organization_id\": \"<string>\",\n  \"workspace_id\": \"<string>\",\n  \"updated_at\": \"<dateTime>\",\n  \"updated_by\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:59:43.000Z",
+                      "updatedAt": "2026-07-28T02:59:43.000Z",
+                      "uid": "35240-69efa78a-2885-47c7-bc4b-fd3cbee8ee57"
+                    },
+                    {
+                      "id": "935b3cea-b040-4d4e-8118-efde3cfe42c0",
+                      "name": "Default error response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-api-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/publishing-tokens/:tokenID",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "publishing-tokens",
+                            ":tokenID"
+                          ],
+                          "variable": [
+                            {
+                              "key": "tokenID"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"status_code\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T02:59:43.000Z",
+                      "updatedAt": "2026-07-28T02:59:43.000Z",
+                      "uid": "35240-935b3cea-b040-4d4e-8118-efde3cfe42c0"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:59:43.000Z",
+                  "updatedAt": "2026-07-28T02:59:43.000Z",
+                  "uid": "35240-acb2b692-3875-4d94-916b-558202d6b4fb"
+                },
+                {
+                  "name": "Updates the Validitity Period of a Publishing Token",
+                  "id": "26195f94-3059-4401-ba6e-382a7941e008",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"valid_until\": \"<dateTime>\",\n  \"token_name\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/publishing-tokens/:tokenID",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "publishing-tokens",
+                        ":tokenID"
+                      ],
+                      "variable": [
+                        {
+                          "id": "e4880f6b-ee82-4d89-83d4-bc2336af32ac",
+                          "key": "tokenID",
+                          "value": "<string>",
+                          "description": "(Required) Unique identifier of the publishing token."
+                        }
+                      ]
+                    },
+                    "description": "Updates the validity period of a particular publishing token."
+                  },
+                  "response": [
+                    {
+                      "id": "85248c46-02b4-440b-838b-62d3ce54e19c",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-api-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"valid_until\": \"<dateTime>\",\n  \"token_name\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/publishing-tokens/:tokenID",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "publishing-tokens",
+                            ":tokenID"
+                          ],
+                          "variable": [
+                            {
+                              "key": "tokenID"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T02:59:43.000Z",
+                      "updatedAt": "2026-07-28T02:59:43.000Z",
+                      "uid": "35240-85248c46-02b4-440b-838b-62d3ce54e19c"
+                    },
+                    {
+                      "id": "0075dfed-a874-4f8b-a24e-c4b44a1bb6ee",
+                      "name": "Default error response",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-api-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"valid_until\": \"<dateTime>\",\n  \"token_name\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/publishing-tokens/:tokenID",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "publishing-tokens",
+                            ":tokenID"
+                          ],
+                          "variable": [
+                            {
+                              "key": "tokenID"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"status_code\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T02:59:43.000Z",
+                      "updatedAt": "2026-07-28T02:59:43.000Z",
+                      "uid": "35240-0075dfed-a874-4f8b-a24e-c4b44a1bb6ee"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:59:43.000Z",
+                  "updatedAt": "2026-07-28T02:59:43.000Z",
+                  "uid": "35240-26195f94-3059-4401-ba6e-382a7941e008"
+                },
+                {
+                  "name": "Delete a Specific Publishing Token",
+                  "id": "74a33b5e-c4ee-46ae-9288-2dc633712df7",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/publishing-tokens/:tokenID",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "publishing-tokens",
+                        ":tokenID"
+                      ],
+                      "variable": [
+                        {
+                          "id": "36df9937-6e7c-4594-acb3-2d23e5f35668",
+                          "key": "tokenID",
+                          "value": "<string>",
+                          "description": "(Required) Unique identifier of the publishing token."
+                        }
+                      ]
+                    },
+                    "description": "Delete a particular publishing token."
+                  },
+                  "response": [
+                    {
+                      "id": "9b455f91-4905-4369-b214-bba8d92e7385",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-api-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/publishing-tokens/:tokenID",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "publishing-tokens",
+                            ":tokenID"
+                          ],
+                          "variable": [
+                            {
+                              "key": "tokenID"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T02:59:43.000Z",
+                      "updatedAt": "2026-07-28T02:59:43.000Z",
+                      "uid": "35240-9b455f91-4905-4369-b214-bba8d92e7385"
+                    },
+                    {
+                      "id": "f4168672-d042-4ae5-bfa1-d4d6c8b0e712",
+                      "name": "Default error response",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-api-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/publishing-tokens/:tokenID",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "publishing-tokens",
+                            ":tokenID"
+                          ],
+                          "variable": [
+                            {
+                              "key": "tokenID"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"status_code\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T02:59:43.000Z",
+                      "updatedAt": "2026-07-28T02:59:43.000Z",
+                      "uid": "35240-f4168672-d042-4ae5-bfa1-d4d6c8b0e712"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:59:43.000Z",
+                  "updatedAt": "2026-07-28T02:59:43.000Z",
+                  "uid": "35240-74a33b5e-c4ee-46ae-9288-2dc633712df7"
+                }
+              ],
+              "id": "a359041f-65f7-4090-8fe1-e5a266af61df",
+              "createdAt": "2026-07-28T02:59:43.000Z",
+              "updatedAt": "2026-07-28T02:59:43.000Z",
+              "uid": "35240-a359041f-65f7-4090-8fe1-e5a266af61df"
+            },
+            {
+              "name": "Get Publishing Tokens for a Workspace",
+              "id": "9b496525-904f-42cf-905a-148bee98d6ed",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/publishing-tokens",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "publishing-tokens"
+                  ]
+                },
+                "description": "Returns a publishing token for the current workspace"
+              },
+              "response": [
+                {
+                  "id": "f75b2a59-be62-4242-adf9-f795608f4694",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "x-api-key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/publishing-tokens",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "publishing-tokens"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"target_id\": \"<string>\",\n    \"target_resource\": \"document\",\n    \"valid_until\": \"<dateTime>\",\n    \"token_name\": \"<string>\",\n    \"id\": \"<string>\",\n    \"token\": \"<string>\",\n    \"created_at\": \"<dateTime>\",\n    \"created_by\": \"<string>\",\n    \"organization_id\": \"<string>\",\n    \"workspace_id\": \"<string>\",\n    \"updated_at\": \"<dateTime>\",\n    \"updated_by\": \"<string>\"\n  },\n  {\n    \"target_id\": \"<string>\",\n    \"target_resource\": \"document\",\n    \"valid_until\": \"<dateTime>\",\n    \"token_name\": \"<string>\",\n    \"id\": \"<string>\",\n    \"token\": \"<string>\",\n    \"created_at\": \"<dateTime>\",\n    \"created_by\": \"<string>\",\n    \"organization_id\": \"<string>\",\n    \"workspace_id\": \"<string>\",\n    \"updated_at\": \"<dateTime>\",\n    \"updated_by\": \"<string>\"\n  }\n]",
+                  "createdAt": "2026-07-28T02:59:43.000Z",
+                  "updatedAt": "2026-07-28T02:59:43.000Z",
+                  "uid": "35240-f75b2a59-be62-4242-adf9-f795608f4694"
+                },
+                {
+                  "id": "4aff95cb-08cb-4a81-a6c9-ec460c12857f",
+                  "name": "Default error response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "x-api-key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/publishing-tokens",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "publishing-tokens"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"status_code\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T02:59:43.000Z",
+                  "updatedAt": "2026-07-28T02:59:43.000Z",
+                  "uid": "35240-4aff95cb-08cb-4a81-a6c9-ec460c12857f"
+                }
+              ],
+              "createdAt": "2026-07-28T02:59:43.000Z",
+              "updatedAt": "2026-07-28T02:59:43.000Z",
+              "uid": "35240-9b496525-904f-42cf-905a-148bee98d6ed"
+            },
+            {
+              "name": "Create a Publishing Token for a Workspace",
+              "id": "c50ebb1f-0636-48aa-bac2-0b162844c02d",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"target_id\": \"<string>\",\n  \"target_resource\": \"<string>\",\n  \"valid_until\": \"<dateTime>\",\n  \"token_name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v1/publishing-tokens",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "publishing-tokens"
+                  ]
+                },
+                "description": "Creates a publishing token for the current workspace"
+              },
+              "response": [
+                {
+                  "id": "970b7ef2-f5a0-49f8-af00-f3c841dfd29f",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "x-api-key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"target_id\": \"<string>\",\n  \"target_resource\": \"<string>\",\n  \"valid_until\": \"<dateTime>\",\n  \"token_name\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/publishing-tokens",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "publishing-tokens"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"target_id\": \"<string>\",\n  \"target_resource\": \"document\",\n  \"valid_until\": \"<dateTime>\",\n  \"token_name\": \"<string>\",\n  \"id\": \"<string>\",\n  \"token\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"created_by\": \"<string>\",\n  \"organization_id\": \"<string>\",\n  \"workspace_id\": \"<string>\",\n  \"updated_at\": \"<dateTime>\",\n  \"updated_by\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:59:43.000Z",
+                  "updatedAt": "2026-07-28T02:59:43.000Z",
+                  "uid": "35240-970b7ef2-f5a0-49f8-af00-f3c841dfd29f"
+                },
+                {
+                  "id": "ee712856-1700-427d-b758-8b2734c42329",
+                  "name": "Default error response",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "x-api-key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"target_id\": \"<string>\",\n  \"target_resource\": \"<string>\",\n  \"valid_until\": \"<dateTime>\",\n  \"token_name\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/publishing-tokens",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "publishing-tokens"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"status_code\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T02:59:43.000Z",
+                  "updatedAt": "2026-07-28T02:59:43.000Z",
+                  "uid": "35240-ee712856-1700-427d-b758-8b2734c42329"
+                }
+              ],
+              "createdAt": "2026-07-28T02:59:43.000Z",
+              "updatedAt": "2026-07-28T02:59:43.000Z",
+              "uid": "35240-c50ebb1f-0636-48aa-bac2-0b162844c02d"
+            }
+          ],
+          "id": "b323c4ec-5657-4351-9edd-337d76ff2ecd",
+          "createdAt": "2026-07-28T02:59:43.000Z",
+          "updatedAt": "2026-07-28T02:59:43.000Z",
+          "uid": "35240-b323c4ec-5657-4351-9edd-337d76ff2ecd"
+        }
+      ],
+      "id": "e97df4d1-be6e-40ca-af48-49d33a289c23",
+      "createdAt": "2026-07-28T02:59:43.000Z",
+      "updatedAt": "2026-07-28T02:59:43.000Z",
+      "uid": "35240-e97df4d1-be6e-40ca-af48-49d33a289c23"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.prod.speakeasy.com"
+    }
+  ]
+}

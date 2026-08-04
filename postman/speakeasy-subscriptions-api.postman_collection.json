@@ -1,0 +1,388 @@
+{
+  "info": {
+    "_postman_id": "4fbd3eae-050c-4ba7-8674-f91b532c37ff",
+    "name": "Speakeasy Artifacts Subscriptions API",
+    "description": "The Subscriptions API manages subscriptions for CLI and registry events",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:59:46.000Z",
+    "updatedAt": "2026-07-28T02:59:46.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-4fbd3eae-050c-4ba7-8674-f91b532c37ff"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "subscriptions",
+          "item": [
+            {
+              "name": "{subscriptionID}",
+              "item": [
+                {
+                  "name": "{namespaceName}",
+                  "item": [
+                    {
+                      "name": "ignore",
+                      "item": [
+                        {
+                          "name": "Ignored a Namespace for a Subscription",
+                          "id": "4caa9df3-6621-4284-9950-835c17397384",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/subscriptions/:subscriptionID/:namespaceName/ignore",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "subscriptions",
+                                ":subscriptionID",
+                                ":namespaceName",
+                                "ignore"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "151a2012-c2ea-4206-865b-66bc6bcf2ac9",
+                                  "key": "subscriptionID",
+                                  "value": "<string>",
+                                  "description": "(Required) The existing subscription ID"
+                                },
+                                {
+                                  "id": "9b394fcd-9ee0-499f-b750-5c459e928160",
+                                  "key": "namespaceName",
+                                  "value": "<string>",
+                                  "description": "(Required) The namespace name"
+                                }
+                              ]
+                            }
+                          },
+                          "response": [
+                            {
+                              "id": "48d9a0a8-0d7e-4944-87ec-4b3a343daf07",
+                              "name": "OK",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "x-api-key",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/subscriptions/:subscriptionID/:namespaceName/ignore",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "subscriptions",
+                                    ":subscriptionID",
+                                    ":namespaceName",
+                                    "ignore"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "subscriptionID"
+                                    },
+                                    {
+                                      "key": "namespaceName"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T02:59:47.000Z",
+                              "updatedAt": "2026-07-28T02:59:47.000Z",
+                              "uid": "35240-48d9a0a8-0d7e-4944-87ec-4b3a343daf07"
+                            },
+                            {
+                              "id": "1673d985-6984-423d-9929-5b5778c82d69",
+                              "name": "Default error response",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "x-api-key",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/subscriptions/:subscriptionID/:namespaceName/ignore",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "subscriptions",
+                                    ":subscriptionID",
+                                    ":namespaceName",
+                                    "ignore"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "subscriptionID"
+                                    },
+                                    {
+                                      "key": "namespaceName"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"status_code\": \"<integer>\"\n}",
+                              "createdAt": "2026-07-28T02:59:47.000Z",
+                              "updatedAt": "2026-07-28T02:59:47.000Z",
+                              "uid": "35240-1673d985-6984-423d-9929-5b5778c82d69"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:59:47.000Z",
+                          "updatedAt": "2026-07-28T02:59:47.000Z",
+                          "uid": "35240-4caa9df3-6621-4284-9950-835c17397384"
+                        }
+                      ],
+                      "id": "fbddd81b-5c53-4fbf-997a-952c29e86020",
+                      "createdAt": "2026-07-28T02:59:47.000Z",
+                      "updatedAt": "2026-07-28T02:59:47.000Z",
+                      "uid": "35240-fbddd81b-5c53-4fbf-997a-952c29e86020"
+                    },
+                    {
+                      "name": "activate",
+                      "item": [
+                        {
+                          "name": "Activate an Ignored Namespace for a Subscription",
+                          "id": "d736398f-d754-42ab-8a8f-b447d61ac83d",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/subscriptions/:subscriptionID/:namespaceName/activate",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "subscriptions",
+                                ":subscriptionID",
+                                ":namespaceName",
+                                "activate"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "89e7684e-255b-40cd-aff5-b640c0cb943a",
+                                  "key": "subscriptionID",
+                                  "value": "<string>",
+                                  "description": "(Required) The existing subscription ID"
+                                },
+                                {
+                                  "id": "cc39d121-bd8c-4949-a086-d534e4498285",
+                                  "key": "namespaceName",
+                                  "value": "<string>",
+                                  "description": "(Required) The namespace name"
+                                }
+                              ]
+                            }
+                          },
+                          "response": [
+                            {
+                              "id": "da3cf25a-e3a5-4a9d-90f7-79fe950a7b21",
+                              "name": "OK",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "x-api-key",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/subscriptions/:subscriptionID/:namespaceName/activate",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "subscriptions",
+                                    ":subscriptionID",
+                                    ":namespaceName",
+                                    "activate"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "subscriptionID"
+                                    },
+                                    {
+                                      "key": "namespaceName"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T02:59:47.000Z",
+                              "updatedAt": "2026-07-28T02:59:47.000Z",
+                              "uid": "35240-da3cf25a-e3a5-4a9d-90f7-79fe950a7b21"
+                            },
+                            {
+                              "id": "466a9a1c-e5ef-41ab-8915-e99484234b87",
+                              "name": "Default error response",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "x-api-key",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/subscriptions/:subscriptionID/:namespaceName/activate",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "subscriptions",
+                                    ":subscriptionID",
+                                    ":namespaceName",
+                                    "activate"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "subscriptionID"
+                                    },
+                                    {
+                                      "key": "namespaceName"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"status_code\": \"<integer>\"\n}",
+                              "createdAt": "2026-07-28T02:59:47.000Z",
+                              "updatedAt": "2026-07-28T02:59:47.000Z",
+                              "uid": "35240-466a9a1c-e5ef-41ab-8915-e99484234b87"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:59:47.000Z",
+                          "updatedAt": "2026-07-28T02:59:47.000Z",
+                          "uid": "35240-d736398f-d754-42ab-8a8f-b447d61ac83d"
+                        }
+                      ],
+                      "id": "74615230-fdb2-46ea-8ffb-aa8d7d66d675",
+                      "createdAt": "2026-07-28T02:59:47.000Z",
+                      "updatedAt": "2026-07-28T02:59:47.000Z",
+                      "uid": "35240-74615230-fdb2-46ea-8ffb-aa8d7d66d675"
+                    }
+                  ],
+                  "id": "621f026e-60c2-43e7-9447-916172d51ed3",
+                  "createdAt": "2026-07-28T02:59:47.000Z",
+                  "updatedAt": "2026-07-28T02:59:47.000Z",
+                  "uid": "35240-621f026e-60c2-43e7-9447-916172d51ed3"
+                }
+              ],
+              "id": "d90832db-d362-45a3-9520-392747e00d2e",
+              "createdAt": "2026-07-28T02:59:47.000Z",
+              "updatedAt": "2026-07-28T02:59:47.000Z",
+              "uid": "35240-d90832db-d362-45a3-9520-392747e00d2e"
+            }
+          ],
+          "id": "7fa16fae-69b4-4cfc-967f-aa47c5a77a82",
+          "createdAt": "2026-07-28T02:59:47.000Z",
+          "updatedAt": "2026-07-28T02:59:47.000Z",
+          "uid": "35240-7fa16fae-69b4-4cfc-967f-aa47c5a77a82"
+        }
+      ],
+      "id": "555105dc-5298-412a-a75e-51b58d044b45",
+      "createdAt": "2026-07-28T02:59:47.000Z",
+      "updatedAt": "2026-07-28T02:59:47.000Z",
+      "uid": "35240-555105dc-5298-412a-a75e-51b58d044b45"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.prod.speakeasy.com"
+    }
+  ]
+}

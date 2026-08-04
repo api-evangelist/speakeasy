@@ -1,0 +1,391 @@
+{
+  "info": {
+    "_postman_id": "87c05ec9-f9e0-4963-8a08-15c8e53920ee",
+    "name": "Speakeasy Artifacts Reports API",
+    "description": "The Subscriptions API manages subscriptions for CLI and registry events",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:59:44.000Z",
+    "updatedAt": "2026-07-28T02:59:44.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-87c05ec9-f9e0-4963-8a08-15c8e53920ee"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "reports",
+          "item": [
+            {
+              "name": "linting",
+              "item": [
+                {
+                  "name": "{documentChecksum}",
+                  "item": [
+                    {
+                      "name": "Get the Signed Access URL for the Linting Reports for a Particular Document",
+                      "id": "f884671b-fc95-4265-9340-cb734082cf7a",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/reports/linting/:documentChecksum",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "reports",
+                            "linting",
+                            ":documentChecksum"
+                          ],
+                          "variable": [
+                            {
+                              "id": "1724578d-afdf-4098-9436-904c4f687e53",
+                              "key": "documentChecksum",
+                              "value": "<string>",
+                              "description": "(Required) The checksum of the document to retrieve the signed access url for."
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "bfaebae6-714d-4f3f-ac08-baff360ce425",
+                          "name": "OK",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "x-api-key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/reports/linting/:documentChecksum",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "reports",
+                                "linting",
+                                ":documentChecksum"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "documentChecksum"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"url\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:59:44.000Z",
+                          "updatedAt": "2026-07-28T02:59:44.000Z",
+                          "uid": "35240-bfaebae6-714d-4f3f-ac08-baff360ce425"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:59:44.000Z",
+                      "updatedAt": "2026-07-28T02:59:44.000Z",
+                      "uid": "35240-f884671b-fc95-4265-9340-cb734082cf7a"
+                    }
+                  ],
+                  "id": "8733f3a5-bde8-458f-add1-9fe1b31823cc",
+                  "createdAt": "2026-07-28T02:59:44.000Z",
+                  "updatedAt": "2026-07-28T02:59:44.000Z",
+                  "uid": "35240-8733f3a5-bde8-458f-add1-9fe1b31823cc"
+                }
+              ],
+              "id": "99cc1076-3132-4847-afc8-cd5ad281b72d",
+              "createdAt": "2026-07-28T02:59:44.000Z",
+              "updatedAt": "2026-07-28T02:59:44.000Z",
+              "uid": "35240-99cc1076-3132-4847-afc8-cd5ad281b72d"
+            },
+            {
+              "name": "changes",
+              "item": [
+                {
+                  "name": "{documentChecksum}",
+                  "item": [
+                    {
+                      "name": "Get the Signed Access URL for the Change Reports for a Particular Document",
+                      "id": "200a00d3-db87-4a0d-976f-02e99eb98f96",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/reports/changes/:documentChecksum",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "reports",
+                            "changes",
+                            ":documentChecksum"
+                          ],
+                          "variable": [
+                            {
+                              "id": "9dfea357-3a1d-402c-9df7-7f1d48bbc939",
+                              "key": "documentChecksum",
+                              "value": "<string>",
+                              "description": "(Required) The checksum of the document to retrieve the signed access url for."
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "4ffeaf16-026a-4a30-a0c8-455deddc2cb6",
+                          "name": "OK",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "x-api-key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/reports/changes/:documentChecksum",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "reports",
+                                "changes",
+                                ":documentChecksum"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "documentChecksum"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"url\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:59:44.000Z",
+                          "updatedAt": "2026-07-28T02:59:44.000Z",
+                          "uid": "35240-4ffeaf16-026a-4a30-a0c8-455deddc2cb6"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:59:44.000Z",
+                      "updatedAt": "2026-07-28T02:59:44.000Z",
+                      "uid": "35240-200a00d3-db87-4a0d-976f-02e99eb98f96"
+                    }
+                  ],
+                  "id": "4582a735-0a46-4df8-92ef-a134ee2c9b22",
+                  "createdAt": "2026-07-28T02:59:44.000Z",
+                  "updatedAt": "2026-07-28T02:59:44.000Z",
+                  "uid": "35240-4582a735-0a46-4df8-92ef-a134ee2c9b22"
+                }
+              ],
+              "id": "046b682f-081c-476f-a686-075c192b68f0",
+              "createdAt": "2026-07-28T02:59:44.000Z",
+              "updatedAt": "2026-07-28T02:59:44.000Z",
+              "uid": "35240-046b682f-081c-476f-a686-075c192b68f0"
+            },
+            {
+              "name": "Upload a Report",
+              "id": "2be8fec8-c621-48b5-b2cd-737f23b0ae5a",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "multipart/form-data"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": "(Required) ",
+                      "key": "data",
+                      "value": "[object Object]",
+                      "type": "text"
+                    },
+                    {
+                      "description": "(Required) ",
+                      "key": "file",
+                      "type": "file",
+                      "value": null
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v1/reports",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "reports"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "bbd7456c-cf8f-495b-807d-fac3ff6ffd3a",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "multipart/form-data"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "x-api-key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "formdata",
+                      "formdata": [
+                        {
+                          "description": "(Required) ",
+                          "key": "data",
+                          "value": "[object Object]",
+                          "type": "text"
+                        },
+                        {
+                          "description": "(Required) ",
+                          "key": "file",
+                          "type": "file"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/reports",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "reports"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"url\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:59:44.000Z",
+                  "updatedAt": "2026-07-28T02:59:44.000Z",
+                  "uid": "35240-bbd7456c-cf8f-495b-807d-fac3ff6ffd3a"
+                }
+              ],
+              "createdAt": "2026-07-28T02:59:44.000Z",
+              "updatedAt": "2026-07-28T02:59:44.000Z",
+              "uid": "35240-2be8fec8-c621-48b5-b2cd-737f23b0ae5a"
+            }
+          ],
+          "id": "51338977-7cef-4f1f-b810-f891c781f5a5",
+          "createdAt": "2026-07-28T02:59:44.000Z",
+          "updatedAt": "2026-07-28T02:59:44.000Z",
+          "uid": "35240-51338977-7cef-4f1f-b810-f891c781f5a5"
+        }
+      ],
+      "id": "865229c0-1e09-4018-9de1-4584085c8128",
+      "createdAt": "2026-07-28T02:59:44.000Z",
+      "updatedAt": "2026-07-28T02:59:44.000Z",
+      "uid": "35240-865229c0-1e09-4018-9de1-4584085c8128"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.prod.speakeasy.com"
+    }
+  ]
+}

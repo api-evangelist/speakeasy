@@ -1,0 +1,1176 @@
+{
+  "info": {
+    "_postman_id": "d8533f4c-c70f-464e-b9da-c10055348673",
+    "name": "Speakeasy Artifacts Organizations API",
+    "description": "The Subscriptions API manages subscriptions for CLI and registry events",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:59:42.000Z",
+    "updatedAt": "2026-07-28T02:59:42.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-d8533f4c-c70f-464e-b9da-c10055348673"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "organizations",
+          "item": [
+            {
+              "name": "Get Organizations for a User",
+              "id": "43cd3c13-a33e-43f0-bd11-92703385c097",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/organizations",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "organizations"
+                  ]
+                },
+                "description": "Returns a list of organizations a user has access too"
+              },
+              "response": [
+                {
+                  "id": "eb81fc72-4c54-43e9-9457-fc91aab0e276",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "x-api-key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/organizations",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "organizations"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"slug\": \"<string>\",\n    \"account_type\": \"scale-up\",\n    \"telemetry_disabled\": \"<boolean>\",\n    \"sso_activated\": \"<boolean>\",\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\",\n    \"free_trial_expiry\": \"<dateTime>\",\n    \"sso_connection_id\": \"<string>\",\n    \"internal\": \"<boolean>\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"slug\": \"<string>\",\n    \"account_type\": \"enterprise\",\n    \"telemetry_disabled\": \"<boolean>\",\n    \"sso_activated\": \"<boolean>\",\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\",\n    \"free_trial_expiry\": \"<dateTime>\",\n    \"sso_connection_id\": \"<string>\",\n    \"internal\": \"<boolean>\"\n  }\n]",
+                  "createdAt": "2026-07-28T02:59:42.000Z",
+                  "updatedAt": "2026-07-28T02:59:42.000Z",
+                  "uid": "35240-eb81fc72-4c54-43e9-9457-fc91aab0e276"
+                },
+                {
+                  "id": "ff1676a2-e049-4fde-9af8-286446f3fa3e",
+                  "name": "Default error response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "x-api-key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/organizations",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "organizations"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"status_code\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T02:59:42.000Z",
+                  "updatedAt": "2026-07-28T02:59:42.000Z",
+                  "uid": "35240-ff1676a2-e049-4fde-9af8-286446f3fa3e"
+                }
+              ],
+              "createdAt": "2026-07-28T02:59:42.000Z",
+              "updatedAt": "2026-07-28T02:59:42.000Z",
+              "uid": "35240-43cd3c13-a33e-43f0-bd11-92703385c097"
+            }
+          ],
+          "id": "39f05304-f920-4775-8461-3e9bae27795a",
+          "createdAt": "2026-07-28T02:59:42.000Z",
+          "updatedAt": "2026-07-28T02:59:42.000Z",
+          "uid": "35240-39f05304-f920-4775-8461-3e9bae27795a"
+        },
+        {
+          "name": "organization",
+          "item": [
+            {
+              "name": "{organizationID}",
+              "item": [
+                {
+                  "name": "Get Organization",
+                  "id": "299c7591-8e19-4114-a2df-b0887bb208e0",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/organization/:organizationID",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "organization",
+                        ":organizationID"
+                      ],
+                      "variable": [
+                        {
+                          "id": "e66eb517-5d21-4426-a6cd-8d036442d572",
+                          "key": "organizationID",
+                          "value": "<string>",
+                          "description": "(Required) Unique identifier of the organization."
+                        }
+                      ]
+                    },
+                    "description": "Get information about a particular organization."
+                  },
+                  "response": [
+                    {
+                      "id": "e6fef0b4-5331-4cd1-b2cf-94b4c0fb5929",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-api-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/organization/:organizationID",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "organization",
+                            ":organizationID"
+                          ],
+                          "variable": [
+                            {
+                              "key": "organizationID"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"slug\": \"<string>\",\n  \"account_type\": \"enterprise\",\n  \"telemetry_disabled\": \"<boolean>\",\n  \"sso_activated\": \"<boolean>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"free_trial_expiry\": \"<dateTime>\",\n  \"sso_connection_id\": \"<string>\",\n  \"internal\": \"<boolean>\"\n}",
+                      "createdAt": "2026-07-28T02:59:42.000Z",
+                      "updatedAt": "2026-07-28T02:59:42.000Z",
+                      "uid": "35240-e6fef0b4-5331-4cd1-b2cf-94b4c0fb5929"
+                    },
+                    {
+                      "id": "d0394561-be03-4833-ba74-ead538c47de7",
+                      "name": "Default error response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-api-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/organization/:organizationID",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "organization",
+                            ":organizationID"
+                          ],
+                          "variable": [
+                            {
+                              "key": "organizationID"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"status_code\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T02:59:42.000Z",
+                      "updatedAt": "2026-07-28T02:59:42.000Z",
+                      "uid": "35240-d0394561-be03-4833-ba74-ead538c47de7"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:59:42.000Z",
+                  "updatedAt": "2026-07-28T02:59:42.000Z",
+                  "uid": "35240-299c7591-8e19-4114-a2df-b0887bb208e0"
+                }
+              ],
+              "id": "d0568d99-2470-43e5-ac71-562fb7546264",
+              "createdAt": "2026-07-28T02:59:42.000Z",
+              "updatedAt": "2026-07-28T02:59:42.000Z",
+              "uid": "35240-d0568d99-2470-43e5-ac71-562fb7546264"
+            },
+            {
+              "name": "free_trial",
+              "item": [
+                {
+                  "name": "Create a Free Trial for an Organization",
+                  "id": "0de362a7-6558-4611-b995-58526fe9ca26",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/organization/free_trial",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "organization",
+                        "free_trial"
+                      ]
+                    },
+                    "description": "Creates a free trial for an organization"
+                  },
+                  "response": [
+                    {
+                      "id": "9595d511-9ddf-49af-96e2-698a849dcbac",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-api-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/organization/free_trial",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "organization",
+                            "free_trial"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T02:59:42.000Z",
+                      "updatedAt": "2026-07-28T02:59:42.000Z",
+                      "uid": "35240-9595d511-9ddf-49af-96e2-698a849dcbac"
+                    },
+                    {
+                      "id": "8327041b-89d1-48e3-9fdf-505049d5d871",
+                      "name": "Default error response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-api-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/organization/free_trial",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "organization",
+                            "free_trial"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"status_code\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T02:59:42.000Z",
+                      "updatedAt": "2026-07-28T02:59:42.000Z",
+                      "uid": "35240-8327041b-89d1-48e3-9fdf-505049d5d871"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:59:42.000Z",
+                  "updatedAt": "2026-07-28T02:59:42.000Z",
+                  "uid": "35240-0de362a7-6558-4611-b995-58526fe9ca26"
+                }
+              ],
+              "id": "f504c80c-fc03-4296-b27d-73de611cca94",
+              "createdAt": "2026-07-28T02:59:42.000Z",
+              "updatedAt": "2026-07-28T02:59:42.000Z",
+              "uid": "35240-f504c80c-fc03-4296-b27d-73de611cca94"
+            },
+            {
+              "name": "usage",
+              "item": [
+                {
+                  "name": "Get Billing Usage Summary for a Particular Organization",
+                  "id": "a8609642-f451-44ae-a1a4-f51998273226",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/organization/usage",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "organization",
+                        "usage"
+                      ]
+                    },
+                    "description": "Returns a billing usage summary by target languages for a particular organization"
+                  },
+                  "response": [
+                    {
+                      "id": "928cc8a7-a7de-42c1-b552-30001de1e865",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-api-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/organization/usage",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "organization",
+                            "usage"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"usage\": [\n    {\n      \"number_of_operations\": \"<integer>\",\n      \"max_operations\": \"<integer>\",\n      \"language\": \"<string>\",\n      \"used_features\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"accessible_features\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"accessible\": \"<boolean>\",\n      \"workspaces\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"gen_lock_ids\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"number_of_operations\": \"<integer>\",\n      \"max_operations\": \"<integer>\",\n      \"language\": \"<string>\",\n      \"used_features\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"accessible_features\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"accessible\": \"<boolean>\",\n      \"workspaces\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"gen_lock_ids\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"total_allowed_languages\": \"<integer>\",\n  \"allowed_languages\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"free_trial_expiry\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T02:59:42.000Z",
+                      "updatedAt": "2026-07-28T02:59:42.000Z",
+                      "uid": "35240-928cc8a7-a7de-42c1-b552-30001de1e865"
+                    },
+                    {
+                      "id": "140dbdf0-d7f3-404a-bce1-50844905f245",
+                      "name": "Default error response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-api-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/organization/usage",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "organization",
+                            "usage"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"status_code\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T02:59:42.000Z",
+                      "updatedAt": "2026-07-28T02:59:42.000Z",
+                      "uid": "35240-140dbdf0-d7f3-404a-bce1-50844905f245"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:59:42.000Z",
+                  "updatedAt": "2026-07-28T02:59:42.000Z",
+                  "uid": "35240-a8609642-f451-44ae-a1a4-f51998273226"
+                }
+              ],
+              "id": "f365369b-465a-4648-bd33-b251fb3ebe7d",
+              "createdAt": "2026-07-28T02:59:42.000Z",
+              "updatedAt": "2026-07-28T02:59:42.000Z",
+              "uid": "35240-f365369b-465a-4648-bd33-b251fb3ebe7d"
+            },
+            {
+              "name": "add_ons",
+              "item": [
+                {
+                  "name": "{add_on}",
+                  "item": [
+                    {
+                      "name": "Delete Billing Add Ons",
+                      "id": "38a5e186-7838-41c4-8625-ea2c422306bc",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/organization/add_ons/:add_on",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "organization",
+                            "add_ons",
+                            ":add_on"
+                          ],
+                          "variable": [
+                            {
+                              "id": "af3e29bb-dc62-4de1-871c-8b46d738bf87",
+                              "key": "add_on",
+                              "value": "custom_code_regions",
+                              "description": "(Required) The specific add-on to delete."
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "b34bf954-901e-4bcb-ac39-c97288a77d26",
+                          "name": "Success",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "x-api-key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/organization/add_ons/:add_on",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "organization",
+                                "add_ons",
+                                ":add_on"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "add_on"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T02:59:42.000Z",
+                          "updatedAt": "2026-07-28T02:59:42.000Z",
+                          "uid": "35240-b34bf954-901e-4bcb-ac39-c97288a77d26"
+                        },
+                        {
+                          "id": "96af3ab1-51bc-4403-9ddb-a0e202a34cd9",
+                          "name": "Error",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "x-api-key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/organization/add_ons/:add_on",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "organization",
+                                "add_ons",
+                                ":add_on"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "add_on"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"status_code\": \"<integer>\"\n}",
+                          "createdAt": "2026-07-28T02:59:42.000Z",
+                          "updatedAt": "2026-07-28T02:59:42.000Z",
+                          "uid": "35240-96af3ab1-51bc-4403-9ddb-a0e202a34cd9"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:59:42.000Z",
+                      "updatedAt": "2026-07-28T02:59:42.000Z",
+                      "uid": "35240-38a5e186-7838-41c4-8625-ea2c422306bc"
+                    }
+                  ],
+                  "id": "978c58bd-9d51-4bc6-a4f7-8805e4456f55",
+                  "createdAt": "2026-07-28T02:59:42.000Z",
+                  "updatedAt": "2026-07-28T02:59:42.000Z",
+                  "uid": "35240-978c58bd-9d51-4bc6-a4f7-8805e4456f55"
+                },
+                {
+                  "name": "Create Billing Add Ons",
+                  "id": "cb848ff4-3904-46c1-9db0-3bbbafe57fbd",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"add_ons\": [\n    \"sdk_testing\",\n    \"snippet_ai\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/organization/add_ons",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "organization",
+                        "add_ons"
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "7206b25a-495f-4d99-9c66-cb108a6db02a",
+                      "name": "Success",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-api-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"add_ons\": [\n    \"sdk_testing\",\n    \"snippet_ai\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/organization/add_ons",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "organization",
+                            "add_ons"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"add_ons\": [\n    \"snippet_ai\",\n    \"custom_code_regions\"\n  ]\n}",
+                      "createdAt": "2026-07-28T02:59:42.000Z",
+                      "updatedAt": "2026-07-28T02:59:42.000Z",
+                      "uid": "35240-7206b25a-495f-4d99-9c66-cb108a6db02a"
+                    },
+                    {
+                      "id": "b8195d77-4cb2-4cb1-8b58-78ae4efa6e43",
+                      "name": "Error",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-api-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"add_ons\": [\n    \"sdk_testing\",\n    \"snippet_ai\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/organization/add_ons",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "organization",
+                            "add_ons"
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"status_code\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T02:59:42.000Z",
+                      "updatedAt": "2026-07-28T02:59:42.000Z",
+                      "uid": "35240-b8195d77-4cb2-4cb1-8b58-78ae4efa6e43"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:59:42.000Z",
+                  "updatedAt": "2026-07-28T02:59:42.000Z",
+                  "uid": "35240-cb848ff4-3904-46c1-9db0-3bbbafe57fbd"
+                },
+                {
+                  "name": "Get Billing Add Ons",
+                  "id": "daddc3e2-a715-4127-9618-2b404ee7bfa0",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/organization/add_ons",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "organization",
+                        "add_ons"
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "15a83320-59b8-4632-a715-572ddf90a0d9",
+                      "name": "Success",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-api-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/organization/add_ons",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "organization",
+                            "add_ons"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"add_ons\": [\n    \"snippet_ai\",\n    \"custom_code_regions\"\n  ]\n}",
+                      "createdAt": "2026-07-28T02:59:42.000Z",
+                      "updatedAt": "2026-07-28T02:59:42.000Z",
+                      "uid": "35240-15a83320-59b8-4632-a715-572ddf90a0d9"
+                    },
+                    {
+                      "id": "30e565f0-daa4-43ef-8aaf-40370e9924f4",
+                      "name": "Error",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-api-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/organization/add_ons",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "organization",
+                            "add_ons"
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"status_code\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T02:59:42.000Z",
+                      "updatedAt": "2026-07-28T02:59:42.000Z",
+                      "uid": "35240-30e565f0-daa4-43ef-8aaf-40370e9924f4"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:59:42.000Z",
+                  "updatedAt": "2026-07-28T02:59:42.000Z",
+                  "uid": "35240-daddc3e2-a715-4127-9618-2b404ee7bfa0"
+                }
+              ],
+              "id": "a9c13d86-0d4e-4c6b-bef1-09d649b0a3b9",
+              "createdAt": "2026-07-28T02:59:42.000Z",
+              "updatedAt": "2026-07-28T02:59:42.000Z",
+              "uid": "35240-a9c13d86-0d4e-4c6b-bef1-09d649b0a3b9"
+            },
+            {
+              "name": "Create an Organization",
+              "id": "ebc2b5f0-276b-46c0-80b0-e34421b14afc",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"slug\": \"<string>\",\n  \"account_type\": \"enterprise\",\n  \"telemetry_disabled\": \"<boolean>\",\n  \"sso_activated\": \"<boolean>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"free_trial_expiry\": \"<dateTime>\",\n  \"sso_connection_id\": \"<string>\",\n  \"internal\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v1/organization",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "organization"
+                  ]
+                },
+                "description": "Creates an organization"
+              },
+              "response": [
+                {
+                  "id": "6cb43d86-7d04-4068-9bbb-6a70a29b5f4e",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "x-api-key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"slug\": \"<string>\",\n  \"account_type\": \"enterprise\",\n  \"telemetry_disabled\": \"<boolean>\",\n  \"sso_activated\": \"<boolean>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"free_trial_expiry\": \"<dateTime>\",\n  \"sso_connection_id\": \"<string>\",\n  \"internal\": \"<boolean>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/organization",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "organization"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"slug\": \"<string>\",\n  \"account_type\": \"enterprise\",\n  \"telemetry_disabled\": \"<boolean>\",\n  \"sso_activated\": \"<boolean>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"free_trial_expiry\": \"<dateTime>\",\n  \"sso_connection_id\": \"<string>\",\n  \"internal\": \"<boolean>\"\n}",
+                  "createdAt": "2026-07-28T02:59:42.000Z",
+                  "updatedAt": "2026-07-28T02:59:42.000Z",
+                  "uid": "35240-6cb43d86-7d04-4068-9bbb-6a70a29b5f4e"
+                },
+                {
+                  "id": "3d8dd3e1-64f2-4662-a77d-65ddf18e3704",
+                  "name": "Default error response",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "x-api-key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"slug\": \"<string>\",\n  \"account_type\": \"enterprise\",\n  \"telemetry_disabled\": \"<boolean>\",\n  \"sso_activated\": \"<boolean>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"free_trial_expiry\": \"<dateTime>\",\n  \"sso_connection_id\": \"<string>\",\n  \"internal\": \"<boolean>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/organization",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "organization"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"status_code\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T02:59:42.000Z",
+                  "updatedAt": "2026-07-28T02:59:42.000Z",
+                  "uid": "35240-3d8dd3e1-64f2-4662-a77d-65ddf18e3704"
+                }
+              ],
+              "createdAt": "2026-07-28T02:59:42.000Z",
+              "updatedAt": "2026-07-28T02:59:42.000Z",
+              "uid": "35240-ebc2b5f0-276b-46c0-80b0-e34421b14afc"
+            }
+          ],
+          "id": "59552bcb-4ad9-4d7a-9d45-a5ef660d955e",
+          "createdAt": "2026-07-28T02:59:42.000Z",
+          "updatedAt": "2026-07-28T02:59:42.000Z",
+          "uid": "35240-59552bcb-4ad9-4d7a-9d45-a5ef660d955e"
+        }
+      ],
+      "id": "4fbbfd51-791f-42ef-b958-f977f2198847",
+      "createdAt": "2026-07-28T02:59:42.000Z",
+      "updatedAt": "2026-07-28T02:59:42.000Z",
+      "uid": "35240-4fbbfd51-791f-42ef-b958-f977f2198847"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.prod.speakeasy.com"
+    }
+  ]
+}
