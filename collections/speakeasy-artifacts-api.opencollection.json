@@ -1,0 +1,264 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Speakeasy Artifacts API",
+    "version": "0.4.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Artifacts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Access Token for Communicating with OCI Distribution Endpoints",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.prod.speakeasy.com/v1/artifacts/preflight",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get Access Token for Communicating with OCI Distribution Endpoints"
+        },
+        {
+          "info": {
+            "name": "Each Namespace Contains Many Revisions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.prod.speakeasy.com/v1/artifacts/namespaces"
+          },
+          "docs": "Each Namespace Contains Many Revisions"
+        },
+        {
+          "info": {
+            "name": "Set Whether a Namespace is Archived",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.prod.speakeasy.com/v1/artifacts/namespaces/:namespace_name/archive",
+            "params": [
+              {
+                "name": "namespace_name",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Set Whether a Namespace is Archived"
+        },
+        {
+          "info": {
+            "name": "getRevisions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.prod.speakeasy.com/v1/artifacts/namespaces/:namespace_name/revisions",
+            "params": [
+              {
+                "name": "namespace_name",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "next_page_token",
+                "value": "",
+                "type": "query",
+                "description": "Token to retrieve the next page of results"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getTags",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.prod.speakeasy.com/v1/artifacts/namespaces/:namespace_name/tags",
+            "params": [
+              {
+                "name": "namespace_name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "Add Tags to an Existing Revision",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.prod.speakeasy.com/v1/artifacts/namespaces/:namespace_name/tags",
+            "params": [
+              {
+                "name": "namespace_name",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add Tags to an Existing Revision"
+        },
+        {
+          "info": {
+            "name": "Set Visibility of a Namespace with an Existing Metadata Entry",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.prod.speakeasy.com/v1/artifacts/namespaces/:namespace_name/visibility",
+            "params": [
+              {
+                "name": "namespace_name",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Set Visibility of a Namespace with an Existing Metadata Entry"
+        },
+        {
+          "info": {
+            "name": "Get Remote Sources Attached to a Particular Namespace",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.prod.speakeasy.com/v1/artifacts/remote_sources",
+            "params": [
+              {
+                "name": "namespace_name",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get Remote Sources Attached to a Particular Namespace"
+        },
+        {
+          "info": {
+            "name": "Configure a New Remote Source",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.prod.speakeasy.com/v1/artifacts/remote_sources",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Configure a New Remote Source"
+        },
+        {
+          "info": {
+            "name": "Get Manifest for a Particular Reference",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.prod.speakeasy.com/v1/oci/v2/:organization_slug/:workspace_slug/:namespace_name/manifests/:revision_reference",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "organization_slug",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "workspace_slug",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "namespace_name",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "revision_reference",
+                "value": "",
+                "type": "path",
+                "description": "Tag or digest"
+              }
+            ]
+          },
+          "docs": "Get Manifest for a Particular Reference"
+        },
+        {
+          "info": {
+            "name": "Get Blob for a Particular Digest",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.prod.speakeasy.com/v1/oci/v2/:organization_slug/:workspace_slug/:namespace_name/blobs/:digest",
+            "params": [
+              {
+                "name": "organization_slug",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "workspace_slug",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "namespace_name",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "digest",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Blob for a Particular Digest"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

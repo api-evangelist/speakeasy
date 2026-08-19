@@ -1,0 +1,151 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Speakeasy Artifacts PublishingTokens API",
+    "version": "0.4.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "PublishingTokens",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Publishing Tokens for a Workspace",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.prod.speakeasy.com/v1/publishing-tokens"
+          },
+          "docs": "Returns a publishing token for the current workspace"
+        },
+        {
+          "info": {
+            "name": "Create a Publishing Token for a Workspace",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.prod.speakeasy.com/v1/publishing-tokens",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a publishing token for the current workspace"
+        },
+        {
+          "info": {
+            "name": "Get a Specific Publishing Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.prod.speakeasy.com/v1/publishing-tokens/:tokenID",
+            "params": [
+              {
+                "name": "tokenID",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the publishing token."
+              }
+            ]
+          },
+          "docs": "Get information about a particular publishing token."
+        },
+        {
+          "info": {
+            "name": "Updates the Validitity Period of a Publishing Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.prod.speakeasy.com/v1/publishing-tokens/:tokenID",
+            "params": [
+              {
+                "name": "tokenID",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the publishing token."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the validity period of a particular publishing token."
+        },
+        {
+          "info": {
+            "name": "Delete a Specific Publishing Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.prod.speakeasy.com/v1/publishing-tokens/:tokenID",
+            "params": [
+              {
+                "name": "tokenID",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the publishing token."
+              }
+            ]
+          },
+          "docs": "Delete a particular publishing token."
+        },
+        {
+          "info": {
+            "name": "Get a Specific Publishing Token Target",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.prod.speakeasy.com/v1/publishing-tokens/:tokenID/target",
+            "params": [
+              {
+                "name": "tokenID",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the publishing token."
+              }
+            ]
+          },
+          "docs": "Get information about a particular publishing token target."
+        },
+        {
+          "info": {
+            "name": "Get Metadata About the Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.prod.speakeasy.com/v1/publishing-tokens/:tokenID/metadata",
+            "params": [
+              {
+                "name": "tokenID",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the publishing token."
+              }
+            ]
+          },
+          "docs": "Get information about a particular publishing token."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

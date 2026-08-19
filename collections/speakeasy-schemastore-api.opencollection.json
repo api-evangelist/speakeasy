@@ -1,0 +1,56 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Speakeasy Artifacts SchemaStore API",
+    "version": "0.4.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "SchemaStore",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a OAS Schema from the Schema Store",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.prod.speakeasy.com/v1/schema_store",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get a OAS Schema from the Schema Store"
+        },
+        {
+          "info": {
+            "name": "Create a Schema in the Schema Store",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.prod.speakeasy.com/v1/schema_store",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a Schema in the Schema Store"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

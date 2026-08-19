@@ -1,0 +1,98 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Speakeasy Artifacts Auth API",
+    "version": "0.4.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Auth",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Validate the Current API Key",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.prod.speakeasy.com/v1/auth/validate"
+          },
+          "docs": "Validate the Current API Key"
+        },
+        {
+          "info": {
+            "name": "Get Information About the Current User",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.prod.speakeasy.com/v1/user"
+          },
+          "docs": "Get Information About the Current User"
+        },
+        {
+          "info": {
+            "name": "Get or Refresh an Access Token for the Current Workspace",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.prod.speakeasy.com/v1/auth/access_token",
+            "params": [
+              {
+                "name": "workspace_id",
+                "value": "",
+                "type": "query",
+                "description": "The workspace ID"
+              }
+            ]
+          },
+          "docs": "Get or Refresh an Access Token for the Current Workspace"
+        },
+        {
+          "info": {
+            "name": "Get Access Allowances for a Particular Workspace",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.prod.speakeasy.com/v1/workspace/access",
+            "params": [
+              {
+                "name": "genLockId",
+                "value": "",
+                "type": "query",
+                "description": "Unique identifier of the generation target."
+              },
+              {
+                "name": "targetType",
+                "value": "",
+                "type": "query",
+                "description": "The type of the generated target."
+              },
+              {
+                "name": "passive",
+                "value": "",
+                "type": "query",
+                "description": "Skip side-effects like incrementing metrics."
+              }
+            ]
+          },
+          "docs": "Checks if generation is permitted for a particular run of the CLI"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

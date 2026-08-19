@@ -1,0 +1,549 @@
+{
+  "item": [
+    {
+      "id": "1e3e6b87-696a-4c95-916e-433c15269b2f",
+      "name": "Suggest",
+      "description": {
+        "content": "REST APIs for managing LLM OAS suggestions",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1ff90afc-e0c8-40d4-8f1e-02c2e3e1aed8",
+          "name": "(DEPRECATED) Generate Suggestions for Improving an OpenAPI Document",
+          "request": {
+            "name": "(DEPRECATED) Generate Suggestions for Improving an OpenAPI Document",
+            "description": {
+              "content": "Get suggestions from an LLM model for improving an OpenAPI document.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "suggest",
+                "openapi"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "x-session-id",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "schema",
+                  "type": "file",
+                  "description": "(Required) "
+                },
+                {
+                  "key": "opts",
+                  "value": "{\"suggestion_type\":\"<string>\",\"diagnostics\":[{\"message\":\"<string>\",\"path\":[\"<string>\",\"<string>\"],\"type\":\"<string>\",\"helpMessage\":\"<string>\"},{\"message\":\"<string>\",\"path\":[\"<string>\",\"<string>\"],\"type\":\"<string>\",\"helpMessage\":\"<string>\"}]}",
+                  "type": "text",
+                  "description": ""
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "109bdff0-6180-4bc2-bc5d-e2bfd11412eb",
+              "name": "An overlay containing the suggested spec modifications.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "suggest",
+                    "openapi"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "x-session-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "schema",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "opts",
+                      "value": "{\"suggestion_type\":\"<string>\",\"diagnostics\":[{\"message\":\"<string>\",\"path\":[\"<string>\",\"<string>\"],\"type\":\"<string>\",\"helpMessage\":\"<string>\"},{\"message\":\"<string>\",\"path\":[\"<string>\",\"<string>\"],\"type\":\"<string>\",\"helpMessage\":\"<string>\"}]}",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "660d42b2-7ece-4864-950b-feaa1f0c7622",
+          "name": "Generate Suggestions for Improving an OpenAPI Document",
+          "request": {
+            "name": "Generate Suggestions for Improving an OpenAPI Document",
+            "description": {
+              "content": "Get suggestions from an LLM model for improving an OpenAPI document.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "suggest",
+                "openapi_from_summary"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "x-session-id",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"oas_summary\": {\n    \"info\": {\n      \"title\": \"<string>\",\n      \"summary\": \"<string>\",\n      \"description\": \"<string>\",\n      \"version\": \"<string>\",\n      \"license\": {\n        \"identifier\": \"<string>\"\n      }\n    },\n    \"operations\": [\n      {\n        \"method\": \"<string>\",\n        \"path\": \"<string>\",\n        \"operation_id\": \"<string>\",\n        \"description\": \"<string>\",\n        \"tags\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"method_name_override\": \"<string>\",\n        \"group_override\": \"<string>\"\n      },\n      {\n        \"method\": \"<string>\",\n        \"path\": \"<string>\",\n        \"operation_id\": \"<string>\",\n        \"description\": \"<string>\",\n        \"tags\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"method_name_override\": \"<string>\",\n        \"group_override\": \"<string>\"\n      }\n    ]\n  },\n  \"suggestion_type\": \"<string>\",\n  \"diagnostics\": [\n    {\n      \"message\": \"<string>\",\n      \"path\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"type\": \"<string>\",\n      \"helpMessage\": \"<string>\"\n    },\n    {\n      \"message\": \"<string>\",\n      \"path\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"type\": \"<string>\",\n      \"helpMessage\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "52bf0b43-a945-4bd3-8440-9a9e4900cb51",
+              "name": "An overlay containing the suggested spec modifications.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "suggest",
+                    "openapi_from_summary"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "x-session-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"oas_summary\": {\n    \"info\": {\n      \"title\": \"<string>\",\n      \"summary\": \"<string>\",\n      \"description\": \"<string>\",\n      \"version\": \"<string>\",\n      \"license\": {\n        \"identifier\": \"<string>\"\n      }\n    },\n    \"operations\": [\n      {\n        \"method\": \"<string>\",\n        \"path\": \"<string>\",\n        \"operation_id\": \"<string>\",\n        \"description\": \"<string>\",\n        \"tags\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"method_name_override\": \"<string>\",\n        \"group_override\": \"<string>\"\n      },\n      {\n        \"method\": \"<string>\",\n        \"path\": \"<string>\",\n        \"operation_id\": \"<string>\",\n        \"description\": \"<string>\",\n        \"tags\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"method_name_override\": \"<string>\",\n        \"group_override\": \"<string>\"\n      }\n    ]\n  },\n  \"suggestion_type\": \"<string>\",\n  \"diagnostics\": [\n    {\n      \"message\": \"<string>\",\n      \"path\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"type\": \"<string>\",\n      \"helpMessage\": \"<string>\"\n    },\n    {\n      \"message\": \"<string>\",\n      \"path\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"type\": \"<string>\",\n      \"helpMessage\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d2ca5777-155a-456f-be33-2fb697a8df08",
+          "name": "Generate Generic Suggestions for a List of Items",
+          "request": {
+            "name": "Generate Generic Suggestions for a List of Items",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "suggest",
+                "items"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"prompt\": \"<string>\",\n  \"items\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5a543dce-fc6f-4b54-a517-67eadcfebb0a",
+              "name": "One suggestion per item. Guaranteed to be the same length as the input items.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "suggest",
+                    "items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"prompt\": \"<string>\",\n  \"items\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  \"string\",\n  \"string\"\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5b02df33-5202-4afd-af88-452bd1da577a",
+          "name": "Generate Suggestions for Improving an OpenAPI Document Stored in the Registry",
+          "request": {
+            "name": "Generate Suggestions for Improving an OpenAPI Document Stored in the Registry",
+            "description": {
+              "content": "Get suggestions from an LLM model for improving an OpenAPI document stored in the registry.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "suggest",
+                "openapi",
+                ":namespace_name",
+                ":revision_reference"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "namespace_name",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "revision_reference",
+                  "description": "(Required) Tag or digest"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "x-session-id",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"oas_summary\": {\n    \"info\": {\n      \"title\": \"<string>\",\n      \"summary\": \"<string>\",\n      \"description\": \"<string>\",\n      \"version\": \"<string>\",\n      \"license\": {\n        \"identifier\": \"<string>\"\n      }\n    },\n    \"operations\": [\n      {\n        \"method\": \"<string>\",\n        \"path\": \"<string>\",\n        \"operation_id\": \"<string>\",\n        \"description\": \"<string>\",\n        \"tags\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"method_name_override\": \"<string>\",\n        \"group_override\": \"<string>\"\n      },\n      {\n        \"method\": \"<string>\",\n        \"path\": \"<string>\",\n        \"operation_id\": \"<string>\",\n        \"description\": \"<string>\",\n        \"tags\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"method_name_override\": \"<string>\",\n        \"group_override\": \"<string>\"\n      }\n    ]\n  },\n  \"suggestion_type\": \"<string>\",\n  \"diagnostics\": [\n    {\n      \"message\": \"<string>\",\n      \"path\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"type\": \"<string>\",\n      \"helpMessage\": \"<string>\"\n    },\n    {\n      \"message\": \"<string>\",\n      \"path\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"type\": \"<string>\",\n      \"helpMessage\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9071c5a5-428b-48ce-a916-e722afcabdc0",
+              "name": "An overlay containing the suggested spec modifications.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "suggest",
+                    "openapi",
+                    ":namespace_name",
+                    ":revision_reference"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace_name",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "revision_reference",
+                      "description": "(Required) Tag or digest"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "x-session-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"oas_summary\": {\n    \"info\": {\n      \"title\": \"<string>\",\n      \"summary\": \"<string>\",\n      \"description\": \"<string>\",\n      \"version\": \"<string>\",\n      \"license\": {\n        \"identifier\": \"<string>\"\n      }\n    },\n    \"operations\": [\n      {\n        \"method\": \"<string>\",\n        \"path\": \"<string>\",\n        \"operation_id\": \"<string>\",\n        \"description\": \"<string>\",\n        \"tags\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"method_name_override\": \"<string>\",\n        \"group_override\": \"<string>\"\n      },\n      {\n        \"method\": \"<string>\",\n        \"path\": \"<string>\",\n        \"operation_id\": \"<string>\",\n        \"description\": \"<string>\",\n        \"tags\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"method_name_override\": \"<string>\",\n        \"group_override\": \"<string>\"\n      }\n    ]\n  },\n  \"suggestion_type\": \"<string>\",\n  \"diagnostics\": [\n    {\n      \"message\": \"<string>\",\n      \"path\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"type\": \"<string>\",\n      \"helpMessage\": \"<string>\"\n    },\n    {\n      \"message\": \"<string>\",\n      \"path\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"type\": \"<string>\",\n      \"helpMessage\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.prod.speakeasy.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "8a9fa49c-8539-4a3e-a6cd-bfed72c1b460",
+    "name": "Speakeasy Artifacts Suggest API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Subscriptions API manages subscriptions for CLI and registry events",
+      "type": "text/plain"
+    }
+  }
+}
