@@ -6,6 +6,10 @@ apis:
   tags:
   - Code Generation
   - OpenAPI
+  - SDK
+  tags_raw:
+  - Code Generation
+  - OpenAPI
   - SDKs
   humanURL: https://www.speakeasy.com/product/sdk-generation
   properties:
@@ -36,6 +40,12 @@ apis:
 - aid: speakeasy:mcp-server
   name: Speakeasy MCP Server Generation
   tags:
+  - Agents
+  - Artificial Intelligence
+  - Code Generation
+  - MCP
+  - OpenAPI
+  tags_raw:
   - Agents
   - AI
   - Code Generation
@@ -69,6 +79,11 @@ apis:
   tags:
   - Contract Testing
   - OpenAPI
+  - SDK
+  - Testing
+  tags_raw:
+  - Contract Testing
+  - OpenAPI
   - SDKs
   - Testing
   humanURL: https://www.speakeasy.com/docs/sdk-testing
@@ -86,6 +101,11 @@ apis:
   tags:
   - Frontend
   - React
+  - SDK
+  - TypeScript
+  tags_raw:
+  - Frontend
+  - React
   - SDKs
   - TypeScript
   humanURL: https://www.speakeasy.com/product/react-query
@@ -98,6 +118,12 @@ apis:
 - aid: speakeasy:gram
   name: Speakeasy Gram
   tags:
+  - Agents
+  - Artificial Intelligence
+  - Cloud
+  - MCP
+  - Platform
+  tags_raw:
   - Agents
   - AI
   - Cloud
@@ -141,6 +167,8 @@ apis:
   humanURL: https://www.speakeasy.com/
   baseURL: https://api.prod.speakeasy.com
   tags:
+  - Authentication
+  tags_raw:
   - Auth
   properties:
   - type: OpenAPI
@@ -181,6 +209,8 @@ apis:
   humanURL: https://www.speakeasy.com/
   baseURL: https://api.prod.speakeasy.com
   tags:
+  - Event
+  tags_raw:
   - Events
   properties:
   - type: OpenAPI
@@ -201,6 +231,8 @@ apis:
   humanURL: https://www.speakeasy.com/
   baseURL: https://api.prod.speakeasy.com
   tags:
+  - GitHub
+  tags_raw:
   - Github
   properties:
   - type: OpenAPI
@@ -221,6 +253,8 @@ apis:
   humanURL: https://www.speakeasy.com/
   baseURL: https://api.prod.speakeasy.com
   tags:
+  - Organization
+  tags_raw:
   - Organizations
   properties:
   - type: OpenAPI
@@ -321,6 +355,8 @@ apis:
   humanURL: https://www.speakeasy.com/
   baseURL: https://api.prod.speakeasy.com
   tags:
+  - Subscription
+  tags_raw:
   - Subscriptions
   properties:
   - type: OpenAPI
@@ -377,6 +413,14 @@ apis:
     url: https://github.com/speakeasy-api/speakeasy
 name: Speakeasy
 tags:
+  - Artificial Intelligence
+  - Documentation
+  - MCP
+  - Platform
+  - SDK
+  - Terraform
+  - Testing
+tags_raw:
   - AI
   - Documentation
   - MCP
