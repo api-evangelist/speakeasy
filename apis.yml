@@ -429,9 +429,26 @@ tags_raw:
   - Terraform
   - Testing
 type: Index
+deliveryModel:
+  model: unknown
+  open_source: unknown
+  commercial: true
+  callable_host: true
+  label: Delivery model not determined — needs a product licence on record
+  confidence: low
+  source:
+  - openapi
+  - pricing
+  - repository-unlicensed
+  generated: '2026-08-28'
+  method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 access: 3rd-Party
 common:
+  - type: IssueTracker
+    url: https://github.com/speakeasy-api/speakeasy/issues
+  - type: Releases
+    url: https://github.com/speakeasy-api/speakeasy/releases
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/speakeasy/overview
   - type: AgentCard
