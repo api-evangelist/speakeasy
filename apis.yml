@@ -231,7 +231,7 @@ apis:
   humanURL: https://www.speakeasy.com/
   baseURL: https://api.prod.speakeasy.com
   tags:
-  - GitHub
+  - Github
   tags_raw:
   - Github
   properties:
