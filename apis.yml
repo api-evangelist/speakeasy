@@ -617,6 +617,8 @@ common:
       - name: Agent Skills
       - name: Gram MCP Cloud
       - name: DocsMD
+  - type: Contact
+    url: mailto:sales@speakeasy.com
 created: '2025-01-08'
 modified: '2026-05-19'
 position: Consuming
