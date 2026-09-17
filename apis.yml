@@ -329,26 +329,6 @@ apis:
     url: https://www.speakeasy.com/docs/speakeasy-reference/cli
   - type: GitHubRepo
     url: https://github.com/speakeasy-api/speakeasy
-- aid: speakeasy:speakeasy-shorturls-api
-  name: Speakeasy ShortURLs API
-  description: REST APIs for managing short URLs
-  humanURL: https://www.speakeasy.com/
-  baseURL: https://api.prod.speakeasy.com
-  tags:
-  - ShortURLs
-  properties:
-  - type: OpenAPI
-    url: openapi/speakeasy-shorturls-api-openapi.yml
-  - type: Website
-    url: https://www.speakeasy.com/
-  - type: GettingStarted
-    url: https://www.speakeasy.com/docs/sdks/introduction
-  - type: Documentation
-    url: https://www.speakeasy.com/docs
-  - type: CLI
-    url: https://www.speakeasy.com/docs/speakeasy-reference/cli
-  - type: GitHubRepo
-    url: https://github.com/speakeasy-api/speakeasy
 - aid: speakeasy:speakeasy-subscriptions-api
   name: Speakeasy Subscriptions API
   description: REST APIs for managing subscriptions
@@ -401,6 +381,26 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/speakeasy-workspaces-api-openapi.yml
+  - type: Website
+    url: https://www.speakeasy.com/
+  - type: GettingStarted
+    url: https://www.speakeasy.com/docs/sdks/introduction
+  - type: Documentation
+    url: https://www.speakeasy.com/docs
+  - type: CLI
+    url: https://www.speakeasy.com/docs/speakeasy-reference/cli
+  - type: GitHubRepo
+    url: https://github.com/speakeasy-api/speakeasy
+- aid: speakeasy:speakeasy-short-urls-api
+  name: Speakeasy Short URLs API
+  description: REST APIs for managing short URLs
+  humanURL: https://www.speakeasy.com/product/sdk-generation
+  baseURL: https://api.prod.speakeasy.com
+  tags:
+  - Short URLs
+  properties:
+  - type: OpenAPI
+    url: openapi/speakeasy-short-urls-api-openapi.yml
   - type: Website
     url: https://www.speakeasy.com/
   - type: GettingStarted
