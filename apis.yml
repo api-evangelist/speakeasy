@@ -377,6 +377,8 @@ apis:
   humanURL: https://www.speakeasy.com/
   baseURL: https://api.prod.speakeasy.com
   tags:
+  - Workspace
+  tags_raw:
   - Workspaces
   properties:
   - type: OpenAPI
@@ -397,6 +399,8 @@ apis:
   humanURL: https://www.speakeasy.com/product/sdk-generation
   baseURL: https://api.prod.speakeasy.com
   tags:
+  - ShortURLs
+  tags_raw:
   - Short URLs
   properties:
   - type: OpenAPI
