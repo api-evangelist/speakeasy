@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   description: The Subscriptions API manages subscriptions for CLI and registry events
-  title: Speakeasy Artifacts Events API
+  title: Speakeasy Events API
   version: 0.4.0
 servers:
 - url: https://api.prod.speakeasy.com
@@ -91,6 +91,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+      summary: Search workspace events
+      x-summary-source: derived
     post:
       summary: Post Events for a Specific Workspace
       description: Sends an array of events to be stored for a particular workspace.
@@ -168,6 +170,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+      summary: Get workspace events by target
+      x-summary-source: derived
   /v1/workspace/events/targets:
     parameters:
     - name: after_last_event_created_at
@@ -197,6 +201,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+      summary: Get workspace targets
+      x-summary-source: derived
   /v1/workspace/{workspace_id}/events/targets:
     parameters:
     - name: workspace_id
@@ -232,8 +238,15 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+      summary: Get workspace targets deprecated
+      x-summary-source: derived
 components:
   schemas:
+    TargetSDKList:
+      type: array
+      items:
+        $ref: '#/components/schemas/TargetSDK'
+      minItems: 1
     CliEvent:
       type: object
       required:
@@ -509,16 +522,6 @@ components:
         workflow_lock_post_raw:
           type: string
           description: Workflow lock file (post execution)
-    CliEventBatch:
-      type: array
-      items:
-        $ref: '#/components/schemas/CliEvent'
-      minItems: 1
-    TargetSDKList:
-      type: array
-      items:
-        $ref: '#/components/schemas/TargetSDK'
-      minItems: 1
     TargetSDK:
       type: object
       required:
@@ -666,20 +669,11 @@ components:
         last_publish_gh_action_run_link:
           type: string
           description: Link to the GitHub action run for the last publishing event.
-    Error:
-      description: The `Status` type defines a logical error model
-      properties:
-        message:
-          description: A developer-facing error message.
-          type: string
-        status_code:
-          description: The HTTP status code
-          format: int32
-          type: integer
-      required:
-      - message
-      - status_code
-      type: object
+    CliEventBatch:
+      type: array
+      items:
+        $ref: '#/components/schemas/CliEvent'
+      minItems: 1
     InteractionType:
       type: string
       description: Type of interaction.
@@ -696,6 +690,20 @@ components:
       - CONFIGURE
       - PUBLISH
       - TEST
+    Error:
+      description: The `Status` type defines a logical error model
+      properties:
+        message:
+          description: A developer-facing error message.
+          type: string
+        status_code:
+          description: The HTTP status code
+          format: int32
+          type: integer
+      required:
+      - message
+      - status_code
+      type: object
   securitySchemes:
     APIKey:
       description: The API Key for the workspace

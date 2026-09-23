@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   description: The Subscriptions API manages subscriptions for CLI and registry events
-  title: Speakeasy Artifacts Organizations API
+  title: Speakeasy Organizations API
   version: 0.4.0
 servers:
 - url: https://api.prod.speakeasy.com
@@ -186,48 +186,6 @@ components:
       - scale-up
       - business
       - enterprise
-    OrganizationBillingAddOnResponse:
-      description: Billing add on response
-      properties:
-        add_ons:
-          type: array
-          items:
-            $ref: '#/components/schemas/BillingAddOn'
-      required:
-      - add_ons
-    OrganizationUsageResponse:
-      description: A billing summary of organization usage
-      type: object
-      properties:
-        usage:
-          type: array
-          items:
-            $ref: '#/components/schemas/OrganizationUsage'
-        free_trial_expiry:
-          format: date-time
-          readOnly: true
-          type: string
-          description: Expiry date of the free trial, will be null if no trial
-        total_allowed_languages:
-          type: integer
-          description: Total number of allowed languages, -1 if unlimited
-        allowed_languages:
-          type: array
-          items:
-            type: string
-          description: List of allowed languages
-      required:
-      - usage
-      - total_allowed_languages
-      - allowed_languages
-    BillingAddOn:
-      type: string
-      x-speakeasy-unknown-values: allow
-      enum:
-      - webhooks
-      - sdk_testing
-      - custom_code_regions
-      - snippet_ai
     OrganizationBillingAddOnRequest:
       description: A request to add billing add ons
       type: object
@@ -252,6 +210,23 @@ components:
       - message
       - status_code
       type: object
+    OrganizationBillingAddOnResponse:
+      description: Billing add on response
+      properties:
+        add_ons:
+          type: array
+          items:
+            $ref: '#/components/schemas/BillingAddOn'
+      required:
+      - add_ons
+    BillingAddOn:
+      type: string
+      x-speakeasy-unknown-values: allow
+      enum:
+      - webhooks
+      - sdk_testing
+      - custom_code_regions
+      - snippet_ai
     Organization:
       description: A speakeasy organization
       properties:
@@ -272,12 +247,14 @@ components:
           type: string
           format: date-time
         free_trial_expiry:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date-time
-          nullable: true
         sso_connection_id:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         sso_activated:
           type: boolean
         internal:
@@ -336,6 +313,31 @@ components:
       - accessible
       - workspaces
       - gen_lock_ids
+    OrganizationUsageResponse:
+      description: A billing summary of organization usage
+      type: object
+      properties:
+        usage:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrganizationUsage'
+        free_trial_expiry:
+          format: date-time
+          readOnly: true
+          type: string
+          description: Expiry date of the free trial, will be null if no trial
+        total_allowed_languages:
+          type: integer
+          description: Total number of allowed languages, -1 if unlimited
+        allowed_languages:
+          type: array
+          items:
+            type: string
+          description: List of allowed languages
+      required:
+      - usage
+      - total_allowed_languages
+      - allowed_languages
   responses:
     default:
       content:

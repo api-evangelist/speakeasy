@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   description: The Subscriptions API manages subscriptions for CLI and registry events
-  title: Speakeasy Artifacts Auth API
+  title: Speakeasy Auth API
   version: 0.4.0
 servers:
 - url: https://api.prod.speakeasy.com
@@ -114,6 +114,15 @@ paths:
                 $ref: '#/components/schemas/AccessDetails'
 components:
   schemas:
+    WorkspaceFeatureFlag:
+      description: enum value workspace feature flag
+      type: string
+      x-speakeasy-unknown-values: allow
+      enum:
+      - schema_registry
+      - changes_report
+      - skip_schema_registry
+      - webhooks
     AccountType:
       type: string
       x-speakeasy-unknown-values: allow
@@ -122,6 +131,47 @@ components:
       - scale-up
       - business
       - enterprise
+    ApiKeyDetails:
+      type: object
+      properties:
+        workspace_id:
+          type: string
+        workspace_slug:
+          type: string
+        org_slug:
+          type: string
+        generation_access_unlimited:
+          type: boolean
+        account_type_v2:
+          $ref: '#/components/schemas/AccountType'
+        enabled_features:
+          type: array
+          items:
+            type: string
+        billing_add_ons:
+          type: array
+          items:
+            $ref: '#/components/schemas/BillingAddOn'
+        feature_flags:
+          deprecated: true
+          type: array
+          items:
+            type: string
+        telemetry_disabled:
+          type: boolean
+        workspace_created_at:
+          description: Workspace creation timestamp.
+          format: date-time
+          type: string
+      required:
+      - workspace_id
+      - account_type_v2
+      - enabled_features
+      - workspace_slug
+      - org_slug
+      - workspace_created_at
+      - telemetry_disabled
+      - billing_add_ons
     AccessToken:
       description: An AccessToken is a token that can be used to authenticate with the Speakeasy API.
       properties:
@@ -168,31 +218,18 @@ components:
       - claims
       - user
       type: object
-    AccessDetails:
-      type: object
+    FeatureFlag:
+      description: A feature flag is a key-value pair that can be used to enable or disable features.
       properties:
-        generation_allowed:
-          type: boolean
-        message:
-          type: string
-        level:
-          type: string
-          enum:
-          - allowed
-          - warning
-          - blocked
+        feature_flag:
+          $ref: '#/components/schemas/WorkspaceFeatureFlag'
+        trial_ends_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
       required:
-      - generation_allowed
-      - message
-    WorkspaceFeatureFlag:
-      description: enum value workspace feature flag
-      type: string
-      x-speakeasy-unknown-values: allow
-      enum:
-      - schema_registry
-      - changes_report
-      - skip_schema_registry
-      - webhooks
+      - feature_flag
     BillingAddOn:
       type: string
       x-speakeasy-unknown-values: allow
@@ -201,17 +238,6 @@ components:
       - sdk_testing
       - custom_code_regions
       - snippet_ai
-    FeatureFlag:
-      description: A feature flag is a key-value pair that can be used to enable or disable features.
-      properties:
-        feature_flag:
-          $ref: '#/components/schemas/WorkspaceFeatureFlag'
-        trial_ends_at:
-          type: string
-          format: date-time
-          nullable: true
-      required:
-      - feature_flag
     User:
       type: object
       properties:
@@ -225,20 +251,23 @@ components:
           type: boolean
           description: Indicates whether the email address has been verified.
         github_handle:
-          type: string
+          type:
+          - string
+          - 'null'
           description: GitHub handle of the user.
-          nullable: true
         display_name:
           type: string
           description: Display name of the user.
         photo_url:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: URL of the user's photo.
         default_workspace_id:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Identifier of the default workspace.
-          nullable: true
         confirmed:
           type: boolean
           description: Indicates whether the user has been confirmed.
@@ -246,8 +275,9 @@ components:
           type: boolean
           description: Indicates whether the user has been whitelisted.
         last_login_at:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           format: date-time
           description: Timestamp of the last login.
         admin:
@@ -294,47 +324,22 @@ components:
       - message
       - status_code
       type: object
-    ApiKeyDetails:
+    AccessDetails:
       type: object
       properties:
-        workspace_id:
-          type: string
-        workspace_slug:
-          type: string
-        org_slug:
-          type: string
-        generation_access_unlimited:
+        generation_allowed:
           type: boolean
-        account_type_v2:
-          $ref: '#/components/schemas/AccountType'
-        enabled_features:
-          type: array
-          items:
-            type: string
-        billing_add_ons:
-          type: array
-          items:
-            $ref: '#/components/schemas/BillingAddOn'
-        feature_flags:
-          deprecated: true
-          type: array
-          items:
-            type: string
-        telemetry_disabled:
-          type: boolean
-        workspace_created_at:
-          description: Workspace creation timestamp.
-          format: date-time
+        message:
           type: string
+        level:
+          type: string
+          enum:
+          - allowed
+          - warning
+          - blocked
       required:
-      - workspace_id
-      - account_type_v2
-      - enabled_features
-      - workspace_slug
-      - org_slug
-      - workspace_created_at
-      - telemetry_disabled
-      - billing_add_ons
+      - generation_allowed
+      - message
   responses:
     default:
       content:

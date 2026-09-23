@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   description: The Subscriptions API manages subscriptions for CLI and registry events
-  title: Speakeasy Artifacts CodeSamples API
+  title: Speakeasy Code Samples API
   version: 0.4.0
 servers:
 - url: https://api.prod.speakeasy.com
@@ -118,7 +118,7 @@ paths:
                 $ref: '#/components/schemas/Error'
   /v1/code_sample/preview/async:
     post:
-      summary: Initiate Asynchronous Code Sample Preview Generation from a File and Configuration Parameters, Receiving an Async JobID Response for Polling
+      summary: Initiate Asynchronous Code Sample Preview Generation from a File and…
       description: This endpoint generates Code Sample previews from a file and configuration parameters, receiving an async JobID response for polling.
       operationId: generateCodeSamplePreviewAsync
       tags:
@@ -206,15 +206,29 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    UsageSnippets:
+    UsageSnippet:
       type: object
       properties:
-        snippets:
-          type: array
-          items:
-            $ref: '#/components/schemas/UsageSnippet'
+        path:
+          type: string
+          description: The path of the operation
+        method:
+          description: The HTTP method of the operation
+        operationId:
+          type: string
+          description: The operation ID for the snippet
+        language:
+          type: string
+          description: The language of the snippet
+        code:
+          type: string
+          description: The code snippet
       required:
-      - snippets
+      - path
+      - method
+      - operationId
+      - language
+      - code
     CodeSampleSchemaInput:
       type: object
       required:
@@ -239,35 +253,17 @@ components:
           type: string
           format: binary
           description: The OpenAPI file to be uploaded
-    CodeSamplesJobStatus:
+    HttpMethod:
       type: string
       enum:
-      - pending
-      - running
-      description: The current status of the job. Possible values are `pending` or `running`.
-    UsageSnippet:
-      type: object
-      properties:
-        path:
-          type: string
-          description: The path of the operation
-        method:
-          description: The HTTP method of the operation
-        operationId:
-          type: string
-          description: The operation ID for the snippet
-        language:
-          type: string
-          description: The language of the snippet
-        code:
-          type: string
-          description: The code snippet
-      required:
-      - path
-      - method
-      - operationId
-      - language
-      - code
+      - get
+      - post
+      - put
+      - patch
+      - delete
+      - head
+      - options
+      - trace
     Error:
       description: The `Status` type defines a logical error model
       properties:
@@ -282,17 +278,21 @@ components:
       - message
       - status_code
       type: object
-    HttpMethod:
+    CodeSamplesJobStatus:
       type: string
       enum:
-      - get
-      - post
-      - put
-      - patch
-      - delete
-      - head
-      - options
-      - trace
+      - pending
+      - running
+      description: The current status of the job. Possible values are `pending` or `running`.
+    UsageSnippets:
+      type: object
+      properties:
+        snippets:
+          type: array
+          items:
+            $ref: '#/components/schemas/UsageSnippet'
+      required:
+      - snippets
   examples:
     UsageSnippets:
       summary: Array of Usage Snippets
