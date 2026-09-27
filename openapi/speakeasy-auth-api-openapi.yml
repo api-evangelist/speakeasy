@@ -114,23 +114,6 @@ paths:
                 $ref: '#/components/schemas/AccessDetails'
 components:
   schemas:
-    WorkspaceFeatureFlag:
-      description: enum value workspace feature flag
-      type: string
-      x-speakeasy-unknown-values: allow
-      enum:
-      - schema_registry
-      - changes_report
-      - skip_schema_registry
-      - webhooks
-    AccountType:
-      type: string
-      x-speakeasy-unknown-values: allow
-      enum:
-      - free
-      - scale-up
-      - business
-      - enterprise
     ApiKeyDetails:
       type: object
       properties:
@@ -172,72 +155,6 @@ components:
       - workspace_created_at
       - telemetry_disabled
       - billing_add_ons
-    AccessToken:
-      description: An AccessToken is a token that can be used to authenticate with the Speakeasy API.
-      properties:
-        access_token:
-          type: string
-        claims:
-          type: object
-        user:
-          type: object
-          properties:
-            email:
-              type: string
-            id:
-              type: string
-            display_name:
-              type: string
-            admin:
-              type: boolean
-            created_at:
-              type: string
-              format: date-time
-            email_verified:
-              type: boolean
-        workspaces:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-              name:
-                type: string
-              updated_at:
-                type: string
-                format: date-time
-              account_type:
-                $ref: '#/components/schemas/AccountType'
-        feature_flags:
-          type: array
-          items:
-            $ref: '#/components/schemas/FeatureFlag'
-      required:
-      - access_token
-      - claims
-      - user
-      type: object
-    FeatureFlag:
-      description: A feature flag is a key-value pair that can be used to enable or disable features.
-      properties:
-        feature_flag:
-          $ref: '#/components/schemas/WorkspaceFeatureFlag'
-        trial_ends_at:
-          type:
-          - string
-          - 'null'
-          format: date-time
-      required:
-      - feature_flag
-    BillingAddOn:
-      type: string
-      x-speakeasy-unknown-values: allow
-      enum:
-      - webhooks
-      - sdk_testing
-      - custom_code_regions
-      - snippet_ai
     User:
       type: object
       properties:
@@ -310,20 +227,35 @@ components:
       - admin
       - created_at
       - updated_at
-    Error:
-      description: The `Status` type defines a logical error model
+    WorkspaceFeatureFlag:
+      description: enum value workspace feature flag
+      type: string
+      x-speakeasy-unknown-values: allow
+      enum:
+      - schema_registry
+      - changes_report
+      - skip_schema_registry
+      - webhooks
+    BillingAddOn:
+      type: string
+      x-speakeasy-unknown-values: allow
+      enum:
+      - webhooks
+      - sdk_testing
+      - custom_code_regions
+      - snippet_ai
+    FeatureFlag:
+      description: A feature flag is a key-value pair that can be used to enable or disable features.
       properties:
-        message:
-          description: A developer-facing error message.
-          type: string
-        status_code:
-          description: The HTTP status code
-          format: int32
-          type: integer
+        feature_flag:
+          $ref: '#/components/schemas/WorkspaceFeatureFlag'
+        trial_ends_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
       required:
-      - message
-      - status_code
-      type: object
+      - feature_flag
     AccessDetails:
       type: object
       properties:
@@ -340,6 +272,74 @@ components:
       required:
       - generation_allowed
       - message
+    Error:
+      description: The `Status` type defines a logical error model
+      properties:
+        message:
+          description: A developer-facing error message.
+          type: string
+        status_code:
+          description: The HTTP status code
+          format: int32
+          type: integer
+      required:
+      - message
+      - status_code
+      type: object
+    AccountType:
+      type: string
+      x-speakeasy-unknown-values: allow
+      enum:
+      - free
+      - scale-up
+      - business
+      - enterprise
+    AccessToken:
+      description: An AccessToken is a token that can be used to authenticate with the Speakeasy API.
+      properties:
+        access_token:
+          type: string
+        claims:
+          type: object
+        user:
+          type: object
+          properties:
+            email:
+              type: string
+            id:
+              type: string
+            display_name:
+              type: string
+            admin:
+              type: boolean
+            created_at:
+              type: string
+              format: date-time
+            email_verified:
+              type: boolean
+        workspaces:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              name:
+                type: string
+              updated_at:
+                type: string
+                format: date-time
+              account_type:
+                $ref: '#/components/schemas/AccountType'
+        feature_flags:
+          type: array
+          items:
+            $ref: '#/components/schemas/FeatureFlag'
+      required:
+      - access_token
+      - claims
+      - user
+      type: object
   responses:
     default:
       content:

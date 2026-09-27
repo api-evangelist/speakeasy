@@ -294,6 +294,119 @@ paths:
           $ref: '#/components/responses/default'
 components:
   schemas:
+    RemoteDocument:
+      description: A document hosted in the registry
+      properties:
+        registry_url:
+          type: string
+      required:
+      - registry_url
+    V2Descriptor:
+      description: V2 descriptor
+      properties:
+        digest:
+          description: Digest
+          type: string
+        mediaType:
+          description: Media type
+          type: string
+        size:
+          description: Size
+          type: integer
+        annotations:
+          $ref: '#/components/schemas/Annotations'
+    Tag:
+      properties:
+        id:
+          type: string
+          description: Format {namespace_id}/{tag}
+        name:
+          type: string
+          description: Human readable tag name
+        namespace_name:
+          type: string
+        revision_digest:
+          type: string
+      required:
+      - id
+      - name
+      - namespace_name
+      - revision_digest
+    Manifest:
+      description: Returns the requested manifest file
+      example:
+        config:
+          digest: sha256:6d1ef012b5674ad8a127ecfa9b5e6f5178d171b90ee462846974177fd9bdd39f
+          mediaType: application/vnd.docker.container.image.v1+json
+          size: 1512
+        layers:
+        - digest: sha256:5d20c808ce198565ff70b3ed23a991dd49afac45dece63474b27ce6ed036adc6
+          mediaType: application/vnd.docker.image.rootfs.diff.tar.gzip
+          size: 2107098
+        mediaType: application/vnd.docker.distribution.manifest.v2+json
+        schemaVersion: 2
+      properties:
+        schemaVersion:
+          description: Schema version
+          type: integer
+        mediaType:
+          description: Media type usually application/vnd.docker.distribution.manifest.v2+json if this is in the accept header
+          type: string
+        artifactType:
+          description: Type of artifact
+          type: string
+        annotations:
+          $ref: '#/components/schemas/Annotations'
+        layers:
+          description: List of V2 image layer information
+          items:
+            $ref: '#/components/schemas/V2Descriptor'
+          type: array
+    Annotations:
+      description: Annotations
+      properties:
+        org.opencontainers.image.created:
+          type: string
+          description: The time the image was created
+        org.opencontainers.image.authors:
+          type: string
+          description: The authors of the image
+        org.opencontainers.image.url:
+          type: string
+          description: The URL of the image
+        org.opencontainers.image.documentation:
+          type: string
+          description: The documentation URL of the image
+        org.opencontainers.image.source:
+          type: string
+          description: The URL to get source code for building the image
+        org.opencontainers.image.version:
+          type: string
+          description: The version of the packaged software
+        org.opencontainers.image.revision:
+          type: string
+          description: Source control revision identifier
+        org.opencontainers.image.vendor:
+          type: string
+          description: Name of the distributing entity, organization or individual.
+        org.opencontainers.image.licenses:
+          type: string
+        org.opencontainers.image.ref.name:
+          type: string
+          description: Name of the reference for a target
+        org.opencontainers.image.title:
+          type: string
+          description: Human-readable title of the image
+        org.opencontainers.image.description:
+          type: string
+          description: Human-readable description of the software packaged in the image
+    PreflightToken:
+      description: A PreflightToken is a token that allows access to the OCI distribution endpoints.
+      properties:
+        auth_token:
+          type: string
+      required:
+      - access_token
     Revision:
       properties:
         id:
@@ -325,6 +438,82 @@ components:
       - tags
       - created_at
       - updated_at
+    GetTagsResponse:
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tag'
+      required:
+      - items
+    AddTags:
+      description: Request body of tags to add to a revision
+      properties:
+        revision_digest:
+          description: revision digest to add tags too sha256:...
+          type: string
+        tags:
+          description: string tags to add to the revision
+          items:
+            type: string
+          type: array
+      required:
+      - revision_digest
+      - tags
+      type: object
+    GetNamespacesResponse:
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Namespace'
+      required:
+      - items
+    GetRevisionsResponse:
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Revision'
+        next_page_token:
+          type: string
+      required:
+      - items
+      - next_page_token
+    Error:
+      description: The `Status` type defines a logical error model
+      properties:
+        message:
+          description: A developer-facing error message.
+          type: string
+        status_code:
+          description: The HTTP status code
+          format: int32
+          type: integer
+      required:
+      - message
+      - status_code
+      type: object
+    RemoteSourceSubscriptionSettings:
+      properties:
+        base_spec_namespaces:
+          type: array
+          items:
+            type: string
+        overlay_namespaces:
+          type: array
+          items:
+            type: string
+        ignored_namespaces:
+          type: array
+          items:
+            type: string
+        output_namespace:
+          type: string
+      required:
+      - base_spec_namespaces
+      - overlay_namespaces
+      - output_namespace
     RevisionContentsMetadata:
       properties:
         type:
@@ -387,133 +576,6 @@ components:
       - num_overlay_actions
       - contains_code_samples
       - created_at
-    AddTags:
-      description: Request body of tags to add to a revision
-      properties:
-        revision_digest:
-          description: revision digest to add tags too sha256:...
-          type: string
-        tags:
-          description: string tags to add to the revision
-          items:
-            type: string
-          type: array
-      required:
-      - revision_digest
-      - tags
-      type: object
-    GetNamespacesResponse:
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Namespace'
-      required:
-      - items
-    RemoteDocument:
-      description: A document hosted in the registry
-      properties:
-        registry_url:
-          type: string
-      required:
-      - registry_url
-    PreflightToken:
-      description: A PreflightToken is a token that allows access to the OCI distribution endpoints.
-      properties:
-        auth_token:
-          type: string
-      required:
-      - access_token
-    GetRevisionsResponse:
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Revision'
-        next_page_token:
-          type: string
-      required:
-      - items
-      - next_page_token
-    Annotations:
-      description: Annotations
-      properties:
-        org.opencontainers.image.created:
-          type: string
-          description: The time the image was created
-        org.opencontainers.image.authors:
-          type: string
-          description: The authors of the image
-        org.opencontainers.image.url:
-          type: string
-          description: The URL of the image
-        org.opencontainers.image.documentation:
-          type: string
-          description: The documentation URL of the image
-        org.opencontainers.image.source:
-          type: string
-          description: The URL to get source code for building the image
-        org.opencontainers.image.version:
-          type: string
-          description: The version of the packaged software
-        org.opencontainers.image.revision:
-          type: string
-          description: Source control revision identifier
-        org.opencontainers.image.vendor:
-          type: string
-          description: Name of the distributing entity, organization or individual.
-        org.opencontainers.image.licenses:
-          type: string
-        org.opencontainers.image.ref.name:
-          type: string
-          description: Name of the reference for a target
-        org.opencontainers.image.title:
-          type: string
-          description: Human-readable title of the image
-        org.opencontainers.image.description:
-          type: string
-          description: Human-readable description of the software packaged in the image
-    RemoteSource:
-      description: Remote source configuration
-      properties:
-        inputs:
-          type: array
-          items:
-            $ref: '#/components/schemas/RemoteDocument'
-        overlays:
-          type: array
-          items:
-            $ref: '#/components/schemas/RemoteDocument'
-        output:
-          $ref: '#/components/schemas/RemoteDocument'
-      required:
-      - inputs
-      - output
-    GetTagsResponse:
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Tag'
-      required:
-      - items
-    Tag:
-      properties:
-        id:
-          type: string
-          description: Format {namespace_id}/{tag}
-        name:
-          type: string
-          description: Human readable tag name
-        namespace_name:
-          type: string
-        revision_digest:
-          type: string
-      required:
-      - id
-      - name
-      - namespace_name
-      - revision_digest
     Namespace:
       description: A namespace contains many revisions.
       properties:
@@ -558,84 +620,22 @@ components:
       - name
       - created_at
       - updated_at
-    V2Descriptor:
-      description: V2 descriptor
+    RemoteSource:
+      description: Remote source configuration
       properties:
-        digest:
-          description: Digest
-          type: string
-        mediaType:
-          description: Media type
-          type: string
-        size:
-          description: Size
-          type: integer
-        annotations:
-          $ref: '#/components/schemas/Annotations'
-    Error:
-      description: The `Status` type defines a logical error model
-      properties:
-        message:
-          description: A developer-facing error message.
-          type: string
-        status_code:
-          description: The HTTP status code
-          format: int32
-          type: integer
+        inputs:
+          type: array
+          items:
+            $ref: '#/components/schemas/RemoteDocument'
+        overlays:
+          type: array
+          items:
+            $ref: '#/components/schemas/RemoteDocument'
+        output:
+          $ref: '#/components/schemas/RemoteDocument'
       required:
-      - message
-      - status_code
-      type: object
-    RemoteSourceSubscriptionSettings:
-      properties:
-        base_spec_namespaces:
-          type: array
-          items:
-            type: string
-        overlay_namespaces:
-          type: array
-          items:
-            type: string
-        ignored_namespaces:
-          type: array
-          items:
-            type: string
-        output_namespace:
-          type: string
-      required:
-      - base_spec_namespaces
-      - overlay_namespaces
-      - output_namespace
-    Manifest:
-      description: Returns the requested manifest file
-      example:
-        config:
-          digest: sha256:6d1ef012b5674ad8a127ecfa9b5e6f5178d171b90ee462846974177fd9bdd39f
-          mediaType: application/vnd.docker.container.image.v1+json
-          size: 1512
-        layers:
-        - digest: sha256:5d20c808ce198565ff70b3ed23a991dd49afac45dece63474b27ce6ed036adc6
-          mediaType: application/vnd.docker.image.rootfs.diff.tar.gzip
-          size: 2107098
-        mediaType: application/vnd.docker.distribution.manifest.v2+json
-        schemaVersion: 2
-      properties:
-        schemaVersion:
-          description: Schema version
-          type: integer
-        mediaType:
-          description: Media type usually application/vnd.docker.distribution.manifest.v2+json if this is in the accept header
-          type: string
-        artifactType:
-          description: Type of artifact
-          type: string
-        annotations:
-          $ref: '#/components/schemas/Annotations'
-        layers:
-          description: List of V2 image layer information
-          items:
-            $ref: '#/components/schemas/V2Descriptor'
-          type: array
+      - inputs
+      - output
   responses:
     default:
       content:

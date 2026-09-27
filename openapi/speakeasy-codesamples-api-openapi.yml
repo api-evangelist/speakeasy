@@ -206,6 +206,17 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
+    HttpMethod:
+      type: string
+      enum:
+      - get
+      - post
+      - put
+      - patch
+      - delete
+      - head
+      - options
+      - trace
     UsageSnippet:
       type: object
       properties:
@@ -229,6 +240,35 @@ components:
       - operationId
       - language
       - code
+    UsageSnippets:
+      type: object
+      properties:
+        snippets:
+          type: array
+          items:
+            $ref: '#/components/schemas/UsageSnippet'
+      required:
+      - snippets
+    CodeSamplesJobStatus:
+      type: string
+      enum:
+      - pending
+      - running
+      description: The current status of the job. Possible values are `pending` or `running`.
+    Error:
+      description: The `Status` type defines a logical error model
+      properties:
+        message:
+          description: A developer-facing error message.
+          type: string
+        status_code:
+          description: The HTTP status code
+          format: int32
+          type: integer
+      required:
+      - message
+      - status_code
+      type: object
     CodeSampleSchemaInput:
       type: object
       required:
@@ -253,46 +293,6 @@ components:
           type: string
           format: binary
           description: The OpenAPI file to be uploaded
-    HttpMethod:
-      type: string
-      enum:
-      - get
-      - post
-      - put
-      - patch
-      - delete
-      - head
-      - options
-      - trace
-    Error:
-      description: The `Status` type defines a logical error model
-      properties:
-        message:
-          description: A developer-facing error message.
-          type: string
-        status_code:
-          description: The HTTP status code
-          format: int32
-          type: integer
-      required:
-      - message
-      - status_code
-      type: object
-    CodeSamplesJobStatus:
-      type: string
-      enum:
-      - pending
-      - running
-      description: The current status of the job. Possible values are `pending` or `running`.
-    UsageSnippets:
-      type: object
-      properties:
-        snippets:
-          type: array
-          items:
-            $ref: '#/components/schemas/UsageSnippet'
-      required:
-      - snippets
   examples:
     UsageSnippets:
       summary: Array of Usage Snippets

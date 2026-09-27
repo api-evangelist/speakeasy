@@ -208,6 +208,13 @@ paths:
       - PublishingTokens
       x-speakeasy-name-override: resolveMetadata
 components:
+  responses:
+    default:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      description: Default error response
   schemas:
     PublishingToken:
       description: A token used to publish to a target
@@ -265,13 +272,6 @@ components:
       - message
       - status_code
       type: object
-  responses:
-    default:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-      description: Default error response
   securitySchemes:
     APIKey:
       description: The API Key for the workspace

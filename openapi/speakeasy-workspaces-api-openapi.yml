@@ -374,228 +374,25 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    WorkspaceFeatureFlag:
-      description: enum value workspace feature flag
-      type: string
-      x-speakeasy-unknown-values: allow
-      enum:
-      - schema_registry
-      - changes_report
-      - skip_schema_registry
-      - webhooks
-    AccountType:
-      type: string
-      x-speakeasy-unknown-values: allow
-      enum:
-      - free
-      - scale-up
-      - business
-      - enterprise
-    WorkspaceFeatureFlagRequest:
-      description: A request to add workspace feature flags
-      type: object
+    SSOMetadata:
+      description: SSO metadata for a workspace
+      properties:
+        sso_activated:
+          type: boolean
+        sso_domains:
+          type: array
+          items:
+            type: string
+      required:
+      - sso_activated
+      - sso_domains
+    WorkspaceFeatureFlagResponse:
+      description: Workspace feature flag response
       properties:
         feature_flags:
           type: array
           items:
-            $ref: '#/components/schemas/WorkspaceFeatureFlag'
-      required:
-      - feature_flags
-    Error:
-      description: The `Status` type defines a logical error model
-      properties:
-        message:
-          description: A developer-facing error message.
-          type: string
-        status_code:
-          description: The HTTP status code
-          format: int32
-          type: integer
-      required:
-      - message
-      - status_code
-      type: object
-    FeatureFlag:
-      description: A feature flag is a key-value pair that can be used to enable or disable features.
-      properties:
-        feature_flag:
-          $ref: '#/components/schemas/WorkspaceFeatureFlag'
-        trial_ends_at:
-          type:
-          - string
-          - 'null'
-          format: date-time
-      required:
-      - feature_flag
-    WorkspaceToken:
-      description: A workspace token
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        workspace_id:
-          type: string
-        alg:
-          type: string
-        key:
-          type: string
-        last_used:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        created_at:
-          type: string
-          format: date-time
-        created_by:
-          type:
-          - string
-          - 'null'
-        created_by_name:
-          type:
-          - string
-          - 'null'
-        created_by_photo_url:
-          type:
-          - string
-          - 'null'
-        email:
-          type:
-          - string
-          - 'null'
-      required:
-      - id
-      - name
-      - alg
-      - key
-      - created_at
-      - workspace_id
-    WorkspaceSettings:
-      properties:
-        workspace_id:
-          type: string
-        webhook_url:
-          type: string
-        created_at:
-          type: string
-          format: date-time
-        updated_at:
-          type: string
-          format: date-time
-      required:
-      - workspace_id
-      - webhook_url
-      - created_at
-      - updated_at
-    Organization:
-      description: A speakeasy organization
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        slug:
-          type: string
-        account_type:
-          $ref: '#/components/schemas/AccountType'
-        telemetry_disabled:
-          type: boolean
-        created_at:
-          type: string
-          format: date-time
-        updated_at:
-          type: string
-          format: date-time
-        free_trial_expiry:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        sso_connection_id:
-          type:
-          - string
-          - 'null'
-        sso_activated:
-          type: boolean
-        internal:
-          type: boolean
-      required:
-      - id
-      - name
-      - slug
-      - account_type
-      - telemetry_disabled
-      - sso_activated
-      - created_at
-      - updated_at
-      type: object
-    Workspace:
-      description: A speakeasy workspace
-      properties:
-        created_at:
-          type: string
-          format: date-time
-        id:
-          type: string
-        name:
-          type: string
-        organization_id:
-          type: string
-        slug:
-          type: string
-        inactive:
-          type: boolean
-        telemetry_disabled:
-          deprecated: true
-          description: Deprecated. Use organization.telemetry_disabled instead.
-          type: boolean
-        updated_at:
-          type: string
-          format: date-time
-        verified:
-          type: boolean
-      required:
-      - created_at
-      - id
-      - name
-      - organization_id
-      - slug
-      - updated_at
-      - verified
-      type: object
-    WorkspaceTeamResponse:
-      description: Workspace team response
-      properties:
-        users:
-          type: array
-          items:
-            $ref: '#/components/schemas/User'
-        sso_metadata:
-          $ref: '#/components/schemas/SSOMetadata'
-      required:
-      - users
-    WorkspaceInviteResponse:
-      type: object
-      description: A response for workspace user invite
-      properties:
-        relationship:
-          type: object
-          properties:
-            workspace_id:
-              type: string
-            user_id:
-              type: string
-          required:
-          - workspace_id
-          - user_id
-        invite_link:
-          type:
-          - string
-          - 'null'
-      required:
-      - relationship
+            $ref: '#/components/schemas/FeatureFlag'
     User:
       type: object
       properties:
@@ -668,13 +465,228 @@ components:
       - admin
       - created_at
       - updated_at
-    WorkspaceFeatureFlagResponse:
-      description: Workspace feature flag response
+    WorkspaceFeatureFlag:
+      description: enum value workspace feature flag
+      type: string
+      x-speakeasy-unknown-values: allow
+      enum:
+      - schema_registry
+      - changes_report
+      - skip_schema_registry
+      - webhooks
+    WorkspaceFeatureFlagRequest:
+      description: A request to add workspace feature flags
+      type: object
       properties:
         feature_flags:
           type: array
           items:
-            $ref: '#/components/schemas/FeatureFlag'
+            $ref: '#/components/schemas/WorkspaceFeatureFlag'
+      required:
+      - feature_flags
+    WorkspaceTeamResponse:
+      description: Workspace team response
+      properties:
+        users:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+        sso_metadata:
+          $ref: '#/components/schemas/SSOMetadata'
+      required:
+      - users
+    WorkspaceToken:
+      description: A workspace token
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        workspace_id:
+          type: string
+        alg:
+          type: string
+        key:
+          type: string
+        last_used:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        created_at:
+          type: string
+          format: date-time
+        created_by:
+          type:
+          - string
+          - 'null'
+        created_by_name:
+          type:
+          - string
+          - 'null'
+        created_by_photo_url:
+          type:
+          - string
+          - 'null'
+        email:
+          type:
+          - string
+          - 'null'
+      required:
+      - id
+      - name
+      - alg
+      - key
+      - created_at
+      - workspace_id
+    FeatureFlag:
+      description: A feature flag is a key-value pair that can be used to enable or disable features.
+      properties:
+        feature_flag:
+          $ref: '#/components/schemas/WorkspaceFeatureFlag'
+        trial_ends_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+      required:
+      - feature_flag
+    Organization:
+      description: A speakeasy organization
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        slug:
+          type: string
+        account_type:
+          $ref: '#/components/schemas/AccountType'
+        telemetry_disabled:
+          type: boolean
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        free_trial_expiry:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        sso_connection_id:
+          type:
+          - string
+          - 'null'
+        sso_activated:
+          type: boolean
+        internal:
+          type: boolean
+      required:
+      - id
+      - name
+      - slug
+      - account_type
+      - telemetry_disabled
+      - sso_activated
+      - created_at
+      - updated_at
+      type: object
+    Error:
+      description: The `Status` type defines a logical error model
+      properties:
+        message:
+          description: A developer-facing error message.
+          type: string
+        status_code:
+          description: The HTTP status code
+          format: int32
+          type: integer
+      required:
+      - message
+      - status_code
+      type: object
+    WorkspaceInviteResponse:
+      type: object
+      description: A response for workspace user invite
+      properties:
+        relationship:
+          type: object
+          properties:
+            workspace_id:
+              type: string
+            user_id:
+              type: string
+          required:
+          - workspace_id
+          - user_id
+        invite_link:
+          type:
+          - string
+          - 'null'
+      required:
+      - relationship
+    AccountType:
+      type: string
+      x-speakeasy-unknown-values: allow
+      enum:
+      - free
+      - scale-up
+      - business
+      - enterprise
+    WorkspaceSettings:
+      properties:
+        workspace_id:
+          type: string
+        webhook_url:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+      required:
+      - workspace_id
+      - webhook_url
+      - created_at
+      - updated_at
+    Workspace:
+      description: A speakeasy workspace
+      properties:
+        created_at:
+          type: string
+          format: date-time
+        id:
+          type: string
+        name:
+          type: string
+        organization_id:
+          type: string
+        slug:
+          type: string
+        inactive:
+          type: boolean
+        telemetry_disabled:
+          deprecated: true
+          description: Deprecated. Use organization.telemetry_disabled instead.
+          type: boolean
+        updated_at:
+          type: string
+          format: date-time
+        verified:
+          type: boolean
+      required:
+      - created_at
+      - id
+      - name
+      - organization_id
+      - slug
+      - updated_at
+      - verified
+      type: object
     WorkspaceAndOrganization:
       description: A workspace and organization
       properties:
@@ -686,18 +698,6 @@ components:
       - workspace
       - organization
       type: object
-    SSOMetadata:
-      description: SSO metadata for a workspace
-      properties:
-        sso_activated:
-          type: boolean
-        sso_domains:
-          type: array
-          items:
-            type: string
-      required:
-      - sso_activated
-      - sso_domains
   responses:
     default:
       content:
