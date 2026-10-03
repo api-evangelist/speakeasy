@@ -649,3 +649,12 @@ maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
 specificationVersion: '0.23'
+x-correction-request:
+  requested: '2026-10-03'
+  source:
+  - apis.io Influence-tier request queue (kinlane-test-influence)
+  request: 'Influence-tier artifact submission 52b594d4 (2026-09-23): MCP at https://app.getgram.ai/platform-mcp.
+    Verify it is live and real (MCP: initialize/tools/list or server card; OpenAPI: paths), then record it as a
+    pointer and harvest it. Influence-tier fact correction 24d38708 (2026-09-23): proposed {"tags": ["SDK Generation",
+    "Code Generation", "MCP", "MCP Gateway", "AI Control Plane", "Terraform", "Documentation", "Testing"]}. Verify
+    against the provider''s own site; use catalog industry/tag vocabulary.'
