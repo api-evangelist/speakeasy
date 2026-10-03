@@ -206,69 +206,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    HttpMethod:
-      type: string
-      enum:
-      - get
-      - post
-      - put
-      - patch
-      - delete
-      - head
-      - options
-      - trace
-    UsageSnippet:
-      type: object
-      properties:
-        path:
-          type: string
-          description: The path of the operation
-        method:
-          description: The HTTP method of the operation
-        operationId:
-          type: string
-          description: The operation ID for the snippet
-        language:
-          type: string
-          description: The language of the snippet
-        code:
-          type: string
-          description: The code snippet
-      required:
-      - path
-      - method
-      - operationId
-      - language
-      - code
-    UsageSnippets:
-      type: object
-      properties:
-        snippets:
-          type: array
-          items:
-            $ref: '#/components/schemas/UsageSnippet'
-      required:
-      - snippets
-    CodeSamplesJobStatus:
-      type: string
-      enum:
-      - pending
-      - running
-      description: The current status of the job. Possible values are `pending` or `running`.
-    Error:
-      description: The `Status` type defines a logical error model
-      properties:
-        message:
-          description: A developer-facing error message.
-          type: string
-        status_code:
-          description: The HTTP status code
-          format: int32
-          type: integer
-      required:
-      - message
-      - status_code
-      type: object
     CodeSampleSchemaInput:
       type: object
       required:
@@ -293,6 +230,76 @@ components:
           type: string
           format: binary
           description: The OpenAPI file to be uploaded
+    UsageSnippet:
+      type: object
+      properties:
+        path:
+          type: string
+          description: The path of the operation
+        method:
+          description: The HTTP method of the operation
+        operationId:
+          type: string
+          description: The operation ID for the snippet
+        language:
+          type: string
+          description: The language of the snippet
+        code:
+          type: string
+          description: The code snippet
+      required:
+      - path
+      - method
+      - operationId
+      - language
+      - code
+    Error:
+      description: The `Status` type defines a logical error model
+      properties:
+        message:
+          description: A developer-facing error message.
+          type: string
+        status_code:
+          description: The HTTP status code
+          format: int32
+          type: integer
+      required:
+      - message
+      - status_code
+      type: object
+    CodeSamplesJobStatus:
+      type: string
+      enum:
+      - pending
+      - running
+      description: The current status of the job. Possible values are `pending` or `running`.
+    HttpMethod:
+      type: string
+      enum:
+      - get
+      - post
+      - put
+      - patch
+      - delete
+      - head
+      - options
+      - trace
+    UsageSnippets:
+      type: object
+      properties:
+        snippets:
+          type: array
+          items:
+            $ref: '#/components/schemas/UsageSnippet'
+      required:
+      - snippets
+  responses:
+    default:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      description: Default error response
   examples:
     UsageSnippets:
       summary: Array of Usage Snippets
@@ -303,13 +310,6 @@ components:
           method: get
           language: typescript
           code: "import { Petstore } from \"petstore-sdk\";\n\nconst petstore = new Petstore({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n});\n\nasync function run() {\n  const result = await petstore.pet.getById({\n    id: 137396,\n  });\n\n  // Handle the result\n  console.log(result);\n}\n\nrun();"
-  responses:
-    default:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-      description: Default error response
   securitySchemes:
     APIKey:
       description: The API Key for the workspace

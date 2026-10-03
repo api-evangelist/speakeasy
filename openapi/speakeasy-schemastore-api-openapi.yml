@@ -79,13 +79,6 @@ paths:
         4XX:
           $ref: '#/components/responses/default'
 components:
-  responses:
-    default:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-      description: Default error response
   schemas:
     SchemaStoreItem:
       type: object
@@ -127,6 +120,13 @@ components:
       - message
       - status_code
       type: object
+  responses:
+    default:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      description: Default error response
   securitySchemes:
     APIKey:
       description: The API Key for the workspace

@@ -522,41 +522,6 @@ components:
         workflow_lock_post_raw:
           type: string
           description: Workflow lock file (post execution)
-    InteractionType:
-      type: string
-      description: Type of interaction.
-      enum:
-      - CI_EXEC
-      - CLI_EXEC
-      - LINT
-      - OPENAPI_DIFF
-      - TARGET_GENERATE
-      - TOMBSTONE
-      - AUTHENTICATE
-      - QUICKSTART
-      - RUN
-      - CONFIGURE
-      - PUBLISH
-      - TEST
-    TargetSDKList:
-      type: array
-      items:
-        $ref: '#/components/schemas/TargetSDK'
-      minItems: 1
-    Error:
-      description: The `Status` type defines a logical error model
-      properties:
-        message:
-          description: A developer-facing error message.
-          type: string
-        status_code:
-          description: The HTTP status code
-          format: int32
-          type: integer
-      required:
-      - message
-      - status_code
-      type: object
     TargetSDK:
       type: object
       required:
@@ -704,6 +669,41 @@ components:
         last_publish_gh_action_run_link:
           type: string
           description: Link to the GitHub action run for the last publishing event.
+    Error:
+      description: The `Status` type defines a logical error model
+      properties:
+        message:
+          description: A developer-facing error message.
+          type: string
+        status_code:
+          description: The HTTP status code
+          format: int32
+          type: integer
+      required:
+      - message
+      - status_code
+      type: object
+    InteractionType:
+      type: string
+      description: Type of interaction.
+      enum:
+      - CI_EXEC
+      - CLI_EXEC
+      - LINT
+      - OPENAPI_DIFF
+      - TARGET_GENERATE
+      - TOMBSTONE
+      - AUTHENTICATE
+      - QUICKSTART
+      - RUN
+      - CONFIGURE
+      - PUBLISH
+      - TEST
+    TargetSDKList:
+      type: array
+      items:
+        $ref: '#/components/schemas/TargetSDK'
+      minItems: 1
   securitySchemes:
     APIKey:
       description: The API Key for the workspace

@@ -374,25 +374,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    SSOMetadata:
-      description: SSO metadata for a workspace
-      properties:
-        sso_activated:
-          type: boolean
-        sso_domains:
-          type: array
-          items:
-            type: string
-      required:
-      - sso_activated
-      - sso_domains
-    WorkspaceFeatureFlagResponse:
-      description: Workspace feature flag response
-      properties:
-        feature_flags:
-          type: array
-          items:
-            $ref: '#/components/schemas/FeatureFlag'
     User:
       type: object
       properties:
@@ -465,15 +446,6 @@ components:
       - admin
       - created_at
       - updated_at
-    WorkspaceFeatureFlag:
-      description: enum value workspace feature flag
-      type: string
-      x-speakeasy-unknown-values: allow
-      enum:
-      - schema_registry
-      - changes_report
-      - skip_schema_registry
-      - webhooks
     WorkspaceFeatureFlagRequest:
       description: A request to add workspace feature flags
       type: object
@@ -495,6 +467,69 @@ components:
           $ref: '#/components/schemas/SSOMetadata'
       required:
       - users
+    Organization:
+      description: A speakeasy organization
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        slug:
+          type: string
+        account_type:
+          $ref: '#/components/schemas/AccountType'
+        telemetry_disabled:
+          type: boolean
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        free_trial_expiry:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        sso_connection_id:
+          type:
+          - string
+          - 'null'
+        sso_activated:
+          type: boolean
+        internal:
+          type: boolean
+      required:
+      - id
+      - name
+      - slug
+      - account_type
+      - telemetry_disabled
+      - sso_activated
+      - created_at
+      - updated_at
+      type: object
+    WorkspaceFeatureFlagResponse:
+      description: Workspace feature flag response
+      properties:
+        feature_flags:
+          type: array
+          items:
+            $ref: '#/components/schemas/FeatureFlag'
+    Error:
+      description: The `Status` type defines a logical error model
+      properties:
+        message:
+          description: A developer-facing error message.
+          type: string
+        status_code:
+          description: The HTTP status code
+          format: int32
+          type: integer
+      required:
+      - message
+      - status_code
+      type: object
     WorkspaceToken:
       description: A workspace token
       type: object
@@ -540,119 +575,17 @@ components:
       - key
       - created_at
       - workspace_id
-    FeatureFlag:
-      description: A feature flag is a key-value pair that can be used to enable or disable features.
+    WorkspaceAndOrganization:
+      description: A workspace and organization
       properties:
-        feature_flag:
-          $ref: '#/components/schemas/WorkspaceFeatureFlag'
-        trial_ends_at:
-          type:
-          - string
-          - 'null'
-          format: date-time
+        workspace:
+          $ref: '#/components/schemas/Workspace'
+        organization:
+          $ref: '#/components/schemas/Organization'
       required:
-      - feature_flag
-    Organization:
-      description: A speakeasy organization
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        slug:
-          type: string
-        account_type:
-          $ref: '#/components/schemas/AccountType'
-        telemetry_disabled:
-          type: boolean
-        created_at:
-          type: string
-          format: date-time
-        updated_at:
-          type: string
-          format: date-time
-        free_trial_expiry:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        sso_connection_id:
-          type:
-          - string
-          - 'null'
-        sso_activated:
-          type: boolean
-        internal:
-          type: boolean
-      required:
-      - id
-      - name
-      - slug
-      - account_type
-      - telemetry_disabled
-      - sso_activated
-      - created_at
-      - updated_at
+      - workspace
+      - organization
       type: object
-    Error:
-      description: The `Status` type defines a logical error model
-      properties:
-        message:
-          description: A developer-facing error message.
-          type: string
-        status_code:
-          description: The HTTP status code
-          format: int32
-          type: integer
-      required:
-      - message
-      - status_code
-      type: object
-    WorkspaceInviteResponse:
-      type: object
-      description: A response for workspace user invite
-      properties:
-        relationship:
-          type: object
-          properties:
-            workspace_id:
-              type: string
-            user_id:
-              type: string
-          required:
-          - workspace_id
-          - user_id
-        invite_link:
-          type:
-          - string
-          - 'null'
-      required:
-      - relationship
-    AccountType:
-      type: string
-      x-speakeasy-unknown-values: allow
-      enum:
-      - free
-      - scale-up
-      - business
-      - enterprise
-    WorkspaceSettings:
-      properties:
-        workspace_id:
-          type: string
-        webhook_url:
-          type: string
-        created_at:
-          type: string
-          format: date-time
-        updated_at:
-          type: string
-          format: date-time
-      required:
-      - workspace_id
-      - webhook_url
-      - created_at
-      - updated_at
     Workspace:
       description: A speakeasy workspace
       properties:
@@ -687,17 +620,84 @@ components:
       - updated_at
       - verified
       type: object
-    WorkspaceAndOrganization:
-      description: A workspace and organization
+    SSOMetadata:
+      description: SSO metadata for a workspace
       properties:
-        workspace:
-          $ref: '#/components/schemas/Workspace'
-        organization:
-          $ref: '#/components/schemas/Organization'
+        sso_activated:
+          type: boolean
+        sso_domains:
+          type: array
+          items:
+            type: string
       required:
-      - workspace
-      - organization
+      - sso_activated
+      - sso_domains
+    FeatureFlag:
+      description: A feature flag is a key-value pair that can be used to enable or disable features.
+      properties:
+        feature_flag:
+          $ref: '#/components/schemas/WorkspaceFeatureFlag'
+        trial_ends_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+      required:
+      - feature_flag
+    WorkspaceInviteResponse:
       type: object
+      description: A response for workspace user invite
+      properties:
+        relationship:
+          type: object
+          properties:
+            workspace_id:
+              type: string
+            user_id:
+              type: string
+          required:
+          - workspace_id
+          - user_id
+        invite_link:
+          type:
+          - string
+          - 'null'
+      required:
+      - relationship
+    AccountType:
+      type: string
+      x-speakeasy-unknown-values: allow
+      enum:
+      - free
+      - scale-up
+      - business
+      - enterprise
+    WorkspaceFeatureFlag:
+      description: enum value workspace feature flag
+      type: string
+      x-speakeasy-unknown-values: allow
+      enum:
+      - schema_registry
+      - changes_report
+      - skip_schema_registry
+      - webhooks
+    WorkspaceSettings:
+      properties:
+        workspace_id:
+          type: string
+        webhook_url:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+      required:
+      - workspace_id
+      - webhook_url
+      - created_at
+      - updated_at
   responses:
     default:
       content:

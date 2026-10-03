@@ -294,27 +294,6 @@ paths:
           $ref: '#/components/responses/default'
 components:
   schemas:
-    RemoteDocument:
-      description: A document hosted in the registry
-      properties:
-        registry_url:
-          type: string
-      required:
-      - registry_url
-    V2Descriptor:
-      description: V2 descriptor
-      properties:
-        digest:
-          description: Digest
-          type: string
-        mediaType:
-          description: Media type
-          type: string
-        size:
-          description: Size
-          type: integer
-        annotations:
-          $ref: '#/components/schemas/Annotations'
     Tag:
       properties:
         id:
@@ -362,51 +341,57 @@ components:
           items:
             $ref: '#/components/schemas/V2Descriptor'
           type: array
-    Annotations:
-      description: Annotations
+    RemoteDocument:
+      description: A document hosted in the registry
       properties:
-        org.opencontainers.image.created:
-          type: string
-          description: The time the image was created
-        org.opencontainers.image.authors:
-          type: string
-          description: The authors of the image
-        org.opencontainers.image.url:
-          type: string
-          description: The URL of the image
-        org.opencontainers.image.documentation:
-          type: string
-          description: The documentation URL of the image
-        org.opencontainers.image.source:
-          type: string
-          description: The URL to get source code for building the image
-        org.opencontainers.image.version:
-          type: string
-          description: The version of the packaged software
-        org.opencontainers.image.revision:
-          type: string
-          description: Source control revision identifier
-        org.opencontainers.image.vendor:
-          type: string
-          description: Name of the distributing entity, organization or individual.
-        org.opencontainers.image.licenses:
-          type: string
-        org.opencontainers.image.ref.name:
-          type: string
-          description: Name of the reference for a target
-        org.opencontainers.image.title:
-          type: string
-          description: Human-readable title of the image
-        org.opencontainers.image.description:
-          type: string
-          description: Human-readable description of the software packaged in the image
-    PreflightToken:
-      description: A PreflightToken is a token that allows access to the OCI distribution endpoints.
-      properties:
-        auth_token:
+        registry_url:
           type: string
       required:
-      - access_token
+      - registry_url
+    Namespace:
+      description: A namespace contains many revisions.
+      properties:
+        id:
+          type: string
+          description: '{organization_slug}/{workspace_slug}/{namespace_name}'
+        name:
+          type: string
+          description: A human-readable name for the namespace.
+        created_at:
+          format: date-time
+          readOnly: true
+          type: string
+        updated_at:
+          format: date-time
+          readOnly: true
+          type: string
+        public:
+          readOnly: true
+          type: boolean
+          description: Indicates whether the namespace is publicly accessible
+        archived_at:
+          format: date-time
+          readOnly: true
+          type: string
+        latest_revision_metadata:
+          $ref: '#/components/schemas/RevisionContentsMetadata'
+        composite_spec_metadata:
+          type: object
+          properties:
+            subscription_id:
+              type: string
+              readOnly: true
+              description: The subscription ID for the remote source subscription, if applicable. This indicates that the namespace is created by a remote source and thus is composite.
+            subscription_settings:
+              $ref: '#/components/schemas/RemoteSourceSubscriptionSettings'
+          required:
+          - subscription_id
+          - subscription_settings
+      required:
+      - id
+      - name
+      - created_at
+      - updated_at
     Revision:
       properties:
         id:
@@ -438,82 +423,6 @@ components:
       - tags
       - created_at
       - updated_at
-    GetTagsResponse:
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Tag'
-      required:
-      - items
-    AddTags:
-      description: Request body of tags to add to a revision
-      properties:
-        revision_digest:
-          description: revision digest to add tags too sha256:...
-          type: string
-        tags:
-          description: string tags to add to the revision
-          items:
-            type: string
-          type: array
-      required:
-      - revision_digest
-      - tags
-      type: object
-    GetNamespacesResponse:
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Namespace'
-      required:
-      - items
-    GetRevisionsResponse:
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Revision'
-        next_page_token:
-          type: string
-      required:
-      - items
-      - next_page_token
-    Error:
-      description: The `Status` type defines a logical error model
-      properties:
-        message:
-          description: A developer-facing error message.
-          type: string
-        status_code:
-          description: The HTTP status code
-          format: int32
-          type: integer
-      required:
-      - message
-      - status_code
-      type: object
-    RemoteSourceSubscriptionSettings:
-      properties:
-        base_spec_namespaces:
-          type: array
-          items:
-            type: string
-        overlay_namespaces:
-          type: array
-          items:
-            type: string
-        ignored_namespaces:
-          type: array
-          items:
-            type: string
-        output_namespace:
-          type: string
-      required:
-      - base_spec_namespaces
-      - overlay_namespaces
-      - output_namespace
     RevisionContentsMetadata:
       properties:
         type:
@@ -576,50 +485,141 @@ components:
       - num_overlay_actions
       - contains_code_samples
       - created_at
-    Namespace:
-      description: A namespace contains many revisions.
+    Error:
+      description: The `Status` type defines a logical error model
       properties:
-        id:
+        message:
+          description: A developer-facing error message.
           type: string
-          description: '{organization_slug}/{workspace_slug}/{namespace_name}'
-        name:
-          type: string
-          description: A human-readable name for the namespace.
-        created_at:
-          format: date-time
-          readOnly: true
-          type: string
-        updated_at:
-          format: date-time
-          readOnly: true
-          type: string
-        public:
-          readOnly: true
-          type: boolean
-          description: Indicates whether the namespace is publicly accessible
-        archived_at:
-          format: date-time
-          readOnly: true
-          type: string
-        latest_revision_metadata:
-          $ref: '#/components/schemas/RevisionContentsMetadata'
-        composite_spec_metadata:
-          type: object
-          properties:
-            subscription_id:
-              type: string
-              readOnly: true
-              description: The subscription ID for the remote source subscription, if applicable. This indicates that the namespace is created by a remote source and thus is composite.
-            subscription_settings:
-              $ref: '#/components/schemas/RemoteSourceSubscriptionSettings'
-          required:
-          - subscription_id
-          - subscription_settings
+        status_code:
+          description: The HTTP status code
+          format: int32
+          type: integer
       required:
-      - id
-      - name
-      - created_at
-      - updated_at
+      - message
+      - status_code
+      type: object
+    AddTags:
+      description: Request body of tags to add to a revision
+      properties:
+        revision_digest:
+          description: revision digest to add tags too sha256:...
+          type: string
+        tags:
+          description: string tags to add to the revision
+          items:
+            type: string
+          type: array
+      required:
+      - revision_digest
+      - tags
+      type: object
+    RemoteSourceSubscriptionSettings:
+      properties:
+        base_spec_namespaces:
+          type: array
+          items:
+            type: string
+        overlay_namespaces:
+          type: array
+          items:
+            type: string
+        ignored_namespaces:
+          type: array
+          items:
+            type: string
+        output_namespace:
+          type: string
+      required:
+      - base_spec_namespaces
+      - overlay_namespaces
+      - output_namespace
+    GetTagsResponse:
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tag'
+      required:
+      - items
+    GetRevisionsResponse:
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Revision'
+        next_page_token:
+          type: string
+      required:
+      - items
+      - next_page_token
+    PreflightToken:
+      description: A PreflightToken is a token that allows access to the OCI distribution endpoints.
+      properties:
+        auth_token:
+          type: string
+      required:
+      - access_token
+    Annotations:
+      description: Annotations
+      properties:
+        org.opencontainers.image.created:
+          type: string
+          description: The time the image was created
+        org.opencontainers.image.authors:
+          type: string
+          description: The authors of the image
+        org.opencontainers.image.url:
+          type: string
+          description: The URL of the image
+        org.opencontainers.image.documentation:
+          type: string
+          description: The documentation URL of the image
+        org.opencontainers.image.source:
+          type: string
+          description: The URL to get source code for building the image
+        org.opencontainers.image.version:
+          type: string
+          description: The version of the packaged software
+        org.opencontainers.image.revision:
+          type: string
+          description: Source control revision identifier
+        org.opencontainers.image.vendor:
+          type: string
+          description: Name of the distributing entity, organization or individual.
+        org.opencontainers.image.licenses:
+          type: string
+        org.opencontainers.image.ref.name:
+          type: string
+          description: Name of the reference for a target
+        org.opencontainers.image.title:
+          type: string
+          description: Human-readable title of the image
+        org.opencontainers.image.description:
+          type: string
+          description: Human-readable description of the software packaged in the image
+    GetNamespacesResponse:
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Namespace'
+      required:
+      - items
+    V2Descriptor:
+      description: V2 descriptor
+      properties:
+        digest:
+          description: Digest
+          type: string
+        mediaType:
+          description: Media type
+          type: string
+        size:
+          description: Size
+          type: integer
+        annotations:
+          $ref: '#/components/schemas/Annotations'
     RemoteSource:
       description: Remote source configuration
       properties:

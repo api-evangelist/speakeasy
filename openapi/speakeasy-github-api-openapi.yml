@@ -292,72 +292,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    GithubConfigureMintlifyRepoRequest:
-      description: A request to configure a GitHub repository for mintlify
-      type: object
-      properties:
-        org:
-          type: string
-          description: The GitHub organization name
-        repo:
-          type: string
-          description: The GitHub repository name
-        subdirectory:
-          type: string
-          description: The subdirectory (location of mint.json)
-        input:
-          type: string
-          description: The input OpenAPI document
-        overlays:
-          type: array
-          description: The overlays to apply
-          items:
-            type: string
-      required:
-      - org
-      - repo
-      - input
-      - overlays
-    GithubConfigureCodeSamplesRequest:
-      description: A request to configure GitHub code samples
-      type: object
-      properties:
-        org:
-          type: string
-          description: The GitHub organization name
-        repo:
-          type: string
-          description: The GitHub repository name
-        targetName:
-          type: string
-          description: The target name for the code samples
-      required:
-      - org
-      - repo
-      - targetName
-    GithubConfigureTargetRequest:
-      description: A request to configure a GitHub target
-      type: object
-      properties:
-        org:
-          type: string
-          description: The GitHub organization name
-        repo_name:
-          type: string
-          description: The GitHub repository name
-      required:
-      - org
-      - repo_name
-    GithubGetActionResponse:
-      description: response to a getting the latest action run on a GitHub request
-      type: object
-      properties:
-        run_url:
-          type: string
-          description: The URL for latest action run if available
-        run_status:
-          type: string
-          description: The status of the latest action run if available
     GithubSetupStateResponse:
       description: The state of a particular SDK targets github setup
       type: object
@@ -403,59 +337,6 @@ components:
       required:
       - source
       - codeSampleOverlayRegistryURL
-    GithubStorePublishingSecretsRequest:
-      description: A request to store publishing secrets for a github target
-      type: object
-      properties:
-        generate_gen_lock_id:
-          type: string
-          description: The generation lock ID
-        secrets:
-          type: object
-          description: A map of secrets to store in the GitHub target
-          additionalProperties:
-            type: string
-      required:
-      - generate_gen_lock_id
-    WorkflowDocument:
-      description: A document referenced by a workflow
-      properties:
-        location:
-          type: string
-        auth:
-          type: object
-          properties:
-            header:
-              type: string
-            secret:
-              type: string
-          required:
-          - header
-          - secret
-      required:
-      - location
-    Error:
-      description: The `Status` type defines a logical error model
-      properties:
-        message:
-          description: A developer-facing error message.
-          type: string
-        status_code:
-          description: The HTTP status code
-          format: int32
-          type: integer
-      required:
-      - message
-      - status_code
-      type: object
-    GithubMissingPublishingSecretsResponse:
-      description: A valid response containing MISSING publishing secret keys for a github target
-      type: object
-      properties:
-        missing_secrets:
-          type: array
-          items:
-            type: string
     GithubPublishingPRResponse:
       description: Open generation PRs pending publishing
       type: object
@@ -494,6 +375,125 @@ components:
               type: array
               items:
                 type: string
+    GithubConfigureCodeSamplesRequest:
+      description: A request to configure GitHub code samples
+      type: object
+      properties:
+        org:
+          type: string
+          description: The GitHub organization name
+        repo:
+          type: string
+          description: The GitHub repository name
+        targetName:
+          type: string
+          description: The target name for the code samples
+      required:
+      - org
+      - repo
+      - targetName
+    WorkflowDocument:
+      description: A document referenced by a workflow
+      properties:
+        location:
+          type: string
+        auth:
+          type: object
+          properties:
+            header:
+              type: string
+            secret:
+              type: string
+          required:
+          - header
+          - secret
+      required:
+      - location
+    Error:
+      description: The `Status` type defines a logical error model
+      properties:
+        message:
+          description: A developer-facing error message.
+          type: string
+        status_code:
+          description: The HTTP status code
+          format: int32
+          type: integer
+      required:
+      - message
+      - status_code
+      type: object
+    GithubConfigureMintlifyRepoRequest:
+      description: A request to configure a GitHub repository for mintlify
+      type: object
+      properties:
+        org:
+          type: string
+          description: The GitHub organization name
+        repo:
+          type: string
+          description: The GitHub repository name
+        subdirectory:
+          type: string
+          description: The subdirectory (location of mint.json)
+        input:
+          type: string
+          description: The input OpenAPI document
+        overlays:
+          type: array
+          description: The overlays to apply
+          items:
+            type: string
+      required:
+      - org
+      - repo
+      - input
+      - overlays
+    GithubConfigureTargetRequest:
+      description: A request to configure a GitHub target
+      type: object
+      properties:
+        org:
+          type: string
+          description: The GitHub organization name
+        repo_name:
+          type: string
+          description: The GitHub repository name
+      required:
+      - org
+      - repo_name
+    GithubGetActionResponse:
+      description: response to a getting the latest action run on a GitHub request
+      type: object
+      properties:
+        run_url:
+          type: string
+          description: The URL for latest action run if available
+        run_status:
+          type: string
+          description: The status of the latest action run if available
+    GithubMissingPublishingSecretsResponse:
+      description: A valid response containing MISSING publishing secret keys for a github target
+      type: object
+      properties:
+        missing_secrets:
+          type: array
+          items:
+            type: string
+    GithubStorePublishingSecretsRequest:
+      description: A request to store publishing secrets for a github target
+      type: object
+      properties:
+        generate_gen_lock_id:
+          type: string
+          description: The generation lock ID
+        secrets:
+          type: object
+          description: A map of secrets to store in the GitHub target
+          additionalProperties:
+            type: string
+      required:
+      - generate_gen_lock_id
     GithubTriggerActionRequest:
       description: A request to trigger an action on a GitHub target
       type: object
