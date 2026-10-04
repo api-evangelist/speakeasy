@@ -292,51 +292,57 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    GithubSetupStateResponse:
-      description: The state of a particular SDK targets github setup
+    GithubTriggerActionRequest:
+      description: A request to trigger an action on a GitHub target
       type: object
       properties:
-        app_installed:
+        org:
+          type: string
+          description: The GitHub organization name
+        repo_name:
+          type: string
+          description: The GitHub repository name
+        target_name:
+          type: string
+          description: The target name for the action
+        gen_lock_id:
+          type: string
+          description: The generation lock ID
+        set_version:
+          type: string
+          description: A version to override the SDK too in workflow dispatch
+        force:
           type: boolean
-        actions:
-          type: object
-          properties:
-            generation_action_configured:
-              type: boolean
-            publish_action_configured:
-              type: boolean
-          required:
-          - generation_action_configured
-          - publish_action_configured
-        secrets:
-          type: object
-          properties:
-            api_key_configured:
-              type: boolean
-            publishing_secrets_configured:
-              type: boolean
-          required:
-          - api_key_configured
-          - publishing_secrets_configured
+          description: Force an SDK generation
       required:
-      - app_installed
-      - actions
-      - secrets
-    GithubConfigureCodeSamplesResponse:
-      description: A response to configure GitHub code samples
+      - org
+      - repo_name
+      - gen_lock_id
+    WorkflowDocument:
+      description: A document referenced by a workflow
+      properties:
+        location:
+          type: string
+        auth:
+          type: object
+          properties:
+            header:
+              type: string
+            secret:
+              type: string
+          required:
+          - header
+          - secret
+      required:
+      - location
+    GithubMissingPublishingSecretsResponse:
+      description: A valid response containing MISSING publishing secret keys for a github target
       type: object
       properties:
-        source:
-          $ref: '#/components/schemas/WorkflowDocument'
-        codeSampleOverlayRegistryURL:
-          type: string
-          description: The URL of the code sample overlay registry
-        ghActionID:
-          type: string
-          description: The ID of the GitHub action that was dispatched
-      required:
-      - source
-      - codeSampleOverlayRegistryURL
+        missing_secrets:
+          type: array
+          items:
+            type: string
     GithubPublishingPRResponse:
       description: Open generation PRs pending publishing
       type: object
@@ -375,6 +381,64 @@ components:
               type: array
               items:
                 type: string
+    GithubConfigureTargetRequest:
+      description: A request to configure a GitHub target
+      type: object
+      properties:
+        org:
+          type: string
+          description: The GitHub organization name
+        repo_name:
+          type: string
+          description: The GitHub repository name
+      required:
+      - org
+      - repo_name
+    GithubConfigureCodeSamplesResponse:
+      description: A response to configure GitHub code samples
+      type: object
+      properties:
+        source:
+          $ref: '#/components/schemas/WorkflowDocument'
+        codeSampleOverlayRegistryURL:
+          type: string
+          description: The URL of the code sample overlay registry
+        ghActionID:
+          type: string
+          description: The ID of the GitHub action that was dispatched
+      required:
+      - source
+      - codeSampleOverlayRegistryURL
+    GithubSetupStateResponse:
+      description: The state of a particular SDK targets github setup
+      type: object
+      properties:
+        app_installed:
+          type: boolean
+        actions:
+          type: object
+          properties:
+            generation_action_configured:
+              type: boolean
+            publish_action_configured:
+              type: boolean
+          required:
+          - generation_action_configured
+          - publish_action_configured
+        secrets:
+          type: object
+          properties:
+            api_key_configured:
+              type: boolean
+            publishing_secrets_configured:
+              type: boolean
+          required:
+          - api_key_configured
+          - publishing_secrets_configured
+      required:
+      - app_installed
+      - actions
+      - secrets
     GithubConfigureCodeSamplesRequest:
       description: A request to configure GitHub code samples
       type: object
@@ -392,23 +456,6 @@ components:
       - org
       - repo
       - targetName
-    WorkflowDocument:
-      description: A document referenced by a workflow
-      properties:
-        location:
-          type: string
-        auth:
-          type: object
-          properties:
-            header:
-              type: string
-            secret:
-              type: string
-          required:
-          - header
-          - secret
-      required:
-      - location
     Error:
       description: The `Status` type defines a logical error model
       properties:
@@ -423,6 +470,20 @@ components:
       - message
       - status_code
       type: object
+    GithubStorePublishingSecretsRequest:
+      description: A request to store publishing secrets for a github target
+      type: object
+      properties:
+        generate_gen_lock_id:
+          type: string
+          description: The generation lock ID
+        secrets:
+          type: object
+          description: A map of secrets to store in the GitHub target
+          additionalProperties:
+            type: string
+      required:
+      - generate_gen_lock_id
     GithubConfigureMintlifyRepoRequest:
       description: A request to configure a GitHub repository for mintlify
       type: object
@@ -449,19 +510,6 @@ components:
       - repo
       - input
       - overlays
-    GithubConfigureTargetRequest:
-      description: A request to configure a GitHub target
-      type: object
-      properties:
-        org:
-          type: string
-          description: The GitHub organization name
-        repo_name:
-          type: string
-          description: The GitHub repository name
-      required:
-      - org
-      - repo_name
     GithubGetActionResponse:
       description: response to a getting the latest action run on a GitHub request
       type: object
@@ -472,54 +520,6 @@ components:
         run_status:
           type: string
           description: The status of the latest action run if available
-    GithubMissingPublishingSecretsResponse:
-      description: A valid response containing MISSING publishing secret keys for a github target
-      type: object
-      properties:
-        missing_secrets:
-          type: array
-          items:
-            type: string
-    GithubStorePublishingSecretsRequest:
-      description: A request to store publishing secrets for a github target
-      type: object
-      properties:
-        generate_gen_lock_id:
-          type: string
-          description: The generation lock ID
-        secrets:
-          type: object
-          description: A map of secrets to store in the GitHub target
-          additionalProperties:
-            type: string
-      required:
-      - generate_gen_lock_id
-    GithubTriggerActionRequest:
-      description: A request to trigger an action on a GitHub target
-      type: object
-      properties:
-        org:
-          type: string
-          description: The GitHub organization name
-        repo_name:
-          type: string
-          description: The GitHub repository name
-        target_name:
-          type: string
-          description: The target name for the action
-        gen_lock_id:
-          type: string
-          description: The generation lock ID
-        set_version:
-          type: string
-          description: A version to override the SDK too in workflow dispatch
-        force:
-          type: boolean
-          description: Force an SDK generation
-      required:
-      - org
-      - repo_name
-      - gen_lock_id
   responses:
     default:
       content:

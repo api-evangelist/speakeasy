@@ -205,6 +205,16 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
 components:
+  examples:
+    UsageSnippets:
+      summary: Array of Usage Snippets
+      value:
+        snippets:
+        - operationId: getPetById
+          path: /pet/{id}
+          method: get
+          language: typescript
+          code: "import { Petstore } from \"petstore-sdk\";\n\nconst petstore = new Petstore({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n});\n\nasync function run() {\n  const result = await petstore.pet.getById({\n    id: 137396,\n  });\n\n  // Handle the result\n  console.log(result);\n}\n\nrun();"
   schemas:
     CodeSampleSchemaInput:
       type: object
@@ -230,6 +240,17 @@ components:
           type: string
           format: binary
           description: The OpenAPI file to be uploaded
+    HttpMethod:
+      type: string
+      enum:
+      - get
+      - post
+      - put
+      - patch
+      - delete
+      - head
+      - options
+      - trace
     UsageSnippet:
       type: object
       properties:
@@ -253,6 +274,15 @@ components:
       - operationId
       - language
       - code
+    UsageSnippets:
+      type: object
+      properties:
+        snippets:
+          type: array
+          items:
+            $ref: '#/components/schemas/UsageSnippet'
+      required:
+      - snippets
     Error:
       description: The `Status` type defines a logical error model
       properties:
@@ -273,26 +303,6 @@ components:
       - pending
       - running
       description: The current status of the job. Possible values are `pending` or `running`.
-    HttpMethod:
-      type: string
-      enum:
-      - get
-      - post
-      - put
-      - patch
-      - delete
-      - head
-      - options
-      - trace
-    UsageSnippets:
-      type: object
-      properties:
-        snippets:
-          type: array
-          items:
-            $ref: '#/components/schemas/UsageSnippet'
-      required:
-      - snippets
   responses:
     default:
       content:
@@ -300,16 +310,6 @@ components:
           schema:
             $ref: '#/components/schemas/Error'
       description: Default error response
-  examples:
-    UsageSnippets:
-      summary: Array of Usage Snippets
-      value:
-        snippets:
-        - operationId: getPetById
-          path: /pet/{id}
-          method: get
-          language: typescript
-          code: "import { Petstore } from \"petstore-sdk\";\n\nconst petstore = new Petstore({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n});\n\nasync function run() {\n  const result = await petstore.pet.getById({\n    id: 137396,\n  });\n\n  // Handle the result\n  console.log(result);\n}\n\nrun();"
   securitySchemes:
     APIKey:
       description: The API Key for the workspace

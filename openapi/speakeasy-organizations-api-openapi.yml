@@ -178,66 +178,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    BillingAddOn:
-      type: string
-      x-speakeasy-unknown-values: allow
-      enum:
-      - webhooks
-      - sdk_testing
-      - custom_code_regions
-      - snippet_ai
-    OrganizationBillingAddOnRequest:
-      description: A request to add billing add ons
-      type: object
-      properties:
-        add_ons:
-          type: array
-          items:
-            $ref: '#/components/schemas/BillingAddOn'
-      required:
-      - add_ons
-    Organization:
-      description: A speakeasy organization
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        slug:
-          type: string
-        account_type:
-          $ref: '#/components/schemas/AccountType'
-        telemetry_disabled:
-          type: boolean
-        created_at:
-          type: string
-          format: date-time
-        updated_at:
-          type: string
-          format: date-time
-        free_trial_expiry:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        sso_connection_id:
-          type:
-          - string
-          - 'null'
-        sso_activated:
-          type: boolean
-        internal:
-          type: boolean
-      required:
-      - id
-      - name
-      - slug
-      - account_type
-      - telemetry_disabled
-      - sso_activated
-      - created_at
-      - updated_at
-      type: object
     OrganizationUsage:
       type: object
       properties:
@@ -282,6 +222,33 @@ components:
       - accessible
       - workspaces
       - gen_lock_ids
+    BillingAddOn:
+      type: string
+      x-speakeasy-unknown-values: allow
+      enum:
+      - webhooks
+      - sdk_testing
+      - custom_code_regions
+      - snippet_ai
+    OrganizationBillingAddOnRequest:
+      description: A request to add billing add ons
+      type: object
+      properties:
+        add_ons:
+          type: array
+          items:
+            $ref: '#/components/schemas/BillingAddOn'
+      required:
+      - add_ons
+    OrganizationBillingAddOnResponse:
+      description: Billing add on response
+      properties:
+        add_ons:
+          type: array
+          items:
+            $ref: '#/components/schemas/BillingAddOn'
+      required:
+      - add_ons
     Error:
       description: The `Status` type defines a logical error model
       properties:
@@ -296,15 +263,6 @@ components:
       - message
       - status_code
       type: object
-    OrganizationBillingAddOnResponse:
-      description: Billing add on response
-      properties:
-        add_ons:
-          type: array
-          items:
-            $ref: '#/components/schemas/BillingAddOn'
-      required:
-      - add_ons
     OrganizationUsageResponse:
       description: A billing summary of organization usage
       type: object
@@ -338,6 +296,48 @@ components:
       - scale-up
       - business
       - enterprise
+    Organization:
+      description: A speakeasy organization
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        slug:
+          type: string
+        account_type:
+          $ref: '#/components/schemas/AccountType'
+        telemetry_disabled:
+          type: boolean
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        free_trial_expiry:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        sso_connection_id:
+          type:
+          - string
+          - 'null'
+        sso_activated:
+          type: boolean
+        internal:
+          type: boolean
+      required:
+      - id
+      - name
+      - slug
+      - account_type
+      - telemetry_disabled
+      - sso_activated
+      - created_at
+      - updated_at
+      type: object
   responses:
     default:
       content:
