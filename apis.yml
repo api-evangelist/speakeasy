@@ -399,6 +399,8 @@ apis:
   humanURL: https://www.speakeasy.com/product/sdk-generation
   baseURL: https://api.prod.speakeasy.com
   tags:
+  - ShortURLs
+  tags_raw:
   - Short URLs
   properties:
   - type: OpenAPI
@@ -471,6 +473,9 @@ accessModel:
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 access: 3rd-Party
 common:
+  - type: CapabilityMap
+    url: capabilities/speakeasy-capability-edges.yml
+    name: Speakeasy Business Capability Map
   - type: VendorFacets
     url: vendor-facets/speakeasy-vendor-facets.yml
   - type: Website
