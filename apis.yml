@@ -473,6 +473,12 @@ accessModel:
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 access: 3rd-Party
 common:
+  - type: Plans
+    url: plans/speakeasy-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/speakeasy-rate-limits.yml
+  - type: FinOps
+    url: finops/speakeasy-finops.yml
   - type: CapabilityMap
     url: capabilities/speakeasy-capability-edges.yml
     name: Speakeasy Business Capability Map
