@@ -1,0 +1,36 @@
+slug: speakeasy
+provider: Speakeasy
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 2
+edges:
+- tag: CodeSamples
+  spec_file: speakeasy-codesamples-api-openapi.yml
+  capability_id: BC-4270.20
+  capability_id_l1: BC-4270
+  capability_name: SDK & Client Library Management
+  confidence: 0.7
+  evidence: GET /v1/code_sample getCodeSamples Retrieve Usage Snippets
+  reason: Generation and retrieval of usage snippets/code samples that accompany generated SDKs, matching
+    'sample maintenance of SDKs and client libraries that wrap public APIs'. Some chance the better fit
+    is developer-portal documentation, hence 0.7.
+- tag: Github
+  spec_file: speakeasy-github-api-openapi.yml
+  capability_id: BC-4210
+  capability_id_l1: BC-4210
+  capability_name: Software Release & Deployment Management
+  confidence: 0.7
+  evidence: POST /v1/github/trigger_action githubTriggerAction; GET /v1/github/publishing_prs githubCheckPublishingPRs;
+    POST /v1/github/publishing_secrets githubStorePublishingSecrets
+  reason: Configures and triggers GitHub Actions pipelines, publishing pull requests and publishing secrets
+    for SDK release — release/deployment automation. L2 left null because the surface spans CI pipelines,
+    release publishing and secrets storage.
