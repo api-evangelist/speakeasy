@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/speakeasy/main/json-schema/speakeasy-remote-source-schema.json",
+  "title": "RemoteSource",
+  "description": "Remote source configuration",
+  "x-generated": "2026-10-04",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/speakeasy-artifacts-api-openapi.yml#/components/schemas/RemoteSource",
+  "properties": {
+    "inputs": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/RemoteDocument"
+      }
+    },
+    "overlays": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/RemoteDocument"
+      }
+    },
+    "output": {
+      "$ref": "#/$defs/RemoteDocument"
+    }
+  },
+  "required": [
+    "inputs",
+    "output"
+  ],
+  "$defs": {
+    "RemoteDocument": {
+      "description": "A document hosted in the registry",
+      "properties": {
+        "registry_url": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "registry_url"
+      ]
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/speakeasy/main/json-schema/speakeasy-code-samples-job-status-schema.json",
+  "title": "CodeSamplesJobStatus",
+  "description": "The current status of the job. Possible values are `pending` or `running`.",
+  "x-generated": "2026-10-04",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/speakeasy-codesamples-api-openapi.yml#/components/schemas/CodeSamplesJobStatus",
+  "type": "string",
+  "enum": [
+    "pending",
+    "running"
+  ]
+}

@@ -1,0 +1,192 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/speakeasy/main/json-schema/speakeasy-get-namespaces-response-schema.json",
+  "title": "GetNamespacesResponse",
+  "x-generated": "2026-10-04",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/speakeasy-artifacts-api-openapi.yml#/components/schemas/GetNamespacesResponse",
+  "properties": {
+    "items": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Namespace"
+      }
+    }
+  },
+  "required": [
+    "items"
+  ],
+  "$defs": {
+    "Namespace": {
+      "description": "A namespace contains many revisions.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "{organization_slug}/{workspace_slug}/{namespace_name}"
+        },
+        "name": {
+          "type": "string",
+          "description": "A human-readable name for the namespace."
+        },
+        "created_at": {
+          "format": "date-time",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updated_at": {
+          "format": "date-time",
+          "readOnly": true,
+          "type": "string"
+        },
+        "public": {
+          "readOnly": true,
+          "type": "boolean",
+          "description": "Indicates whether the namespace is publicly accessible"
+        },
+        "archived_at": {
+          "format": "date-time",
+          "readOnly": true,
+          "type": "string"
+        },
+        "latest_revision_metadata": {
+          "$ref": "#/$defs/RevisionContentsMetadata"
+        },
+        "composite_spec_metadata": {
+          "type": "object",
+          "properties": {
+            "subscription_id": {
+              "type": "string",
+              "readOnly": true,
+              "description": "The subscription ID for the remote source subscription, if applicable. This indicates that the namespace is created by a remote source and thus is composite."
+            },
+            "subscription_settings": {
+              "$ref": "#/$defs/RemoteSourceSubscriptionSettings"
+            }
+          },
+          "required": [
+            "subscription_id",
+            "subscription_settings"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "created_at",
+        "updated_at"
+      ]
+    },
+    "RemoteSourceSubscriptionSettings": {
+      "properties": {
+        "base_spec_namespaces": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "overlay_namespaces": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "ignored_namespaces": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "output_namespace": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "base_spec_namespaces",
+        "overlay_namespaces",
+        "output_namespace"
+      ]
+    },
+    "RevisionContentsMetadata": {
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "OPENAPI_BUNDLE",
+            "OPENAPI_OVERLAY"
+          ]
+        },
+        "workspace_id": {
+          "type": "string",
+          "description": "The workspace ID"
+        },
+        "namespace": {
+          "type": "string",
+          "description": "The fully qualified namespace"
+        },
+        "revision_digest": {
+          "type": "string",
+          "description": "The digest of the parent bundle"
+        },
+        "title": {
+          "type": "string",
+          "description": "The OAS title"
+        },
+        "description": {
+          "type": "string",
+          "description": "The OAS description"
+        },
+        "version": {
+          "type": "string",
+          "description": "The OAS version"
+        },
+        "hash": {
+          "type": "string",
+          "description": "The hash of the contents"
+        },
+        "tags": {
+          "type": "array",
+          "description": "The tags contained in the OAS -- NOT the OCI tags. Will be empty if the OAS is an overlay.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "operation_ids": {
+          "type": "array",
+          "description": "The operation IDs contained in the OAS. Will be empty if the OAS is an overlay.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "num_overlay_actions": {
+          "type": "integer",
+          "description": "The number of overlay actions in the OAS. Will be 0 if the OAS is not an overlay."
+        },
+        "contains_code_samples": {
+          "type": "boolean",
+          "description": "Whether the OAS contains code samples."
+        },
+        "created_at": {
+          "format": "date-time",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "required": [
+        "workspace_id",
+        "namespace",
+        "revision_digest",
+        "type",
+        "title",
+        "description",
+        "version",
+        "hash",
+        "tags",
+        "operation_ids",
+        "num_overlay_actions",
+        "contains_code_samples",
+        "created_at"
+      ]
+    }
+  }
+}

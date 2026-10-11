@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/speakeasy/main/json-schema/speakeasy-workspace-invite-response-schema.json",
+  "title": "WorkspaceInviteResponse",
+  "description": "A response for workspace user invite",
+  "x-generated": "2026-10-04",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/speakeasy-workspaces-api-openapi.yml#/components/schemas/WorkspaceInviteResponse",
+  "type": "object",
+  "properties": {
+    "relationship": {
+      "type": "object",
+      "properties": {
+        "workspace_id": {
+          "type": "string"
+        },
+        "user_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "workspace_id",
+        "user_id"
+      ]
+    },
+    "invite_link": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "required": [
+    "relationship"
+  ]
+}

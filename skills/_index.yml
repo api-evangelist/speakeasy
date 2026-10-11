@@ -1,0 +1,30 @@
+generated: '2026-10-04'
+method: generated
+generator: extract-docs-artifacts.py skills (local)
+source: openapi/speakeasy-events-api-openapi.yml
+skills:
+- file: skills/speakeasy-create-workspace.md
+  name: speakeasy-create-workspace
+  api: openapi/speakeasy-workspaces-api-openapi.yml
+  operations:
+  - createWorkspace
+  - updateWorkspaceSettings
+- file: skills/speakeasy-create-and-retrieve-organization.md
+  name: speakeasy-create-and-retrieve-organization
+  api: openapi/speakeasy-organizations-api-openapi.yml
+  operations:
+  - createOrganization
+  - getOrganization
+- file: skills/speakeasy-ignore-activate-subscription-namespace.md
+  name: speakeasy-ignore-activate-subscription-namespace
+  api: openapi/speakeasy-subscriptions-api-openapi.yml
+  operations:
+  - ignoreSubscriptionNamespace
+  - activateSubscriptionNamespace
+- file: skills/speakeasy-reports-upload-and-fetch.md
+  name: speakeasy-reports-upload-and-fetch
+  api: openapi/speakeasy-reports-api-openapi.yml
+  operations:
+  - uploadReport
+  - getLintingReportSignedUrl
+  - getChangesReportSignedUrl

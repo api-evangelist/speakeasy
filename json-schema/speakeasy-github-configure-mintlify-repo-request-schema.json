@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/speakeasy/main/json-schema/speakeasy-github-configure-mintlify-repo-request-schema.json",
+  "title": "GithubConfigureMintlifyRepoRequest",
+  "description": "A request to configure a GitHub repository for mintlify",
+  "x-generated": "2026-10-04",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/speakeasy-github-api-openapi.yml#/components/schemas/GithubConfigureMintlifyRepoRequest",
+  "type": "object",
+  "properties": {
+    "org": {
+      "type": "string",
+      "description": "The GitHub organization name"
+    },
+    "repo": {
+      "type": "string",
+      "description": "The GitHub repository name"
+    },
+    "subdirectory": {
+      "type": "string",
+      "description": "The subdirectory (location of mint.json)"
+    },
+    "input": {
+      "type": "string",
+      "description": "The input OpenAPI document"
+    },
+    "overlays": {
+      "type": "array",
+      "description": "The overlays to apply",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "org",
+    "repo",
+    "input",
+    "overlays"
+  ]
+}

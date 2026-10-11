@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/speakeasy/main/json-schema/speakeasy-github-trigger-action-request-schema.json",
+  "title": "GithubTriggerActionRequest",
+  "description": "A request to trigger an action on a GitHub target",
+  "x-generated": "2026-10-04",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/speakeasy-github-api-openapi.yml#/components/schemas/GithubTriggerActionRequest",
+  "type": "object",
+  "properties": {
+    "org": {
+      "type": "string",
+      "description": "The GitHub organization name"
+    },
+    "repo_name": {
+      "type": "string",
+      "description": "The GitHub repository name"
+    },
+    "target_name": {
+      "type": "string",
+      "description": "The target name for the action"
+    },
+    "gen_lock_id": {
+      "type": "string",
+      "description": "The generation lock ID"
+    },
+    "set_version": {
+      "type": "string",
+      "description": "A version to override the SDK too in workflow dispatch"
+    },
+    "force": {
+      "type": "boolean",
+      "description": "Force an SDK generation"
+    }
+  },
+  "required": [
+    "org",
+    "repo_name",
+    "gen_lock_id"
+  ]
+}

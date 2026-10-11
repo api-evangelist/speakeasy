@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/speakeasy/main/json-schema/speakeasy-usage-snippets-schema.json",
+  "title": "UsageSnippets",
+  "x-generated": "2026-10-04",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/speakeasy-codesamples-api-openapi.yml#/components/schemas/UsageSnippets",
+  "type": "object",
+  "properties": {
+    "snippets": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/UsageSnippet"
+      }
+    }
+  },
+  "required": [
+    "snippets"
+  ],
+  "$defs": {
+    "UsageSnippet": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "type": "string",
+          "description": "The path of the operation"
+        },
+        "method": {
+          "description": "The HTTP method of the operation"
+        },
+        "operationId": {
+          "type": "string",
+          "description": "The operation ID for the snippet"
+        },
+        "language": {
+          "type": "string",
+          "description": "The language of the snippet"
+        },
+        "code": {
+          "type": "string",
+          "description": "The code snippet"
+        }
+      },
+      "required": [
+        "path",
+        "method",
+        "operationId",
+        "language",
+        "code"
+      ]
+    }
+  }
+}

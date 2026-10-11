@@ -1,0 +1,5 @@
+generated: 2026-10-04
+method: probed
+source: https://app.getgram.ai/platform-mcp
+status: 405
+note: Base MCP endpoint returns 405 Method Not Allowed, indicating service is live. Tools list endpoint https://app.getgram.ai/platform-mcp/initialize/tools/list returns 404, no OpenAPI paths found.

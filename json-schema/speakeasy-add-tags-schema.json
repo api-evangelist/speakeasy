@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/speakeasy/main/json-schema/speakeasy-add-tags-schema.json",
+  "title": "AddTags",
+  "description": "Request body of tags to add to a revision",
+  "x-generated": "2026-10-04",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/speakeasy-artifacts-api-openapi.yml#/components/schemas/AddTags",
+  "properties": {
+    "revision_digest": {
+      "description": "revision digest to add tags too sha256:...",
+      "type": "string"
+    },
+    "tags": {
+      "description": "string tags to add to the revision",
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "revision_digest",
+    "tags"
+  ],
+  "type": "object"
+}

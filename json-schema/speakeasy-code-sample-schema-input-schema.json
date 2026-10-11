@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/speakeasy/main/json-schema/speakeasy-code-sample-schema-input-schema.json",
+  "title": "CodeSampleSchemaInput",
+  "x-generated": "2026-10-04",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/speakeasy-codesamples-api-openapi.yml#/components/schemas/CodeSampleSchemaInput",
+  "type": "object",
+  "required": [
+    "schema_file",
+    "language"
+  ],
+  "properties": {
+    "package_name": {
+      "type": "string",
+      "description": "The name of the package"
+    },
+    "sdk_class_name": {
+      "type": "string",
+      "description": "The SDK class name"
+    },
+    "language": {
+      "type": "string",
+      "description": "The language to generate code samples for"
+    },
+    "operation_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "A list of operations IDs to generate code samples for"
+    },
+    "schema_file": {
+      "type": "string",
+      "format": "binary",
+      "description": "The OpenAPI file to be uploaded"
+    }
+  }
+}

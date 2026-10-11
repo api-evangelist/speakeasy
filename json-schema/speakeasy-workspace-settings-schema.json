@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/speakeasy/main/json-schema/speakeasy-workspace-settings-schema.json",
+  "title": "WorkspaceSettings",
+  "x-generated": "2026-10-04",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/speakeasy-workspaces-api-openapi.yml#/components/schemas/WorkspaceSettings",
+  "properties": {
+    "workspace_id": {
+      "type": "string"
+    },
+    "webhook_url": {
+      "type": "string"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "workspace_id",
+    "webhook_url",
+    "created_at",
+    "updated_at"
+  ]
+}

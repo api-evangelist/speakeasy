@@ -1,0 +1,18 @@
+generated: '2026-10-04'
+method: searched
+generator: extract-docs-artifacts.py (local)
+source: https://www.speakeasy.com/openapi/webhooks
+sources:
+- https://www.speakeasy.com/openapi/webhooks
+- https://www.speakeasy.com/docs/ai-control-plane/org-admin/webhooks
+- https://www.speakeasy.com/docs/ai-control-plane/secure/risk-events
+description: Speakeasy webhooks deliver platform events such as audit log changes and risk findings to HTTP endpoints.
+events:
+- event: audit_log.access_member_event_v1
+  description: Emitted when changes to organization members are made.
+- event: audit_log.mcp_collection_event_v1
+  description: Listed for existing subscribers but no longer emitted.
+- event: risk_finding
+  description: Emitted for policy findings raised by risk policies.
+delivery: {}
+docs: https://www.speakeasy.com/openapi/webhooks

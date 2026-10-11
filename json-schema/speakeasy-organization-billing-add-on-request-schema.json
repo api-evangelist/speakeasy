@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/speakeasy/main/json-schema/speakeasy-organization-billing-add-on-request-schema.json",
+  "title": "OrganizationBillingAddOnRequest",
+  "description": "A request to add billing add ons",
+  "x-generated": "2026-10-04",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/speakeasy-organizations-api-openapi.yml#/components/schemas/OrganizationBillingAddOnRequest",
+  "type": "object",
+  "properties": {
+    "add_ons": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/BillingAddOn"
+      }
+    }
+  },
+  "required": [
+    "add_ons"
+  ],
+  "$defs": {
+    "BillingAddOn": {
+      "type": "string",
+      "x-speakeasy-unknown-values": "allow",
+      "enum": [
+        "webhooks",
+        "sdk_testing",
+        "custom_code_regions",
+        "snippet_ai"
+      ]
+    }
+  }
+}

@@ -1,0 +1,116 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/speakeasy/main/json-schema/speakeasy-access-token-schema.json",
+  "title": "AccessToken",
+  "description": "An AccessToken is a token that can be used to authenticate with the Speakeasy API.",
+  "x-generated": "2026-10-04",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/speakeasy-auth-api-openapi.yml#/components/schemas/AccessToken",
+  "properties": {
+    "access_token": {
+      "type": "string"
+    },
+    "claims": {
+      "type": "object"
+    },
+    "user": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "display_name": {
+          "type": "string"
+        },
+        "admin": {
+          "type": "boolean"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "email_verified": {
+          "type": "boolean"
+        }
+      }
+    },
+    "workspaces": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "account_type": {
+            "$ref": "#/$defs/AccountType"
+          }
+        }
+      }
+    },
+    "feature_flags": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/FeatureFlag"
+      }
+    }
+  },
+  "required": [
+    "access_token",
+    "claims",
+    "user"
+  ],
+  "type": "object",
+  "$defs": {
+    "AccountType": {
+      "type": "string",
+      "x-speakeasy-unknown-values": "allow",
+      "enum": [
+        "free",
+        "scale-up",
+        "business",
+        "enterprise"
+      ]
+    },
+    "FeatureFlag": {
+      "description": "A feature flag is a key-value pair that can be used to enable or disable features.",
+      "properties": {
+        "feature_flag": {
+          "$ref": "#/$defs/WorkspaceFeatureFlag"
+        },
+        "trial_ends_at": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "feature_flag"
+      ]
+    },
+    "WorkspaceFeatureFlag": {
+      "description": "enum value workspace feature flag",
+      "type": "string",
+      "x-speakeasy-unknown-values": "allow",
+      "enum": [
+        "schema_registry",
+        "changes_report",
+        "skip_schema_registry",
+        "webhooks"
+      ]
+    }
+  }
+}

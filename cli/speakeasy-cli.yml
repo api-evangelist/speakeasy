@@ -1,0 +1,32 @@
+generated: '2026-10-04'
+method: searched
+generator: extract-docs-artifacts.py (local)
+source: https://www.speakeasy.com/docs/sdks/create-client-sdks
+sources:
+- https://www.speakeasy.com/docs/sdks/create-client-sdks
+- https://www.speakeasy.com/docs/cli-generation/create-cli
+- https://www.speakeasy.com/docs/speakeasy-reference/cli/getting-started
+- https://www.speakeasy.com/docs/ai-control-plane/observe/mcp-and-tools
+install:
+- method: Homebrew (macOS)
+  command: brew install speakeasy-api/tap/speakeasy
+- method: Script (macOS and Linux)
+  command: curl -fsSL https://go.speakeasy.com/cli-install.sh | sh
+- method: winget (Windows)
+  command: winget install speakeasy
+- method: Chocolatey (Windows)
+  command: choco install speakeasy
+commands:
+- group: auth
+  commands:
+  - login
+  - logout
+  - whoami
+- group: agent
+  commands:
+  - setup-skills
+- group: quickstart
+- group: configure
+binary: speakeasy
+docs: https://www.speakeasy.com/docs/sdks/create-client-sdks
+note: 1 extracted row(s) were dropped because their quote was not on the page.

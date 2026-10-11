@@ -1,0 +1,102 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/speakeasy/main/json-schema/speakeasy-organization-usage-response-schema.json",
+  "title": "OrganizationUsageResponse",
+  "description": "A billing summary of organization usage",
+  "x-generated": "2026-10-04",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/speakeasy-organizations-api-openapi.yml#/components/schemas/OrganizationUsageResponse",
+  "type": "object",
+  "properties": {
+    "usage": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/OrganizationUsage"
+      }
+    },
+    "free_trial_expiry": {
+      "format": "date-time",
+      "readOnly": true,
+      "type": "string",
+      "description": "Expiry date of the free trial, will be null if no trial"
+    },
+    "total_allowed_languages": {
+      "type": "integer",
+      "description": "Total number of allowed languages, -1 if unlimited"
+    },
+    "allowed_languages": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of allowed languages"
+    }
+  },
+  "required": [
+    "usage",
+    "total_allowed_languages",
+    "allowed_languages"
+  ],
+  "$defs": {
+    "OrganizationUsage": {
+      "type": "object",
+      "properties": {
+        "number_of_operations": {
+          "type": "integer",
+          "description": "Number of operations performed"
+        },
+        "max_operations": {
+          "type": "integer",
+          "description": "Maximum Number of operations per SDK specific in contract"
+        },
+        "language": {
+          "type": "string",
+          "description": "The programming language used"
+        },
+        "used_features": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Features that have been used"
+        },
+        "accessible_features": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Features that are accessible"
+        },
+        "accessible": {
+          "type": "boolean",
+          "description": "Indicates if the features are accessible"
+        },
+        "workspaces": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "List of workspace IDs"
+        },
+        "gen_lock_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "List of generation lock IDs"
+        }
+      },
+      "required": [
+        "number_of_operations",
+        "max_operations",
+        "language",
+        "used_features",
+        "accessible_features",
+        "accessible",
+        "workspaces",
+        "gen_lock_ids"
+      ]
+    }
+  }
+}

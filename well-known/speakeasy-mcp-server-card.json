@@ -1,0 +1,38 @@
+{
+  "schema_version": "v1",
+  "name": "speakeasy-docs-mcp",
+  "displayName": "Speakeasy Docs MCP",
+  "description": "MCP server that turns Markdown documentation into a high-signal, agent-ready source. Agents like Claude, Cursor, and ChatGPT search, retrieve, and cite first-party docs through standard MCP tools instead of guessing from training data or scraping HTML.",
+  "version": "1.0",
+  "vendor": {
+    "name": "Speakeasy",
+    "url": "https://www.speakeasy.com"
+  },
+  "homepage": "https://www.speakeasy.com/product/docs-mcp",
+  "documentation": "https://www.speakeasy.com/docs/create-mcp/docs-mcp",
+  "repository": "https://github.com/speakeasy-api/docs-mcp",
+  "capabilities": {
+    "tools": true,
+    "resources": false,
+    "prompts": false
+  },
+  "transports": ["stdio", "streamable-http"],
+  "tools": [
+    {
+      "name": "search_docs",
+      "description": "Full-text and semantic search across indexed Markdown documentation, returning sections that fit an agent's context window."
+    },
+    {
+      "name": "get_doc",
+      "description": "Retrieve a specific document or section by path, preserving document structure for accurate citation."
+    },
+    {
+      "name": "give_feedback",
+      "description": "Flag an answer that was wrong, missing, or unclear so the docs team can improve the source."
+    }
+  ],
+  "hosting": {
+    "managed": "https://www.speakeasy.com/product/docs-mcp",
+    "self_hosted": true
+  }
+}

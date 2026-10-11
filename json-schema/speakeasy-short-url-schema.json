@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/speakeasy/main/json-schema/speakeasy-short-url-schema.json",
+  "title": "ShortURL",
+  "x-generated": "2026-10-04",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/speakeasy-short-urls-api-openapi.yml#/components/schemas/ShortURL",
+  "type": "object",
+  "properties": {
+    "short_url": {
+      "type": "string"
+    },
+    "full_url": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "short_url",
+    "full_url"
+  ]
+}

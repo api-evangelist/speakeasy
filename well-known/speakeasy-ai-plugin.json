@@ -1,0 +1,26 @@
+{
+  "schema_version": "v1",
+  "name_for_human": "Speakeasy AI Control Plane",
+  "name_for_model": "speakeasy",
+  "description_for_human": "The AI control plane for the AI-native enterprise. Connect, control, secure, and observe every AI agent across the organization.",
+  "description_for_model": "Speakeasy is an AI control plane that sits between AI agents (Claude, ChatGPT, Cursor, Copilot, Codex, internal agents) and the systems they reach (SaaS, internal APIs, databases). It provides a unified MCP gateway, OAuth 2.1 with PKCE and Dynamic Client Registration, role-based access down to the tool level, real-time prompt and tool-call inspection with PII and prompt-injection protection, and adoption analytics. Speakeasy also generates MCP servers, Terraform providers, and agent-friendly CLIs from a single OpenAPI spec. Use this plugin to look up product capabilities, MCP catalog entries, pricing tiers, and Speakeasy documentation. Authoritative product, pricing, and architecture context lives at https://www.speakeasy.com/llms.txt and https://www.speakeasy.com/llms-full.txt. To operate the platform end to end from an agent, install the Platform MCP server (https://app.getgram.ai/platform-mcp) following https://www.speakeasy.com/agents.md.",
+  "auth": {
+    "type": "none"
+  },
+  "api": {
+    "type": "openapi",
+    "url": "https://www.speakeasy.com/openapi.yaml"
+  },
+  "logo_url": "https://www.speakeasy.com/assets/og-images/og-speakeasy.png",
+  "contact_email": "support@speakeasy.com",
+  "legal_info_url": "https://www.speakeasy.com/legal",
+  "discovery": {
+    "agent_setup": "https://www.speakeasy.com/agents.md",
+    "llms_txt": "https://www.speakeasy.com/llms.txt",
+    "llms_full_txt": "https://www.speakeasy.com/llms-full.txt",
+    "evaluation_guide": "https://www.speakeasy.com/eval.md",
+    "openapi": "https://www.speakeasy.com/openapi.yaml",
+    "ai_catalog": "https://www.speakeasy.com/.well-known/ai-catalog.json",
+    "mcp_server_card": "https://www.speakeasy.com/.well-known/mcp/server-card.json"
+  }
+}

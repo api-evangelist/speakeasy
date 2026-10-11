@@ -1,0 +1,139 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/speakeasy/main/json-schema/speakeasy-workspace-and-organization-schema.json",
+  "title": "WorkspaceAndOrganization",
+  "description": "A workspace and organization",
+  "x-generated": "2026-10-04",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/speakeasy-workspaces-api-openapi.yml#/components/schemas/WorkspaceAndOrganization",
+  "properties": {
+    "workspace": {
+      "$ref": "#/$defs/Workspace"
+    },
+    "organization": {
+      "$ref": "#/$defs/Organization"
+    }
+  },
+  "required": [
+    "workspace",
+    "organization"
+  ],
+  "type": "object",
+  "$defs": {
+    "AccountType": {
+      "type": "string",
+      "x-speakeasy-unknown-values": "allow",
+      "enum": [
+        "free",
+        "scale-up",
+        "business",
+        "enterprise"
+      ]
+    },
+    "Organization": {
+      "description": "A speakeasy organization",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "account_type": {
+          "$ref": "#/$defs/AccountType"
+        },
+        "telemetry_disabled": {
+          "type": "boolean"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "free_trial_expiry": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "sso_connection_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "sso_activated": {
+          "type": "boolean"
+        },
+        "internal": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "slug",
+        "account_type",
+        "telemetry_disabled",
+        "sso_activated",
+        "created_at",
+        "updated_at"
+      ],
+      "type": "object"
+    },
+    "Workspace": {
+      "description": "A speakeasy workspace",
+      "properties": {
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "organization_id": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "inactive": {
+          "type": "boolean"
+        },
+        "telemetry_disabled": {
+          "deprecated": true,
+          "description": "Deprecated. Use organization.telemetry_disabled instead.",
+          "type": "boolean"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "verified": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "created_at",
+        "id",
+        "name",
+        "organization_id",
+        "slug",
+        "updated_at",
+        "verified"
+      ],
+      "type": "object"
+    }
+  }
+}

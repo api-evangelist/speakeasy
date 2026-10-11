@@ -1,0 +1,314 @@
+generated: '2026-10-04'
+method: derived
+generator: derive-data-model.py
+source:
+- openapi/speakeasy-artifacts-api-openapi.yml
+- openapi/speakeasy-auth-api-openapi.yml
+- openapi/speakeasy-codesamples-api-openapi.yml
+- openapi/speakeasy-events-api-openapi.yml
+- openapi/speakeasy-github-api-openapi.yml
+- openapi/speakeasy-organizations-api-openapi.yml
+- openapi/speakeasy-publishingtokens-api-openapi.yml
+- openapi/speakeasy-reports-api-openapi.yml
+- openapi/speakeasy-schemastore-api-openapi.yml
+- openapi/speakeasy-short-urls-api-openapi.yml
+- openapi/speakeasy-subscriptions-api-openapi.yml
+- openapi/speakeasy-suggest-api-openapi.yml
+notation: has_one = property $ref; has_many = array of $ref; belongs_to = <entity>_id field
+summary:
+  entities: 62
+  entities_in_spec: 62
+  relationships: 33
+entities:
+- name: AccessDetails
+  fields: 3
+- name: AccessToken
+  fields: 5
+  description: An AccessToken is a token that can be used to authenticate with the Speakeasy API.
+- name: AddTags
+  fields: 2
+  description: Request body of tags to add to a revision
+- name: Annotations
+  fields: 12
+  description: Annotations
+- name: ApiKeyDetails
+  fields: 10
+- name: CliEvent
+  fields: 82
+- name: CodeSampleSchemaInput
+  fields: 5
+- name: Diagnostic
+  fields: 4
+- name: Error
+  fields: 2
+  description: The `Status` type defines a logical error model
+- name: FeatureFlag
+  fields: 2
+  description: A feature flag is a key-value pair that can be used to enable or disable features.
+- name: GetNamespacesResponse
+  fields: 1
+- name: GetRevisionsResponse
+  fields: 2
+- name: GetTagsResponse
+  fields: 1
+- name: GithubConfigureCodeSamplesRequest
+  fields: 3
+  description: A request to configure GitHub code samples
+- name: GithubConfigureCodeSamplesResponse
+  fields: 3
+  description: A response to configure GitHub code samples
+- name: GithubConfigureMintlifyRepoRequest
+  fields: 5
+  description: A request to configure a GitHub repository for mintlify
+- name: GithubConfigureTargetRequest
+  fields: 2
+  description: A request to configure a GitHub target
+- name: GithubGetActionResponse
+  fields: 2
+  description: response to a getting the latest action run on a GitHub request
+- name: GithubMissingPublishingSecretsResponse
+  fields: 1
+  description: A valid response containing MISSING publishing secret keys for a github target
+- name: GithubPublishingPRResponse
+  fields: 3
+  description: Open generation PRs pending publishing
+- name: GithubSetupStateResponse
+  fields: 3
+  description: The state of a particular SDK targets github setup
+- name: GithubStorePublishingSecretsRequest
+  fields: 2
+  description: A request to store publishing secrets for a github target
+- name: GithubTriggerActionRequest
+  fields: 6
+  description: A request to trigger an action on a GitHub target
+- name: Manifest
+  fields: 5
+  description: Returns the requested manifest file
+- name: Namespace
+  fields: 8
+  description: A namespace contains many revisions.
+- name: OASInfo
+  fields: 5
+- name: OASOperation
+  fields: 7
+- name: OASSummary
+  fields: 2
+- name: Organization
+  fields: 11
+  description: A speakeasy organization
+- name: OrganizationBillingAddOnRequest
+  fields: 1
+  description: A request to add billing add ons
+- name: OrganizationBillingAddOnResponse
+  fields: 1
+  description: Billing add on response
+- name: OrganizationUsage
+  fields: 8
+- name: OrganizationUsageResponse
+  fields: 4
+  description: A billing summary of organization usage
+- name: PreflightToken
+  fields: 1
+  description: A PreflightToken is a token that allows access to the OCI distribution endpoints.
+- name: PublishingToken
+  fields: 12
+  description: A token used to publish to a target
+- name: RemoteDocument
+  fields: 1
+  description: A document hosted in the registry
+- name: RemoteSource
+  fields: 3
+  description: Remote source configuration
+- name: RemoteSourceSubscriptionSettings
+  fields: 4
+- name: Report
+  fields: 1
+- name: Revision
+  fields: 7
+- name: RevisionContentsMetadata
+  fields: 13
+- name: SSOMetadata
+  fields: 2
+  description: SSO metadata for a workspace
+- name: SchemaStoreItem
+  fields: 6
+- name: ShortURL
+  fields: 2
+- name: SuggestItemsRequestBody
+  fields: 2
+- name: SuggestOptsOld
+  fields: 2
+- name: SuggestRequestBody
+  fields: 3
+- name: Tag
+  fields: 4
+- name: TargetSDK
+  fields: 45
+- name: UsageSnippet
+  fields: 5
+- name: UsageSnippets
+  fields: 1
+- name: User
+  fields: 16
+- name: V2Descriptor
+  fields: 4
+  description: V2 descriptor
+- name: WorkflowDocument
+  fields: 2
+  description: A document referenced by a workflow
+- name: Workspace
+  fields: 9
+  description: A speakeasy workspace
+- name: WorkspaceAndOrganization
+  fields: 2
+  description: A workspace and organization
+- name: WorkspaceFeatureFlagRequest
+  fields: 1
+  description: A request to add workspace feature flags
+- name: WorkspaceFeatureFlagResponse
+  fields: 1
+  description: Workspace feature flag response
+- name: WorkspaceInviteResponse
+  fields: 2
+  description: A response for workspace user invite
+- name: WorkspaceSettings
+  fields: 4
+- name: WorkspaceTeamResponse
+  fields: 2
+  description: Workspace team response
+- name: WorkspaceToken
+  fields: 11
+  description: A workspace token
+relationships:
+- from: Manifest
+  to: Annotations
+  type: has_one
+  via: annotations
+- from: Manifest
+  to: V2Descriptor
+  type: has_many
+  via: layers
+- from: Namespace
+  to: RevisionContentsMetadata
+  type: has_one
+  via: latest_revision_metadata
+- from: Revision
+  to: RevisionContentsMetadata
+  type: has_one
+  via: contents_metadata
+- from: RevisionContentsMetadata
+  to: Workspace
+  type: belongs_to
+  via: workspace_id
+- from: GetTagsResponse
+  to: Tag
+  type: has_many
+  via: items
+- from: GetRevisionsResponse
+  to: Revision
+  type: has_many
+  via: items
+- from: GetNamespacesResponse
+  to: Namespace
+  type: has_many
+  via: items
+- from: V2Descriptor
+  to: Annotations
+  type: has_one
+  via: annotations
+- from: RemoteSource
+  to: RemoteDocument
+  type: has_many
+  via: inputs
+- from: RemoteSource
+  to: RemoteDocument
+  type: has_many
+  via: overlays
+- from: RemoteSource
+  to: RemoteDocument
+  type: has_one
+  via: output
+- from: AccessToken
+  to: FeatureFlag
+  type: has_many
+  via: feature_flags
+- from: ApiKeyDetails
+  to: Workspace
+  type: belongs_to
+  via: workspace_id
+- from: UsageSnippets
+  to: UsageSnippet
+  type: has_many
+  via: snippets
+- from: CliEvent
+  to: Workspace
+  type: belongs_to
+  via: workspace_id
+- from: GithubConfigureCodeSamplesResponse
+  to: WorkflowDocument
+  type: has_one
+  via: source
+- from: OrganizationUsageResponse
+  to: OrganizationUsage
+  type: has_many
+  via: usage
+- from: PublishingToken
+  to: Organization
+  type: belongs_to
+  via: organization_id
+- from: PublishingToken
+  to: Workspace
+  type: belongs_to
+  via: workspace_id
+- from: SuggestRequestBody
+  to: OASSummary
+  type: has_one
+  via: oas_summary
+- from: SuggestRequestBody
+  to: Diagnostic
+  type: has_many
+  via: diagnostics
+- from: SuggestOptsOld
+  to: Diagnostic
+  type: has_many
+  via: diagnostics
+- from: OASSummary
+  to: OASInfo
+  type: has_one
+  via: info
+- from: OASSummary
+  to: OASOperation
+  type: has_many
+  via: operations
+- from: WorkspaceTeamResponse
+  to: User
+  type: has_many
+  via: users
+- from: WorkspaceTeamResponse
+  to: SSOMetadata
+  type: has_one
+  via: sso_metadata
+- from: WorkspaceFeatureFlagResponse
+  to: FeatureFlag
+  type: has_many
+  via: feature_flags
+- from: WorkspaceToken
+  to: Workspace
+  type: belongs_to
+  via: workspace_id
+- from: WorkspaceAndOrganization
+  to: Workspace
+  type: has_one
+  via: workspace
+- from: WorkspaceAndOrganization
+  to: Organization
+  type: has_one
+  via: organization
+- from: Workspace
+  to: Organization
+  type: belongs_to
+  via: organization_id
+- from: WorkspaceSettings
+  to: Workspace
+  type: belongs_to
+  via: workspace_id

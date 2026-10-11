@@ -1,0 +1,23 @@
+generated: '2026-10-04'
+method: probed
+source: https://www.speakeasy.com/privacy
+http_status: 200
+signals:
+  data_subject_request:
+    evidence:
+      - source: https://www.speakeasy.com/privacy
+        http_status: 200
+        quote: "If you would like to submit a data rights request (also known as a data subject access request), or have any other questions, comments, or concerns about this privacy policy, please contact us at info@speakeasy.com."
+    note: Allows data subject access requests via email.
+  data_retention:
+    evidence:
+      - source: https://www.speakeasy.com/privacy
+        http_status: 200
+        quote: "We retain your Personal Information for as long as we need to fulfill our Services. In addition, we retain Personal Information after we cease providing Services to you, to the extent necessary to comply with our legal obligations."
+    note: Retains data as needed for service and legal obligations.
+  incident_notification:
+    evidence:
+      - source: https://www.speakeasy.com/privacy
+        http_status: 200
+        quote: "Upon becoming aware of a breach of your Personal Information, we will notify you as quickly as we can and will provide timely information relating to the breach as it becomes known in accordance with any applicable laws and regulations or as is reasonably requested by you."
+    note: Commits to breach notification per law.

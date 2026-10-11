@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/speakeasy/main/json-schema/speakeasy-access-details-schema.json",
+  "title": "AccessDetails",
+  "x-generated": "2026-10-04",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/speakeasy-auth-api-openapi.yml#/components/schemas/AccessDetails",
+  "type": "object",
+  "properties": {
+    "generation_allowed": {
+      "type": "boolean"
+    },
+    "message": {
+      "type": "string"
+    },
+    "level": {
+      "type": "string",
+      "enum": [
+        "allowed",
+        "warning",
+        "blocked"
+      ]
+    }
+  },
+  "required": [
+    "generation_allowed",
+    "message"
+  ]
+}

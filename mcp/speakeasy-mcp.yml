@@ -1,0 +1,226 @@
+generated: '2026-10-04'
+method: derived
+generator: derive-mcp-candidate.py
+source:
+- openapi/speakeasy-artifacts-api-openapi.yml
+- openapi/speakeasy-auth-api-openapi.yml
+- openapi/speakeasy-codesamples-api-openapi.yml
+- openapi/speakeasy-events-api-openapi.yml
+- openapi/speakeasy-github-api-openapi.yml
+- openapi/speakeasy-organizations-api-openapi.yml
+- openapi/speakeasy-publishingtokens-api-openapi.yml
+- openapi/speakeasy-reports-api-openapi.yml
+- openapi/speakeasy-schemastore-api-openapi.yml
+- openapi/speakeasy-short-urls-api-openapi.yml
+- openapi/speakeasy-subscriptions-api-openapi.yml
+- openapi/speakeasy-suggest-api-openapi.yml
+- openapi/speakeasy-workspaces-api-openapi.yml
+status: candidate
+deployment:
+  mode: none
+  auth: unknown
+  verified: probed
+note: No MCP server was found. The pre-flight posted tools/list to /mcp on api.prod.speakeasy.com, api.speakeasyapi.dev, www.speakeasy.com, login.speakeasy.com;
+  verdict absent. Candidate tools below are derived from the 77 operation(s) in the provider's own OpenAPI (40 listed); they describe what a server
+  WOULD expose, not one that exists.
+tools:
+- name: preflight
+  operationId: preflight
+  method: POST
+  path: /v1/artifacts/preflight
+  description: Get Access Token for Communicating with OCI Distribution Endpoints
+- name: validate_api_key
+  operationId: validateApiKey
+  method: GET
+  path: /v1/auth/validate
+  description: Validate the Current API Key
+- name: get_code_samples
+  operationId: getCodeSamples
+  method: GET
+  path: /v1/code_sample
+  description: Retrieve Usage Snippets
+- name: search_workspace_events
+  operationId: searchWorkspaceEvents
+  method: GET
+  path: /v1/workspace/{workspace_id}/events
+  description: Search workspace events
+- name: get_github_setup_state
+  operationId: getGithubSetupState
+  method: GET
+  path: /v1/github/setup
+  description: Get github setup state
+- name: get_organizations
+  operationId: getOrganizations
+  method: GET
+  path: /v1/organizations
+  description: Get Organizations for a User
+- name: get_publishing_token
+  operationId: getPublishingToken
+  method: GET
+  path: /v1/publishing-tokens
+  description: Get Publishing Tokens for a Workspace
+- name: upload_report
+  operationId: uploadReport
+  method: POST
+  path: /v1/reports
+  description: Upload a Report
+- name: get_schema_store_item
+  operationId: getSchemaStoreItem
+  method: GET
+  path: /v1/schema_store
+  description: Get a OAS Schema from the Schema Store
+- name: create
+  operationId: create
+  method: POST
+  path: /v1/short_urls
+  description: Shorten a URL
+- name: ignore_subscription_namespace
+  operationId: ignoreSubscriptionNamespace
+  method: POST
+  path: /v1/subscriptions/{subscriptionID}/{namespaceName}/ignore
+  description: Ignored a Namespace for a Subscription
+- name: suggest_open_api
+  operationId: suggestOpenAPI
+  method: POST
+  path: /v1/suggest/openapi
+  description: (DEPRECATED) Generate Suggestions for Improving an OpenAPI Document
+- name: get_workspaces
+  operationId: getWorkspaces
+  method: GET
+  path: /v1/workspaces
+  description: Get Workspaces for a User
+- name: get_namespaces
+  operationId: getNamespaces
+  method: GET
+  path: /v1/artifacts/namespaces
+  description: Each Namespace Contains Many Revisions
+- name: get_user
+  operationId: getUser
+  method: GET
+  path: /v1/user
+  description: Get Information About the Current User
+- name: generate_code_sample_preview
+  operationId: generateCodeSamplePreview
+  method: POST
+  path: /v1/code_sample/preview
+  description: Generate Code Sample Previews from a File and Configuration Parameters
+- name: post_workspace_events
+  operationId: postWorkspaceEvents
+  method: POST
+  path: /v1/workspace/{workspace_id}/events
+  description: Post Events for a Specific Workspace
+- name: check_github_access
+  operationId: checkGithubAccess
+  method: GET
+  path: /v1/github/check_access
+  description: Check github access
+- name: create_organization
+  operationId: createOrganization
+  method: POST
+  path: /v1/organization
+  description: Create an Organization
+- name: create_publishing_token
+  operationId: createPublishingToken
+  method: POST
+  path: /v1/publishing-tokens
+  description: Create a Publishing Token for a Workspace
+- name: get_linting_report_signed_url
+  operationId: getLintingReportSignedUrl
+  method: GET
+  path: /v1/reports/linting/{documentChecksum}
+  description: Get the Signed Access URL for the Linting Reports for a Particular Document
+- name: create_schema_store_item
+  operationId: createSchemaStoreItem
+  method: POST
+  path: /v1/schema_store
+  description: Create a Schema in the Schema Store
+- name: activate_subscription_namespace
+  operationId: activateSubscriptionNamespace
+  method: POST
+  path: /v1/subscriptions/{subscriptionID}/{namespaceName}/activate
+  description: Activate an Ignored Namespace for a Subscription
+- name: suggest
+  operationId: suggest
+  method: POST
+  path: /v1/suggest/openapi_from_summary
+  description: Generate Suggestions for Improving an OpenAPI Document
+- name: get_workspace_by_context
+  operationId: getWorkspaceByContext
+  method: GET
+  path: /v1/workspace
+  description: Get Workspace by Context
+- name: archive_namespace
+  operationId: archiveNamespace
+  method: POST
+  path: /v1/artifacts/namespaces/{namespace_name}/archive
+  description: Set Whether a Namespace is Archived
+- name: get_access_token
+  operationId: getAccessToken
+  method: GET
+  path: /v1/auth/access_token
+  description: Get or Refresh an Access Token for the Current Workspace
+- name: generate_code_sample_preview_async
+  operationId: generateCodeSamplePreviewAsync
+  method: POST
+  path: /v1/code_sample/preview/async
+  description: Initiate Asynchronous Code Sample Preview Generation from a File and…
+- name: get_workspace_events_by_target
+  operationId: getWorkspaceEventsByTarget
+  method: GET
+  path: /v1/workspace/{workspace_id}/events/targets/{target_id}/events
+  description: Get workspace events by target
+- name: link_github_access
+  operationId: linkGithubAccess
+  method: POST
+  path: /v1/github/link
+  description: Link github access
+- name: get_organization
+  operationId: getOrganization
+  method: GET
+  path: /v1/organization/{organizationID}
+  description: Get Organization
+- name: get_publishing_token_by_id
+  operationId: getPublishingTokenByID
+  method: GET
+  path: /v1/publishing-tokens/{tokenID}
+  description: Get a Specific Publishing Token
+- name: get_changes_report_signed_url
+  operationId: getChangesReportSignedUrl
+  method: GET
+  path: /v1/reports/changes/{documentChecksum}
+  description: Get the Signed Access URL for the Change Reports for a Particular Document
+- name: suggest_items
+  operationId: suggestItems
+  method: POST
+  path: /v1/suggest/items
+  description: Generate Generic Suggestions for a List of Items
+- name: create_workspace
+  operationId: createWorkspace
+  method: POST
+  path: /v1/workspace
+  description: Create a Workspace
+- name: get_revisions
+  operationId: getRevisions
+  method: GET
+  path: /v1/artifacts/namespaces/{namespace_name}/revisions
+  description: Get revisions
+- name: get_workspace_access
+  operationId: getWorkspaceAccess
+  method: GET
+  path: /v1/workspace/access
+  description: Get Access Allowances for a Particular Workspace
+- name: get_code_sample_preview_async
+  operationId: getCodeSamplePreviewAsync
+  method: GET
+  path: /v1/code_sample/preview/async/{jobID}
+  description: Poll for the Result of an Asynchronous Code Sample Preview Generation
+- name: get_workspace_targets
+  operationId: getWorkspaceTargets
+  method: GET
+  path: /v1/workspace/events/targets
+  description: Get workspace targets
+- name: github_check_publishing_prs
+  operationId: githubCheckPublishingPRs
+  method: GET
+  path: /v1/github/publishing_prs
+  description: Github check publishing PRs

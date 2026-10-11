@@ -1,0 +1,38 @@
+generated: '2026-10-04'
+method: derived
+generator: derive-problem-types.py
+source:
+- openapi/speakeasy-artifacts-api-openapi.yml
+- openapi/speakeasy-auth-api-openapi.yml
+- openapi/speakeasy-codesamples-api-openapi.yml
+- openapi/speakeasy-events-api-openapi.yml
+- openapi/speakeasy-github-api-openapi.yml
+- openapi/speakeasy-organizations-api-openapi.yml
+- openapi/speakeasy-publishingtokens-api-openapi.yml
+- openapi/speakeasy-reports-api-openapi.yml
+- openapi/speakeasy-schemastore-api-openapi.yml
+- openapi/speakeasy-short-urls-api-openapi.yml
+- openapi/speakeasy-subscriptions-api-openapi.yml
+- openapi/speakeasy-suggest-api-openapi.yml
+format: custom
+envelope:
+  media_type: application/json
+  schema: Error
+coverage:
+  operations: 77
+  statuses_declared: 2
+problems:
+- status: 4XX
+  title: null
+  description: Default error response
+  operations: 58
+  media_types:
+  - application/json
+  schema: Error
+- status: 5XX
+  title: null
+  description: Error
+  operations: 13
+  media_types:
+  - application/json
+  schema: Error

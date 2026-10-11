@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/speakeasy/main/json-schema/speakeasy-workspace-feature-flag-request-schema.json",
+  "title": "WorkspaceFeatureFlagRequest",
+  "description": "A request to add workspace feature flags",
+  "x-generated": "2026-10-04",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/speakeasy-workspaces-api-openapi.yml#/components/schemas/WorkspaceFeatureFlagRequest",
+  "type": "object",
+  "properties": {
+    "feature_flags": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/WorkspaceFeatureFlag"
+      }
+    }
+  },
+  "required": [
+    "feature_flags"
+  ],
+  "$defs": {
+    "WorkspaceFeatureFlag": {
+      "description": "enum value workspace feature flag",
+      "type": "string",
+      "x-speakeasy-unknown-values": "allow",
+      "enum": [
+        "schema_registry",
+        "changes_report",
+        "skip_schema_registry",
+        "webhooks"
+      ]
+    }
+  }
+}
