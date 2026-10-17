@@ -292,6 +292,110 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    Error:
+      description: The `Status` type defines a logical error model
+      properties:
+        message:
+          description: A developer-facing error message.
+          type: string
+        status_code:
+          description: The HTTP status code
+          format: int32
+          type: integer
+      required:
+      - message
+      - status_code
+      type: object
+    GithubConfigureTargetRequest:
+      description: A request to configure a GitHub target
+      type: object
+      properties:
+        org:
+          type: string
+          description: The GitHub organization name
+        repo_name:
+          type: string
+          description: The GitHub repository name
+      required:
+      - org
+      - repo_name
+    GithubPublishingPRResponse:
+      description: Open generation PRs pending publishing
+      type: object
+      properties:
+        pull_request:
+          type: string
+        pending_version:
+          type: string
+        pull_request_metadata:
+          description: This can only be populated when the github app is installed for a repo
+          type: object
+          properties:
+            status:
+              type: string
+            title:
+              type: string
+            created_at:
+              format: date-time
+              type: string
+            description:
+              description: truncated to first 1000 characters
+              type: string
+            head_branch:
+              type: string
+            base_branch:
+              type: string
+            can_merge:
+              type: boolean
+            labels:
+              description: List of github labels
+              type: array
+              items:
+                type: string
+            requested_reviewers:
+              description: List of github handles
+              type: array
+              items:
+                type: string
+    GithubMissingPublishingSecretsResponse:
+      description: A valid response containing MISSING publishing secret keys for a github target
+      type: object
+      properties:
+        missing_secrets:
+          type: array
+          items:
+            type: string
+    GithubConfigureCodeSamplesRequest:
+      description: A request to configure GitHub code samples
+      type: object
+      properties:
+        org:
+          type: string
+          description: The GitHub organization name
+        repo:
+          type: string
+          description: The GitHub repository name
+        targetName:
+          type: string
+          description: The target name for the code samples
+      required:
+      - org
+      - repo
+      - targetName
+    GithubStorePublishingSecretsRequest:
+      description: A request to store publishing secrets for a github target
+      type: object
+      properties:
+        generate_gen_lock_id:
+          type: string
+          description: The generation lock ID
+        secrets:
+          type: object
+          description: A map of secrets to store in the GitHub target
+          additionalProperties:
+            type: string
+      required:
+      - generate_gen_lock_id
     GithubTriggerActionRequest:
       description: A request to trigger an action on a GitHub target
       type: object
@@ -335,65 +439,16 @@ components:
           - secret
       required:
       - location
-    GithubMissingPublishingSecretsResponse:
-      description: A valid response containing MISSING publishing secret keys for a github target
+    GithubGetActionResponse:
+      description: response to a getting the latest action run on a GitHub request
       type: object
       properties:
-        missing_secrets:
-          type: array
-          items:
-            type: string
-    GithubPublishingPRResponse:
-      description: Open generation PRs pending publishing
-      type: object
-      properties:
-        pull_request:
+        run_url:
           type: string
-        pending_version:
+          description: The URL for latest action run if available
+        run_status:
           type: string
-        pull_request_metadata:
-          description: This can only be populated when the github app is installed for a repo
-          type: object
-          properties:
-            status:
-              type: string
-            title:
-              type: string
-            created_at:
-              format: date-time
-              type: string
-            description:
-              description: truncated to first 1000 characters
-              type: string
-            head_branch:
-              type: string
-            base_branch:
-              type: string
-            can_merge:
-              type: boolean
-            labels:
-              description: List of github labels
-              type: array
-              items:
-                type: string
-            requested_reviewers:
-              description: List of github handles
-              type: array
-              items:
-                type: string
-    GithubConfigureTargetRequest:
-      description: A request to configure a GitHub target
-      type: object
-      properties:
-        org:
-          type: string
-          description: The GitHub organization name
-        repo_name:
-          type: string
-          description: The GitHub repository name
-      required:
-      - org
-      - repo_name
+          description: The status of the latest action run if available
     GithubConfigureCodeSamplesResponse:
       description: A response to configure GitHub code samples
       type: object
@@ -439,51 +494,6 @@ components:
       - app_installed
       - actions
       - secrets
-    GithubConfigureCodeSamplesRequest:
-      description: A request to configure GitHub code samples
-      type: object
-      properties:
-        org:
-          type: string
-          description: The GitHub organization name
-        repo:
-          type: string
-          description: The GitHub repository name
-        targetName:
-          type: string
-          description: The target name for the code samples
-      required:
-      - org
-      - repo
-      - targetName
-    Error:
-      description: The `Status` type defines a logical error model
-      properties:
-        message:
-          description: A developer-facing error message.
-          type: string
-        status_code:
-          description: The HTTP status code
-          format: int32
-          type: integer
-      required:
-      - message
-      - status_code
-      type: object
-    GithubStorePublishingSecretsRequest:
-      description: A request to store publishing secrets for a github target
-      type: object
-      properties:
-        generate_gen_lock_id:
-          type: string
-          description: The generation lock ID
-        secrets:
-          type: object
-          description: A map of secrets to store in the GitHub target
-          additionalProperties:
-            type: string
-      required:
-      - generate_gen_lock_id
     GithubConfigureMintlifyRepoRequest:
       description: A request to configure a GitHub repository for mintlify
       type: object
@@ -510,16 +520,6 @@ components:
       - repo
       - input
       - overlays
-    GithubGetActionResponse:
-      description: response to a getting the latest action run on a GitHub request
-      type: object
-      properties:
-        run_url:
-          type: string
-          description: The URL for latest action run if available
-        run_status:
-          type: string
-          description: The status of the latest action run if available
   responses:
     default:
       content:

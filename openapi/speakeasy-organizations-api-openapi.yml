@@ -178,6 +178,39 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
+    Error:
+      description: The `Status` type defines a logical error model
+      properties:
+        message:
+          description: A developer-facing error message.
+          type: string
+        status_code:
+          description: The HTTP status code
+          format: int32
+          type: integer
+      required:
+      - message
+      - status_code
+      type: object
+    OrganizationBillingAddOnRequest:
+      description: A request to add billing add ons
+      type: object
+      properties:
+        add_ons:
+          type: array
+          items:
+            $ref: '#/components/schemas/BillingAddOn'
+      required:
+      - add_ons
+    OrganizationBillingAddOnResponse:
+      description: Billing add on response
+      properties:
+        add_ons:
+          type: array
+          items:
+            $ref: '#/components/schemas/BillingAddOn'
+      required:
+      - add_ons
     OrganizationUsage:
       type: object
       properties:
@@ -222,47 +255,6 @@ components:
       - accessible
       - workspaces
       - gen_lock_ids
-    BillingAddOn:
-      type: string
-      x-speakeasy-unknown-values: allow
-      enum:
-      - webhooks
-      - sdk_testing
-      - custom_code_regions
-      - snippet_ai
-    OrganizationBillingAddOnRequest:
-      description: A request to add billing add ons
-      type: object
-      properties:
-        add_ons:
-          type: array
-          items:
-            $ref: '#/components/schemas/BillingAddOn'
-      required:
-      - add_ons
-    OrganizationBillingAddOnResponse:
-      description: Billing add on response
-      properties:
-        add_ons:
-          type: array
-          items:
-            $ref: '#/components/schemas/BillingAddOn'
-      required:
-      - add_ons
-    Error:
-      description: The `Status` type defines a logical error model
-      properties:
-        message:
-          description: A developer-facing error message.
-          type: string
-        status_code:
-          description: The HTTP status code
-          format: int32
-          type: integer
-      required:
-      - message
-      - status_code
-      type: object
     OrganizationUsageResponse:
       description: A billing summary of organization usage
       type: object
@@ -288,6 +280,14 @@ components:
       - usage
       - total_allowed_languages
       - allowed_languages
+    BillingAddOn:
+      type: string
+      x-speakeasy-unknown-values: allow
+      enum:
+      - webhooks
+      - sdk_testing
+      - custom_code_regions
+      - snippet_ai
     AccountType:
       type: string
       x-speakeasy-unknown-values: allow

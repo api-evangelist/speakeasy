@@ -759,8 +759,6 @@ apis:
   humanURL: https://www.speakeasy.com/product/sdk-generation
   baseURL: https://api.prod.speakeasy.com
   tags:
-  - ShortURLs
-  tags_raw:
   - Short URLs
   properties:
   - type: OpenAPI

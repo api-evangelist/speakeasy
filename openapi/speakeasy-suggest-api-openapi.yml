@@ -146,20 +146,28 @@ paths:
       - Suggest
 components:
   schemas:
-    SuggestOptsOld:
+    OASInfo:
       type: object
       properties:
-        suggestion_type:
+        title:
           type: string
-          enum:
-          - method-names
-          - diagnostics-only
-        diagnostics:
-          type: array
-          items:
-            $ref: '#/components/schemas/Diagnostic'
+        summary:
+          type: string
+        description:
+          type: string
+        version:
+          type: string
+        license:
+          type: object
+          properties:
+            identifier:
+              type: string
       required:
-      - suggestion_type
+      - title
+      - summary
+      - description
+      - version
+      - license
     Diagnostic:
       type: object
       properties:
@@ -181,6 +189,50 @@ components:
       - message
       - path
       - type
+    OASSummary:
+      type: object
+      properties:
+        info:
+          $ref: '#/components/schemas/OASInfo'
+        operations:
+          type: array
+          items:
+            $ref: '#/components/schemas/OASOperation'
+      required:
+      - info
+      - operations
+    SuggestOptsOld:
+      type: object
+      properties:
+        suggestion_type:
+          type: string
+          enum:
+          - method-names
+          - diagnostics-only
+        diagnostics:
+          type: array
+          items:
+            $ref: '#/components/schemas/Diagnostic'
+      required:
+      - suggestion_type
+    SuggestRequestBody:
+      type: object
+      properties:
+        oas_summary:
+          $ref: '#/components/schemas/OASSummary'
+        suggestion_type:
+          type: string
+          enum:
+          - method-names
+          - diagnostics-only
+        diagnostics:
+          type: array
+          items:
+            $ref: '#/components/schemas/Diagnostic'
+      required:
+      - oas_summary
+      - suggestion_type
+      - diagnostics
     OASOperation:
       type: object
       properties:
@@ -220,58 +272,6 @@ components:
       required:
       - prompt
       - items
-    OASInfo:
-      type: object
-      properties:
-        title:
-          type: string
-        summary:
-          type: string
-        description:
-          type: string
-        version:
-          type: string
-        license:
-          type: object
-          properties:
-            identifier:
-              type: string
-      required:
-      - title
-      - summary
-      - description
-      - version
-      - license
-    SuggestRequestBody:
-      type: object
-      properties:
-        oas_summary:
-          $ref: '#/components/schemas/OASSummary'
-        suggestion_type:
-          type: string
-          enum:
-          - method-names
-          - diagnostics-only
-        diagnostics:
-          type: array
-          items:
-            $ref: '#/components/schemas/Diagnostic'
-      required:
-      - oas_summary
-      - suggestion_type
-      - diagnostics
-    OASSummary:
-      type: object
-      properties:
-        info:
-          $ref: '#/components/schemas/OASInfo'
-        operations:
-          type: array
-          items:
-            $ref: '#/components/schemas/OASOperation'
-      required:
-      - info
-      - operations
   securitySchemes:
     APIKey:
       description: The API Key for the workspace

@@ -114,88 +114,6 @@ paths:
                 $ref: '#/components/schemas/AccessDetails'
 components:
   schemas:
-    WorkspaceFeatureFlag:
-      description: enum value workspace feature flag
-      type: string
-      x-speakeasy-unknown-values: allow
-      enum:
-      - schema_registry
-      - changes_report
-      - skip_schema_registry
-      - webhooks
-    AccessDetails:
-      type: object
-      properties:
-        generation_allowed:
-          type: boolean
-        message:
-          type: string
-        level:
-          type: string
-          enum:
-          - allowed
-          - warning
-          - blocked
-      required:
-      - generation_allowed
-      - message
-    AccountType:
-      type: string
-      x-speakeasy-unknown-values: allow
-      enum:
-      - free
-      - scale-up
-      - business
-      - enterprise
-    ApiKeyDetails:
-      type: object
-      properties:
-        workspace_id:
-          type: string
-        workspace_slug:
-          type: string
-        org_slug:
-          type: string
-        generation_access_unlimited:
-          type: boolean
-        account_type_v2:
-          $ref: '#/components/schemas/AccountType'
-        enabled_features:
-          type: array
-          items:
-            type: string
-        billing_add_ons:
-          type: array
-          items:
-            $ref: '#/components/schemas/BillingAddOn'
-        feature_flags:
-          deprecated: true
-          type: array
-          items:
-            type: string
-        telemetry_disabled:
-          type: boolean
-        workspace_created_at:
-          description: Workspace creation timestamp.
-          format: date-time
-          type: string
-      required:
-      - workspace_id
-      - account_type_v2
-      - enabled_features
-      - workspace_slug
-      - org_slug
-      - workspace_created_at
-      - telemetry_disabled
-      - billing_add_ons
-    BillingAddOn:
-      type: string
-      x-speakeasy-unknown-values: allow
-      enum:
-      - webhooks
-      - sdk_testing
-      - custom_code_regions
-      - snippet_ai
     Error:
       description: The `Status` type defines a logical error model
       properties:
@@ -268,6 +186,72 @@ components:
       - claims
       - user
       type: object
+    ApiKeyDetails:
+      type: object
+      properties:
+        workspace_id:
+          type: string
+        workspace_slug:
+          type: string
+        org_slug:
+          type: string
+        generation_access_unlimited:
+          type: boolean
+        account_type_v2:
+          $ref: '#/components/schemas/AccountType'
+        enabled_features:
+          type: array
+          items:
+            type: string
+        billing_add_ons:
+          type: array
+          items:
+            $ref: '#/components/schemas/BillingAddOn'
+        feature_flags:
+          deprecated: true
+          type: array
+          items:
+            type: string
+        telemetry_disabled:
+          type: boolean
+        workspace_created_at:
+          description: Workspace creation timestamp.
+          format: date-time
+          type: string
+      required:
+      - workspace_id
+      - account_type_v2
+      - enabled_features
+      - workspace_slug
+      - org_slug
+      - workspace_created_at
+      - telemetry_disabled
+      - billing_add_ons
+    BillingAddOn:
+      type: string
+      x-speakeasy-unknown-values: allow
+      enum:
+      - webhooks
+      - sdk_testing
+      - custom_code_regions
+      - snippet_ai
+    AccountType:
+      type: string
+      x-speakeasy-unknown-values: allow
+      enum:
+      - free
+      - scale-up
+      - business
+      - enterprise
+    WorkspaceFeatureFlag:
+      description: enum value workspace feature flag
+      type: string
+      x-speakeasy-unknown-values: allow
+      enum:
+      - schema_registry
+      - changes_report
+      - skip_schema_registry
+      - webhooks
     User:
       type: object
       properties:
@@ -340,6 +324,22 @@ components:
       - admin
       - created_at
       - updated_at
+    AccessDetails:
+      type: object
+      properties:
+        generation_allowed:
+          type: boolean
+        message:
+          type: string
+        level:
+          type: string
+          enum:
+          - allowed
+          - warning
+          - blocked
+      required:
+      - generation_allowed
+      - message
   responses:
     default:
       content:
